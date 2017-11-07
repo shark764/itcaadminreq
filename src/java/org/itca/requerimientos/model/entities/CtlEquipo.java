@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -35,6 +37,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "ctl_equipo", catalog = "dbrequerimientos", schema = "")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "CtlEquipo.findByModel", query = "SELECT c FROM CtlEquipo c WHERE c.idModelo.id = :id"),
+    @NamedQuery(name = "CtlEquipo.nonStock", query = "SELECT c FROM CtlEquipo c WHERE c.existencia <= :min"),
+    @NamedQuery(name = "CtlEquipo.entryRange", query = "SELECT c FROM CtlEquipo c WHERE c.fechaAdquisicion >= :start AND c.fechaAdquisicion <= :end"),
+    @NamedQuery(name = "CtlEquipo.findByProvider", query = "SELECT c FROM CtlEquipo c WHERE c.idProveedor.id = :id"),
+    @NamedQuery(name = "CtlEquipo.stockRange", query = "SELECT c FROM CtlEquipo c WHERE c.existencia >= :start AND c.existencia <= :end"),
     @NamedQuery(name = "CtlEquipo.findAll", query = "SELECT c FROM CtlEquipo c"),
     @NamedQuery(name = "CtlEquipo.findById", query = "SELECT c FROM CtlEquipo c WHERE c.id = :id"),
     @NamedQuery(name = "CtlEquipo.findByNombre", query = "SELECT c FROM CtlEquipo c WHERE c.nombre = :nombre"),
@@ -46,7 +53,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CtlEquipo.findByDescripcion", query = "SELECT c FROM CtlEquipo c WHERE c.descripcion = :descripcion")})
 public class CtlEquipo implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_equipo",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_equipo")
     @Id
+    @GeneratedValue(generator = "sec_equipo")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -329,7 +342,8 @@ public class CtlEquipo implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.CtlEquipo[ id=" + id + " ]";
+        return "[Inventario: " + this.inventario + "] " + this.nombre;
+        // return "org.itca.requerimientos.model.entities.CtlEquipo[ id=" + id + " ]";
     }
     
 }

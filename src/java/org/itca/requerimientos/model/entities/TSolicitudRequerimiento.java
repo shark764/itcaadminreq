@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -35,13 +37,22 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "t_solicitud_requerimiento", catalog = "dbrequerimientos", schema = "")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "TSolicitudRequerimiento.findByArea", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.idArea.id = :id"),
+    @NamedQuery(name = "TSolicitudRequerimiento.findByEmployee", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.idEmpleado.id = :id"),
+    @NamedQuery(name = "TSolicitudRequerimiento.entryRange", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.fecha >= :start AND s.fecha <= :end"),
     @NamedQuery(name = "TSolicitudRequerimiento.findAll", query = "SELECT t FROM TSolicitudRequerimiento t"),
     @NamedQuery(name = "TSolicitudRequerimiento.findById", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.id = :id"),
     @NamedQuery(name = "TSolicitudRequerimiento.findByCodigo", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.codigo = :codigo"),
     @NamedQuery(name = "TSolicitudRequerimiento.findByFecha", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.fecha = :fecha")})
 public class TSolicitudRequerimiento implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_solicitud_requerimiento",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_solicitud_requerimiento")
     @Id
+    @GeneratedValue(generator = "sec_solicitud_requerimiento")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -168,7 +179,8 @@ public class TSolicitudRequerimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.TSolicitudRequerimiento[ id=" + id + " ]";
+        return "[" + this.idArea + "] " + this.fecha;
+        // return "org.itca.requerimientos.model.entities.TSolicitudRequerimiento[ id=" + id + " ]";
     }
     
 }

@@ -11,12 +11,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -31,6 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "t_mantenimiento", catalog = "dbrequerimientos", schema = "")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "TMantenimiento.findByIdRequestArea", query = "SELECT t FROM TMantenimiento t WHERE t.idAreaRequerimiento.id = :id"),
+    @NamedQuery(name = "TMantenimiento.limitRange", query = "SELECT t FROM TMantenimiento t WHERE t.fechaLimite >= :start AND t.fechaLimite <= :end"),
+    @NamedQuery(name = "TMantenimiento.startRange", query = "SELECT t FROM TMantenimiento t WHERE t.fechaInicio >= :start AND t.fechaInicio <= :end"),
     @NamedQuery(name = "TMantenimiento.findAll", query = "SELECT t FROM TMantenimiento t"),
     @NamedQuery(name = "TMantenimiento.findById", query = "SELECT t FROM TMantenimiento t WHERE t.id = :id"),
     @NamedQuery(name = "TMantenimiento.findByCodigo", query = "SELECT t FROM TMantenimiento t WHERE t.codigo = :codigo"),
@@ -41,7 +46,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TMantenimiento.findByDescripcion", query = "SELECT t FROM TMantenimiento t WHERE t.descripcion = :descripcion")})
 public class TMantenimiento implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_mantenimiento",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_mantenimiento")
     @Id
+    @GeneratedValue(generator = "sec_mantenimiento")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -210,7 +221,8 @@ public class TMantenimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.TMantenimiento[ id=" + id + " ]";
+        return "[" + this.codigo + "] " + this.idAreaRequerimiento;
+        // return "org.itca.requerimientos.model.entities.TMantenimiento[ id=" + id + " ]";
     }
     
 }

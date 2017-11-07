@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -51,7 +53,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TEmpleado.findByEMail", query = "SELECT t FROM TEmpleado t WHERE t.eMail = :eMail")})
 public class TEmpleado implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_empleado",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_empleado")
     @Id
+    @GeneratedValue(generator = "sec_empleado")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")

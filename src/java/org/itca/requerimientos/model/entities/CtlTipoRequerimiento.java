@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,7 +39,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CtlTipoRequerimiento.findByCodigo", query = "SELECT c FROM CtlTipoRequerimiento c WHERE c.codigo = :codigo")})
 public class CtlTipoRequerimiento implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_tipo_requerimiento",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_tipo_requerimiento")
     @Id
+    @GeneratedValue(generator = "sec_tipo_requerimiento")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -134,7 +142,8 @@ public class CtlTipoRequerimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.CtlTipoRequerimiento[ id=" + id + " ]";
+        return "[" + this.codigo + "] " + this.nombre;
+        // return "org.itca.requerimientos.model.entities.CtlTipoRequerimiento[ id=" + id + " ]";
     }
     
 }

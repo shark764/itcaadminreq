@@ -11,17 +11,20 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.itca.requerimientos.model.entities.jasper.InventarioDefectuosoJasper;
 
 /**
  *
@@ -31,13 +34,46 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "ctl_inventario_defectuoso", catalog = "dbrequerimientos", schema = "")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "CtlInventarioDefectuoso.findByEquipmentModel", query = "SELECT c FROM CtlInventarioDefectuoso c WHERE c.idEquipo.idModelo.id = :id"),
+    @NamedQuery(name = "CtlInventarioDefectuoso.entryRange", query = "SELECT c FROM CtlInventarioDefectuoso c WHERE c.fechaIngreso >= :start AND c.fechaIngreso <= :end"),
     @NamedQuery(name = "CtlInventarioDefectuoso.findAll", query = "SELECT c FROM CtlInventarioDefectuoso c"),
     @NamedQuery(name = "CtlInventarioDefectuoso.findById", query = "SELECT c FROM CtlInventarioDefectuoso c WHERE c.id = :id"),
     @NamedQuery(name = "CtlInventarioDefectuoso.findByDescripcion", query = "SELECT c FROM CtlInventarioDefectuoso c WHERE c.descripcion = :descripcion"),
     @NamedQuery(name = "CtlInventarioDefectuoso.findByFechaIngreso", query = "SELECT c FROM CtlInventarioDefectuoso c WHERE c.fechaIngreso = :fechaIngreso")})
+@NamedNativeQueries({
+    @NamedNativeQuery(name = "CtlInventarioDefectuoso.defectiveInventoryReport", query = "SELECT t01.id AS t01id, t01.codigo AS t01codigo, t01.nombre AS t01nombre, t02.id AS t02id, t02.codigo AS t02codigo, t02.nombre AS t02nombre, t02.existencia AS t02existencia, t03.nombre AS t03nombre, t03.inventario AS t03inventario, t03.serie AS t03serie, t04.fecha_ingreso AS t04fecha FROM inventario_defectuoso AS t04 JOIN equipo AS t03 ON t03.id = t04.id_equipo JOIN modelo_equipo AS t02 ON t02.id = t03.id_modelo JOIN marca_equipo AS t01 ON t01.id = t02.id_marca ORDER BY 11 DESC, 3, 6", resultSetMapping = "InventarioDefectuosoJasperValueMapping"),
+})
+@SqlResultSetMappings({
+    @SqlResultSetMapping(
+        name = "InventarioDefectuosoJasperValueMapping",
+        classes = @ConstructorResult(
+            targetClass = InventarioDefectuosoJasper.class,
+            columns = {
+                @ColumnResult(name = "t01id", type = Short.class),
+                @ColumnResult(name = "t01codigo"),
+                @ColumnResult(name = "t01nombre"),
+                @ColumnResult(name = "t02id", type = Short.class),
+                @ColumnResult(name = "t02codigo"),
+                @ColumnResult(name = "t02nombre"),
+                @ColumnResult(name = "t02existencia", type = Short.class),
+                @ColumnResult(name = "t03id", type = Long.class),
+                @ColumnResult(name = "t03nombre"),
+                @ColumnResult(name = "t03inventario"),
+                @ColumnResult(name = "t03serie"),
+                @ColumnResult(name = "t04fecha", type = Date.class)
+            }
+        )
+    )
+})
 public class CtlInventarioDefectuoso implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_inventario_defectuoso",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_inventario_defectuoso")
     @Id
+    @GeneratedValue(generator = "sec_inventario_defectuoso")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -64,6 +100,10 @@ public class CtlInventarioDefectuoso implements Serializable {
     public CtlInventarioDefectuoso(Long id, Date fechaIngreso) {
         this.id = id;
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public CtlInventarioDefectuoso(CtlEquipo idEquipo) {
+        this.idEquipo = idEquipo;
     }
 
     public Long getId() {
@@ -120,7 +160,8 @@ public class CtlInventarioDefectuoso implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.CtlInventarioDefectuoso[ id=" + id + " ]";
+        return "[" + this.idEquipo + "] " + this.fechaIngreso;
+        // return "org.itca.requerimientos.model.entities.CtlInventarioDefectuoso[ id=" + id + " ]";
     }
     
 }

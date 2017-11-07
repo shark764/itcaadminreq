@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "t_user", catalog = "dbrequerimientos", schema = "")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "TUser.login", query = "SELECT t FROM TUser t WHERE t.username = :username AND t.password = :password"),
     @NamedQuery(name = "TUser.findAll", query = "SELECT t FROM TUser t"),
     @NamedQuery(name = "TUser.findByUsername", query = "SELECT t FROM TUser t WHERE t.username = :username"),
     @NamedQuery(name = "TUser.findByPassword", query = "SELECT t FROM TUser t WHERE t.password = :password"),
@@ -260,7 +261,8 @@ public class TUser implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.TUser[ username=" + username + " ]";
+        return "[" + this.idEmpleado + "] [" + this.username + "]" + this.firstname + ", " + this.lastname;
+        // return "org.itca.requerimientos.model.entities.TUser[ username=" + username + " ]";
     }
     
 }

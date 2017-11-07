@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,12 +21,16 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.itca.requerimientos.model.entities.jasper.SolicitudEquipoJasper;
+import org.itca.requerimientos.model.entities.jasper.SolicitudFallaJasper;
+import org.itca.requerimientos.model.entities.jasper.SolicitudTecnicoJasper;
 
 /**
  *
@@ -35,6 +40,18 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "t_detalle_solicitud", catalog = "dbrequerimientos", schema = "")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "TDetalleSolicitud.limitTime", query = "SELECT t FROM TDetalleSolicitud t WHERE t.fechaLimite >= :now"),
+    @NamedQuery(name = "TDetalleSolicitud.solvedOverTime", query = "SELECT t FROM TDetalleSolicitud t WHERE t.fechaFin >= t.fechaLimite"),
+    @NamedQuery(name = "TDetalleSolicitud.findByRequestArea", query = "SELECT t FROM TDetalleSolicitud t WHERE t.idAreaRequerimiento.id = :id"),
+    @NamedQuery(name = "TDetalleSolicitud.findByEquipment", query = "SELECT t FROM TDetalleSolicitud t WHERE t.idEquipo.id = :id"),
+    @NamedQuery(name = "TDetalleSolicitud.findByEmployee", query = "SELECT t FROM TDetalleSolicitud t WHERE t.idSolicitudRequerimiento.idEmpleado.id = :id"),
+    @NamedQuery(name = "TDetalleSolicitud.notSolved", query = "SELECT t FROM TDetalleSolicitud t WHERE t.fechaFin IS NULL"),
+    @NamedQuery(name = "TDetalleSolicitud.notSolvedByAssignedTechnician", query = "SELECT t FROM TDetalleSolicitud t WHERE t.fechaFin IS NULL AND t.idTecnicoAsignado.id = :id"),
+    @NamedQuery(name = "TDetalleSolicitud.entryRange", query = "SELECT t FROM TDetalleSolicitud t WHERE t.fechaInicio >= :start AND t.fechaInicio <= :end"),
+    @NamedQuery(name = "TDetalleSolicitud.findByAssignedTechnician", query = "SELECT t FROM TDetalleSolicitud t WHERE t.idTecnicoAsignado.id = :id"),
+    @NamedQuery(name = "TDetalleSolicitud.findBySolutionType", query = "SELECT t FROM TDetalleSolicitud t WHERE t.idTipoSolucion.id = :id"),
+    @NamedQuery(name = "TDetalleSolicitud.findByRequestType", query = "SELECT t FROM TDetalleSolicitud t WHERE t.idTipoRequerimiento.id = :id"),
+    @NamedQuery(name = "TDetalleSolicitud.findByFaultType", query = "SELECT t FROM TDetalleSolicitud t WHERE t.idTipoFalla.id = :id"),
     @NamedQuery(name = "TDetalleSolicitud.findAll", query = "SELECT t FROM TDetalleSolicitud t"),
     @NamedQuery(name = "TDetalleSolicitud.findById", query = "SELECT t FROM TDetalleSolicitud t WHERE t.id = :id"),
     @NamedQuery(name = "TDetalleSolicitud.findByFechaRequerimiento", query = "SELECT t FROM TDetalleSolicitud t WHERE t.fechaRequerimiento = :fechaRequerimiento"),
@@ -44,9 +61,64 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TDetalleSolicitud.findByDescripcionFalla", query = "SELECT t FROM TDetalleSolicitud t WHERE t.descripcionFalla = :descripcionFalla"),
     @NamedQuery(name = "TDetalleSolicitud.findByDescripcionSolucion", query = "SELECT t FROM TDetalleSolicitud t WHERE t.descripcionSolucion = :descripcionSolucion"),
     @NamedQuery(name = "TDetalleSolicitud.findByComentario", query = "SELECT t FROM TDetalleSolicitud t WHERE t.comentario = :comentario")})
+@NamedNativeQueries({
+    @NamedNativeQuery(name = "TDetalleSolicitud.requestByEquipmentModelReport", query = "SELECT t01.codigo AS t01codigo, t01.nombre AS t01nombre, t02.codigo AS t02codigo, t02.nombre AS t02nombre, COUNT(t04.id) AS t04conteo FROM marca_equipo AS t01 JOIN modelo_equipo AS t02 ON t01.id = t02.id_marca JOIN equipo AS t03 ON t02.id = t03.id_modelo JOIN detalle_solicitud t04 ON t03.id = t04.id_equipo GROUP BY 1, 2, 3, 4 ORDER BY 5 DESC, 2, 4", resultSetMapping = "SolicitudEquipoJasperValueMapping"),
+    @NamedNativeQuery(name = "TDetalleSolicitud.requestByEquipmentFailureReport", query = "SELECT t05.codigo as t05codigo, t05.nombre as t05nombre, t04.codigo as t04codigo, t04.nombre as t04nombre, t01.codigo as t01codigo, t01.nombre as t01nombre, COUNT(t02.id) as t02fallas FROM tipo_falla AS t01 LEFT JOIN detalle_solicitud AS t02 ON t01.id = t02.id_tipo_falla LEFT JOIN equipo AS t03 ON t03.id = t02.id_equipo LEFT JOIN modelo_equipo AS t04 ON t04.id = t03.id_modelo LEFT JOIN marca_equipo AS t05 ON t05.id = t04.id_marca GROUP BY 1, 2, 3, 4, 5, 6 ORDER BY 7 DESC, 2, 4, 6", resultSetMapping = "SolicitudFallaJasperValueMapping"),
+    @NamedNativeQuery(name = "TDetalleSolicitud.requestByAssignedTechnicianReport", query = "SELECT CONCAT(t04.nombre, t04.apellido) AS t04tecnico, t01.codigo as t01codigo, t01.nombre as t01nombre, t03.codigo as t03codigo, t03.nombre as t03nombre, COUNT(t02.id) as t02mantenimientos FROM tipo_falla AS t01 JOIN detalle_solicitud AS t02 ON t01.id = t02.id_tipo_falla JOIN tipo_solucion AS t03 ON t03.id = t02.id_tipo_solucion JOIN empleado AS t04 ON t04.id = t02.id_tecnico_asignado GROUP BY 1, 2, 3, 4, 5 ORDER BY 6 DESC, 1, 3, 5", resultSetMapping = "SolicitudTecnicoJasperValueMapping"),
+})
+@SqlResultSetMappings({
+    @SqlResultSetMapping(
+        name = "SolicitudEquipoJasperValueMapping",
+        classes = @ConstructorResult(
+            targetClass = SolicitudEquipoJasper.class,
+            columns = {
+            @ColumnResult(name = "t01codigo"),
+            @ColumnResult(name = "t01nombre"),
+            @ColumnResult(name = "t02codigo"),
+            @ColumnResult(name = "t02nombre"),
+            @ColumnResult(name = "t04conteo", type = Long.class)
+            }
+        )
+    ),
+    @SqlResultSetMapping(
+        name = "SolicitudFallaJasperValueMapping",
+        classes = @ConstructorResult(
+            targetClass = SolicitudFallaJasper.class,
+            columns = {
+            @ColumnResult(name = "t05codigo"),
+            @ColumnResult(name = "t05nombre"),
+            @ColumnResult(name = "t04codigo"),
+            @ColumnResult(name = "t04nombre"),
+            @ColumnResult(name = "t01codigo"),
+            @ColumnResult(name = "t01nombre"),
+            @ColumnResult(name = "t02fallas", type = Long.class)
+            }
+        )
+    ),
+    @SqlResultSetMapping(
+        name = "SolicitudTecnicoJasperValueMapping",
+        classes = @ConstructorResult(
+            targetClass = SolicitudTecnicoJasper.class,
+            columns = {
+            @ColumnResult(name = "t04tecnico"),
+            @ColumnResult(name = "t01codigo"),
+            @ColumnResult(name = "t01nombre"),
+            @ColumnResult(name = "t03codigo"),
+            @ColumnResult(name = "t03nombre"),
+            @ColumnResult(name = "t02mantenimientos", type = Long.class)
+            }
+        )
+    )
+})
 public class TDetalleSolicitud implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_detalle_solicitud",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_detalle_solicitud")
     @Id
+    @GeneratedValue(generator = "sec_detalle_solicitud")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -111,6 +183,10 @@ public class TDetalleSolicitud implements Serializable {
     public TDetalleSolicitud(Long id, Date fechaRequerimiento) {
         this.id = id;
         this.fechaRequerimiento = fechaRequerimiento;
+    }
+
+    public TDetalleSolicitud(TSolicitudRequerimiento idSolicitudRequerimiento) {
+        this.idSolicitudRequerimiento = idSolicitudRequerimiento;
     }
 
     public Long getId() {
@@ -272,7 +348,8 @@ public class TDetalleSolicitud implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.TDetalleSolicitud[ id=" + id + " ]";
+        return "[" + this.idEquipo + "] " + this.idTecnicoAsignado;
+        // return "org.itca.requerimientos.model.entities.TDetalleSolicitud[ id=" + id + " ]";
     }
     
 }

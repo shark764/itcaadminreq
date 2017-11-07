@@ -11,17 +11,20 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.itca.requerimientos.model.entities.jasper.RetrasoPrestamoJasper;
 
 /**
  *
@@ -31,6 +34,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "t_detalle_prestamo", catalog = "dbrequerimientos", schema = "")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "TDetallePrestamo.limitTime", query = "SELECT t FROM TDetallePrestamo t WHERE t.fechaLimite >= :now"),
+    @NamedQuery(name = "TDetallePrestamo.findByEmployee", query = "SELECT t FROM TDetallePrestamo t WHERE t.idPrestamo.idEmpleado.id = :id"),
+    @NamedQuery(name = "TDetallePrestamo.findByEquipment", query = "SELECT t FROM TDetallePrestamo t WHERE t.idEquipo.id = :id"),
+    @NamedQuery(name = "TDetallePrestamo.returnedOverTime", query = "SELECT t FROM TDetallePrestamo t WHERE t.fechaEntrega >= t.fechaLimite"),
+    @NamedQuery(name = "TDetallePrestamo.notReturned", query = "SELECT t FROM TDetallePrestamo t WHERE t.fechaEntrega IS NULL"),
+    @NamedQuery(name = "TDetallePrestamo.notReturnedByEmployee", query = "SELECT t FROM TDetallePrestamo t WHERE t.fechaEntrega IS NULL AND t.idPrestamo.idEmpleado.id = :id"),
+    @NamedQuery(name = "TDetallePrestamo.entryRange", query = "SELECT t FROM TDetallePrestamo t WHERE t.fechaPrestamo >= :start AND t.fechaPrestamo <= :end"),
     @NamedQuery(name = "TDetallePrestamo.findAll", query = "SELECT t FROM TDetallePrestamo t"),
     @NamedQuery(name = "TDetallePrestamo.findById", query = "SELECT t FROM TDetallePrestamo t WHERE t.id = :id"),
     @NamedQuery(name = "TDetallePrestamo.findByFechaPrestamo", query = "SELECT t FROM TDetallePrestamo t WHERE t.fechaPrestamo = :fechaPrestamo"),
@@ -38,9 +48,34 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TDetallePrestamo.findByFechaEntrega", query = "SELECT t FROM TDetallePrestamo t WHERE t.fechaEntrega = :fechaEntrega"),
     @NamedQuery(name = "TDetallePrestamo.findByDescripcion", query = "SELECT t FROM TDetallePrestamo t WHERE t.descripcion = :descripcion"),
     @NamedQuery(name = "TDetallePrestamo.findByComentario", query = "SELECT t FROM TDetallePrestamo t WHERE t.comentario = :comentario")})
+@NamedNativeQueries({
+    @NamedNativeQuery(name = "TDetallePrestamo.equipmentReturnedOverTimeReport", query = "SELECT t04.codigo as t04codigo, t04.nombre as t04nombre, t01.nombre AS t01nombre, t02.fecha_prestamo as t02fechaprestamo, t02.fecha_entrega as t02fechaentrega, ABS(DATEDIFF(t02.fecha_limite, t02.fecha_entrega)) as t02retraso FROM equipo AS t01 JOIN detalle_prestamo AS t02 ON t01.id = t02.id_equipo JOIN prestamo AS t03 ON t03.id = t02.id_prestamo JOIN area AS t04 ON t04.id = t03.id_area WHERE t02.fecha_entrega IS NOT NULL AND t02.fecha_limite < t02.fecha_entrega ORDER BY 6 DESC, 5 DESC, 2, 3", resultSetMapping = "RetrasoPrestamoJasperValueMapping"),
+})
+@SqlResultSetMappings({
+    @SqlResultSetMapping(
+        name = "RetrasoPrestamoJasperValueMapping",
+        classes = @ConstructorResult(
+            targetClass = RetrasoPrestamoJasper.class,
+            columns = {
+            @ColumnResult(name = "t04codigo"),
+            @ColumnResult(name = "t04nombre"),
+            @ColumnResult(name = "t01nombre"),
+            @ColumnResult(name = "t02fechaprestamo", type = Date.class),
+            @ColumnResult(name = "t02fechaentrega", type = Date.class),
+            @ColumnResult(name = "t02retraso", type = Integer.class)
+            }
+        )
+    )
+})
 public class TDetallePrestamo implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_detalle_prestamo",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_detalle_prestamo")
     @Id
+    @GeneratedValue(generator = "sec_detalle_prestamo")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -85,6 +120,10 @@ public class TDetallePrestamo implements Serializable {
     public TDetallePrestamo(Long id, Date fechaPrestamo) {
         this.id = id;
         this.fechaPrestamo = fechaPrestamo;
+    }
+
+    public TDetallePrestamo(TPrestamo idPrestamo) {
+        this.idPrestamo = idPrestamo;
     }
 
     public Long getId() {
@@ -189,7 +228,8 @@ public class TDetallePrestamo implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.TDetallePrestamo[ id=" + id + " ]";
+        return "[" + this.idPrestamo + "] " + this.idEquipo;
+        // return "org.itca.requerimientos.model.entities.TDetallePrestamo[ id=" + id + " ]";
     }
     
 }

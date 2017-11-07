@@ -13,6 +13,7 @@ import javax.persistence.ColumnResult;
 import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,6 +25,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -44,7 +46,7 @@ import org.itca.requerimientos.model.entities.jasper.ModeloEquipoJasper;
     @NamedQuery(name = "CtlModeloEquipo.findByCodigo", query = "SELECT c FROM CtlModeloEquipo c WHERE c.codigo = :codigo"),
     @NamedQuery(name = "CtlModeloEquipo.findByExistencia", query = "SELECT c FROM CtlModeloEquipo c WHERE c.existencia = :existencia")})
 @NamedNativeQueries({
-    @NamedNativeQuery(name = "ModeloEquipo.stockByEquipmentModelReport", query = "SELECT t01.id AS t01id, t01.codigo AS t01codigo, t01.nombre AS t01nombre, t02.id AS t02id, t02.codigo AS t02codigo, t02.nombre AS t02nombre, t02.existencia AS t02existencia FROM ctl_modelo_equipo AS t02 JOIN ctl_marca_equipo AS t01 ON t01.id = t02.id_marca ORDER BY 7 DESC, 3, 6", resultSetMapping = "ModeloEquipoJasperValueMapping"),
+    @NamedNativeQuery(name = "CtlModeloEquipo.stockByEquipmentModelReport", query = "SELECT t01.id AS t01id, t01.codigo AS t01codigo, t01.nombre AS t01nombre, t02.id AS t02id, t02.codigo AS t02codigo, t02.nombre AS t02nombre, t02.existencia AS t02existencia FROM ctl_modelo_equipo AS t02 JOIN ctl_marca_equipo AS t01 ON t01.id = t02.id_marca ORDER BY 7 DESC, 3, 6", resultSetMapping = "ModeloEquipoJasperValueMapping"),
 })
 @SqlResultSetMappings({
     @SqlResultSetMapping(
@@ -65,7 +67,13 @@ import org.itca.requerimientos.model.entities.jasper.ModeloEquipoJasper;
 })
 public class CtlModeloEquipo implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_modelo_equipo",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_modelo_equipo")
     @Id
+    @GeneratedValue(generator = "sec_modelo_equipo")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -173,7 +181,8 @@ public class CtlModeloEquipo implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.CtlModeloEquipo[ id=" + id + " ]";
+        return "[" + this.codigo + "] " + this.nombre;
+        // return "org.itca.requerimientos.model.entities.CtlModeloEquipo[ id=" + id + " ]";
     }
     
 }

@@ -11,11 +11,13 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -35,7 +37,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CtlEstadoEntrega.findByCodigo", query = "SELECT c FROM CtlEstadoEntrega c WHERE c.codigo = :codigo")})
 public class CtlEstadoEntrega implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_estado_entrega",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_estado_entrega")
     @Id
+    @GeneratedValue(generator = "sec_estado_entrega")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -121,7 +129,8 @@ public class CtlEstadoEntrega implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.CtlEstadoEntrega[ id=" + id + " ]";
+        return "[" + this.codigo + "] " + this.nombre;
+        // return "org.itca.requerimientos.model.entities.CtlEstadoEntrega[ id=" + id + " ]";
     }
     
 }

@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -35,13 +37,21 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "t_prestamo", catalog = "dbrequerimientos", schema = "")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "TPrestamo.findByEmployee", query = "SELECT t FROM TPrestamo t WHERE t.idEmpleado.id = :id"),
+    @NamedQuery(name = "TPrestamo.entryRange", query = "SELECT t FROM TPrestamo t WHERE t.fecha >= :start AND t.fecha <= :end"),
     @NamedQuery(name = "TPrestamo.findAll", query = "SELECT t FROM TPrestamo t"),
     @NamedQuery(name = "TPrestamo.findById", query = "SELECT t FROM TPrestamo t WHERE t.id = :id"),
     @NamedQuery(name = "TPrestamo.findByCodigo", query = "SELECT t FROM TPrestamo t WHERE t.codigo = :codigo"),
     @NamedQuery(name = "TPrestamo.findByFecha", query = "SELECT t FROM TPrestamo t WHERE t.fecha = :fecha")})
 public class TPrestamo implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(name = "sec_prestamo",
+            table = "t_sequence",
+            pkColumnName = "sequence_name",
+            valueColumnName = "last_value",
+            pkColumnValue = "sec_prestamo")
     @Id
+    @GeneratedValue(generator = "sec_prestamo")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -168,7 +178,8 @@ public class TPrestamo implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.TPrestamo[ id=" + id + " ]";
+        return "[" + this.idArea + "] " + this.fecha;
+        // return "org.itca.requerimientos.model.entities.TPrestamo[ id=" + id + " ]";
     }
     
 }
