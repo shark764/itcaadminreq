@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{cataloguesBundle.ViewCtlEstadoEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{cataloguesBundle.ViewCtlEstadoEquipoLabel_id}"/>
+                    <h:outputText value="#{ctlEstadoEquipoController.selected.id}" title="#{cataloguesBundle.ViewCtlEstadoEquipoTitle_id}"/>
+                    <h:outputText value="#{cataloguesBundle.ViewCtlEstadoEquipoLabel_nombre}"/>
+                    <h:outputText value="#{ctlEstadoEquipoController.selected.nombre}" title="#{cataloguesBundle.ViewCtlEstadoEquipoTitle_nombre}"/>
+                    <h:outputText value="#{cataloguesBundle.ViewCtlEstadoEquipoLabel_codigo}"/>
+                    <h:outputText value="#{ctlEstadoEquipoController.selected.codigo}" title="#{cataloguesBundle.ViewCtlEstadoEquipoTitle_codigo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ctlEstadoEquipoController.destroyAndView}" value="#{cataloguesBundle.ViewCtlEstadoEquipoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{cataloguesBundle.ViewCtlEstadoEquipoEditLink}"/>
+                <br />
+                <h:commandLink action="#{ctlEstadoEquipoController.prepareCreate}" value="#{cataloguesBundle.ViewCtlEstadoEquipoCreateLink}" />
+                <br />
+                <h:commandLink action="#{ctlEstadoEquipoController.prepareList}" value="#{cataloguesBundle.ViewCtlEstadoEquipoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{cataloguesBundle.ViewCtlEstadoEquipoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

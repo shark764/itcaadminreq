@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{cataloguesBundle.ListCtlMarcaEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{cataloguesBundle.ListCtlMarcaEquipoEmpty}" rendered="#{ctlMarcaEquipoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ctlMarcaEquipoController.items.rowCount > 0}">
+                    <h:outputText value="#{ctlMarcaEquipoController.pagination.pageFirstItem + 1}..#{ctlMarcaEquipoController.pagination.pageLastItem + 1}/#{ctlMarcaEquipoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ctlMarcaEquipoController.previous}" value="#{cataloguesBundle.Previous} #{ctlMarcaEquipoController.pagination.pageSize}" rendered="#{ctlMarcaEquipoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ctlMarcaEquipoController.next}" value="#{cataloguesBundle.Next} #{ctlMarcaEquipoController.pagination.pageSize}" rendered="#{ctlMarcaEquipoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ctlMarcaEquipoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{cataloguesBundle.ListCtlMarcaEquipoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{cataloguesBundle.ListCtlMarcaEquipoTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{cataloguesBundle.ListCtlMarcaEquipoTitle_codigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ctlMarcaEquipoController.prepareView}" value="#{cataloguesBundle.ListCtlMarcaEquipoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ctlMarcaEquipoController.prepareEdit}" value="#{cataloguesBundle.ListCtlMarcaEquipoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ctlMarcaEquipoController.destroy}" value="#{cataloguesBundle.ListCtlMarcaEquipoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ctlMarcaEquipoController.prepareCreate}" value="#{cataloguesBundle.ListCtlMarcaEquipoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{cataloguesBundle.ListCtlMarcaEquipoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{adminBundle.ViewTEmpleadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_id}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.id}" title="#{adminBundle.ViewTEmpleadoTitle_id}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_nombre}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.nombre}" title="#{adminBundle.ViewTEmpleadoTitle_nombre}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_apellido}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.apellido}" title="#{adminBundle.ViewTEmpleadoTitle_apellido}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_genero}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.genero}" title="#{adminBundle.ViewTEmpleadoTitle_genero}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_dui}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.dui}" title="#{adminBundle.ViewTEmpleadoTitle_dui}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_nit}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.nit}" title="#{adminBundle.ViewTEmpleadoTitle_nit}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_direccion}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.direccion}" title="#{adminBundle.ViewTEmpleadoTitle_direccion}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_telefono}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.telefono}" title="#{adminBundle.ViewTEmpleadoTitle_telefono}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_celular}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.celular}" title="#{adminBundle.ViewTEmpleadoTitle_celular}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_extension}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.extension}" title="#{adminBundle.ViewTEmpleadoTitle_extension}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_fechaContratacion}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.fechaContratacion}" title="#{adminBundle.ViewTEmpleadoTitle_fechaContratacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_EMail}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.EMail}" title="#{adminBundle.ViewTEmpleadoTitle_EMail}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_idArea}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.idArea}" title="#{adminBundle.ViewTEmpleadoTitle_idArea}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_idEmpleado}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.idEmpleado}" title="#{adminBundle.ViewTEmpleadoTitle_idEmpleado}"/>
+                    <h:outputText value="#{adminBundle.ViewTEmpleadoLabel_idTipoEmpleado}"/>
+                    <h:outputText value="#{tEmpleadoController.selected.idTipoEmpleado}" title="#{adminBundle.ViewTEmpleadoTitle_idTipoEmpleado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tEmpleadoController.destroyAndView}" value="#{adminBundle.ViewTEmpleadoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{adminBundle.ViewTEmpleadoEditLink}"/>
+                <br />
+                <h:commandLink action="#{tEmpleadoController.prepareCreate}" value="#{adminBundle.ViewTEmpleadoCreateLink}" />
+                <br />
+                <h:commandLink action="#{tEmpleadoController.prepareList}" value="#{adminBundle.ViewTEmpleadoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{adminBundle.ViewTEmpleadoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{inventoryBundle.EditCtlInsumoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{inventoryBundle.EditCtlInsumoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ctlInsumoController.selected.id}" title="#{inventoryBundle.EditCtlInsumoTitle_id}" required="true" requiredMessage="#{inventoryBundle.EditCtlInsumoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{inventoryBundle.EditCtlInsumoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{ctlInsumoController.selected.nombre}" title="#{inventoryBundle.EditCtlInsumoTitle_nombre}" required="true" requiredMessage="#{inventoryBundle.EditCtlInsumoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{inventoryBundle.EditCtlInsumoLabel_existencia}" for="existencia" />
+                    <h:inputText id="existencia" value="#{ctlInsumoController.selected.existencia}" title="#{inventoryBundle.EditCtlInsumoTitle_existencia}" />
+                    <h:outputLabel value="#{inventoryBundle.EditCtlInsumoLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{ctlInsumoController.selected.codigo}" title="#{inventoryBundle.EditCtlInsumoTitle_codigo}" />
+                </h:panelGrid>
+                <h:commandLink action="#{ctlInsumoController.update}" value="#{inventoryBundle.EditCtlInsumoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{inventoryBundle.EditCtlInsumoViewLink}"/>
+                <br />
+                <h:commandLink action="#{ctlInsumoController.prepareList}" value="#{inventoryBundle.EditCtlInsumoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{inventoryBundle.EditCtlInsumoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

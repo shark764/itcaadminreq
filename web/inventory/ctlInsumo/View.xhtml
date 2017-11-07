@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{inventoryBundle.ViewCtlInsumoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{inventoryBundle.ViewCtlInsumoLabel_id}"/>
+                    <h:outputText value="#{ctlInsumoController.selected.id}" title="#{inventoryBundle.ViewCtlInsumoTitle_id}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlInsumoLabel_nombre}"/>
+                    <h:outputText value="#{ctlInsumoController.selected.nombre}" title="#{inventoryBundle.ViewCtlInsumoTitle_nombre}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlInsumoLabel_existencia}"/>
+                    <h:outputText value="#{ctlInsumoController.selected.existencia}" title="#{inventoryBundle.ViewCtlInsumoTitle_existencia}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlInsumoLabel_codigo}"/>
+                    <h:outputText value="#{ctlInsumoController.selected.codigo}" title="#{inventoryBundle.ViewCtlInsumoTitle_codigo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ctlInsumoController.destroyAndView}" value="#{inventoryBundle.ViewCtlInsumoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{inventoryBundle.ViewCtlInsumoEditLink}"/>
+                <br />
+                <h:commandLink action="#{ctlInsumoController.prepareCreate}" value="#{inventoryBundle.ViewCtlInsumoCreateLink}" />
+                <br />
+                <h:commandLink action="#{ctlInsumoController.prepareList}" value="#{inventoryBundle.ViewCtlInsumoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{inventoryBundle.ViewCtlInsumoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

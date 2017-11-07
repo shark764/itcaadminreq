@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{securityBundle.CreateTRoleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{securityBundle.CreateTRoleLabel_role}" for="role" />
+                    <h:inputText id="role" value="#{tRoleController.selected.role}" title="#{securityBundle.CreateTRoleTitle_role}" required="true" requiredMessage="#{securityBundle.CreateTRoleRequiredMessage_role}"/>
+                    <h:outputLabel value="#{securityBundle.CreateTRoleLabel_state}" for="state" />
+                    <h:inputText id="state" value="#{tRoleController.selected.state}" title="#{securityBundle.CreateTRoleTitle_state}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tRoleController.create}" value="#{securityBundle.CreateTRoleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tRoleController.prepareList}" value="#{securityBundle.CreateTRoleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{securityBundle.CreateTRoleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

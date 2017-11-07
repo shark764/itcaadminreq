@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{inventoryBundle.ViewCtlEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_id}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.id}" title="#{inventoryBundle.ViewCtlEquipoTitle_id}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_nombre}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.nombre}" title="#{inventoryBundle.ViewCtlEquipoTitle_nombre}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_serie}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.serie}" title="#{inventoryBundle.ViewCtlEquipoTitle_serie}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_inventario}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.inventario}" title="#{inventoryBundle.ViewCtlEquipoTitle_inventario}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_existencia}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.existencia}" title="#{inventoryBundle.ViewCtlEquipoTitle_existencia}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_fechaAdquisicion}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.fechaAdquisicion}" title="#{inventoryBundle.ViewCtlEquipoTitle_fechaAdquisicion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_ip}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.ip}" title="#{inventoryBundle.ViewCtlEquipoTitle_ip}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_descripcion}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.descripcion}" title="#{inventoryBundle.ViewCtlEquipoTitle_descripcion}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_idAreaAsignado}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.idAreaAsignado}" title="#{inventoryBundle.ViewCtlEquipoTitle_idAreaAsignado}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_idCategoriaEquipo}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.idCategoriaEquipo}" title="#{inventoryBundle.ViewCtlEquipoTitle_idCategoriaEquipo}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_idEmpleadoAsignado}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.idEmpleadoAsignado}" title="#{inventoryBundle.ViewCtlEquipoTitle_idEmpleadoAsignado}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_idEquipoComponente}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.idEquipoComponente}" title="#{inventoryBundle.ViewCtlEquipoTitle_idEquipoComponente}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_idEstadoEquipo}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.idEstadoEquipo}" title="#{inventoryBundle.ViewCtlEquipoTitle_idEstadoEquipo}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_idModelo}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.idModelo}" title="#{inventoryBundle.ViewCtlEquipoTitle_idModelo}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_idProveedor}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.idProveedor}" title="#{inventoryBundle.ViewCtlEquipoTitle_idProveedor}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_idUserMod}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.idUserMod}" title="#{inventoryBundle.ViewCtlEquipoTitle_idUserMod}"/>
+                    <h:outputText value="#{inventoryBundle.ViewCtlEquipoLabel_idUserReg}"/>
+                    <h:outputText value="#{ctlEquipoController.selected.idUserReg}" title="#{inventoryBundle.ViewCtlEquipoTitle_idUserReg}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ctlEquipoController.destroyAndView}" value="#{inventoryBundle.ViewCtlEquipoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{inventoryBundle.ViewCtlEquipoEditLink}"/>
+                <br />
+                <h:commandLink action="#{ctlEquipoController.prepareCreate}" value="#{inventoryBundle.ViewCtlEquipoCreateLink}" />
+                <br />
+                <h:commandLink action="#{ctlEquipoController.prepareList}" value="#{inventoryBundle.ViewCtlEquipoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{inventoryBundle.ViewCtlEquipoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

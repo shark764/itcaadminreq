@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoLabel_id}"/>
+                    <h:outputText value="#{tDetallePrestamoController.selected.id}" title="#{loanRequestBundle.ViewTDetallePrestamoTitle_id}"/>
+                    <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoLabel_fechaPrestamo}"/>
+                    <h:outputText value="#{tDetallePrestamoController.selected.fechaPrestamo}" title="#{loanRequestBundle.ViewTDetallePrestamoTitle_fechaPrestamo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoLabel_fechaLimite}"/>
+                    <h:outputText value="#{tDetallePrestamoController.selected.fechaLimite}" title="#{loanRequestBundle.ViewTDetallePrestamoTitle_fechaLimite}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoLabel_fechaEntrega}"/>
+                    <h:outputText value="#{tDetallePrestamoController.selected.fechaEntrega}" title="#{loanRequestBundle.ViewTDetallePrestamoTitle_fechaEntrega}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoLabel_descripcion}"/>
+                    <h:outputText value="#{tDetallePrestamoController.selected.descripcion}" title="#{loanRequestBundle.ViewTDetallePrestamoTitle_descripcion}"/>
+                    <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoLabel_comentario}"/>
+                    <h:outputText value="#{tDetallePrestamoController.selected.comentario}" title="#{loanRequestBundle.ViewTDetallePrestamoTitle_comentario}"/>
+                    <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoLabel_idEquipo}"/>
+                    <h:outputText value="#{tDetallePrestamoController.selected.idEquipo}" title="#{loanRequestBundle.ViewTDetallePrestamoTitle_idEquipo}"/>
+                    <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoLabel_idEstadoEntrega}"/>
+                    <h:outputText value="#{tDetallePrestamoController.selected.idEstadoEntrega}" title="#{loanRequestBundle.ViewTDetallePrestamoTitle_idEstadoEntrega}"/>
+                    <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoLabel_idEstadoPrestamo}"/>
+                    <h:outputText value="#{tDetallePrestamoController.selected.idEstadoPrestamo}" title="#{loanRequestBundle.ViewTDetallePrestamoTitle_idEstadoPrestamo}"/>
+                    <h:outputText value="#{loanRequestBundle.ViewTDetallePrestamoLabel_idPrestamo}"/>
+                    <h:outputText value="#{tDetallePrestamoController.selected.idPrestamo}" title="#{loanRequestBundle.ViewTDetallePrestamoTitle_idPrestamo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tDetallePrestamoController.destroyAndView}" value="#{loanRequestBundle.ViewTDetallePrestamoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{loanRequestBundle.ViewTDetallePrestamoEditLink}"/>
+                <br />
+                <h:commandLink action="#{tDetallePrestamoController.prepareCreate}" value="#{loanRequestBundle.ViewTDetallePrestamoCreateLink}" />
+                <br />
+                <h:commandLink action="#{tDetallePrestamoController.prepareList}" value="#{loanRequestBundle.ViewTDetallePrestamoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{loanRequestBundle.ViewTDetallePrestamoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

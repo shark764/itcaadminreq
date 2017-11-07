@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{cataloguesBundle.EditCtlEstadoPrestamoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlEstadoPrestamoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ctlEstadoPrestamoController.selected.id}" title="#{cataloguesBundle.EditCtlEstadoPrestamoTitle_id}" required="true" requiredMessage="#{cataloguesBundle.EditCtlEstadoPrestamoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlEstadoPrestamoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{ctlEstadoPrestamoController.selected.nombre}" title="#{cataloguesBundle.EditCtlEstadoPrestamoTitle_nombre}" required="true" requiredMessage="#{cataloguesBundle.EditCtlEstadoPrestamoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlEstadoPrestamoLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{ctlEstadoPrestamoController.selected.codigo}" title="#{cataloguesBundle.EditCtlEstadoPrestamoTitle_codigo}" required="true" requiredMessage="#{cataloguesBundle.EditCtlEstadoPrestamoRequiredMessage_codigo}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{ctlEstadoPrestamoController.update}" value="#{cataloguesBundle.EditCtlEstadoPrestamoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{cataloguesBundle.EditCtlEstadoPrestamoViewLink}"/>
+                <br />
+                <h:commandLink action="#{ctlEstadoPrestamoController.prepareList}" value="#{cataloguesBundle.EditCtlEstadoPrestamoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{cataloguesBundle.EditCtlEstadoPrestamoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

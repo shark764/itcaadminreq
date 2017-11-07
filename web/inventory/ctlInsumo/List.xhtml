@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{inventoryBundle.ListCtlInsumoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{inventoryBundle.ListCtlInsumoEmpty}" rendered="#{ctlInsumoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ctlInsumoController.items.rowCount > 0}">
+                    <h:outputText value="#{ctlInsumoController.pagination.pageFirstItem + 1}..#{ctlInsumoController.pagination.pageLastItem + 1}/#{ctlInsumoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ctlInsumoController.previous}" value="#{inventoryBundle.Previous} #{ctlInsumoController.pagination.pageSize}" rendered="#{ctlInsumoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ctlInsumoController.next}" value="#{inventoryBundle.Next} #{ctlInsumoController.pagination.pageSize}" rendered="#{ctlInsumoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ctlInsumoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{inventoryBundle.ListCtlInsumoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{inventoryBundle.ListCtlInsumoTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{inventoryBundle.ListCtlInsumoTitle_existencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.existencia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{inventoryBundle.ListCtlInsumoTitle_codigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ctlInsumoController.prepareView}" value="#{inventoryBundle.ListCtlInsumoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ctlInsumoController.prepareEdit}" value="#{inventoryBundle.ListCtlInsumoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ctlInsumoController.destroy}" value="#{inventoryBundle.ListCtlInsumoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ctlInsumoController.prepareCreate}" value="#{inventoryBundle.ListCtlInsumoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{inventoryBundle.ListCtlInsumoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

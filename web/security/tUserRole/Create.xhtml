@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{securityBundle.CreateTUserRoleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{securityBundle.CreateTUserRoleLabel_state}" for="state" />
+                    <h:inputText id="state" value="#{tUserRoleController.selected.state}" title="#{securityBundle.CreateTUserRoleTitle_state}" />
+                    <h:outputLabel value="#{securityBundle.CreateTUserRoleLabel_TRole}" for="TRole" />
+                    <h:selectOneMenu id="TRole" value="#{tUserRoleController.selected.TRole}" title="#{securityBundle.CreateTUserRoleTitle_TRole}" required="true" requiredMessage="#{securityBundle.CreateTUserRoleRequiredMessage_TRole}">
+                        <f:selectItems value="#{tRoleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{securityBundle.CreateTUserRoleLabel_TUser}" for="TUser" />
+                    <h:selectOneMenu id="TUser" value="#{tUserRoleController.selected.TUser}" title="#{securityBundle.CreateTUserRoleTitle_TUser}" required="true" requiredMessage="#{securityBundle.CreateTUserRoleRequiredMessage_TUser}">
+                        <f:selectItems value="#{tUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tUserRoleController.create}" value="#{securityBundle.CreateTUserRoleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tUserRoleController.prepareList}" value="#{securityBundle.CreateTUserRoleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{securityBundle.CreateTUserRoleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{adminBundle.CreateCtlTipoEmpleadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{adminBundle.CreateCtlTipoEmpleadoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ctlTipoEmpleadoController.selected.id}" title="#{adminBundle.CreateCtlTipoEmpleadoTitle_id}" required="true" requiredMessage="#{adminBundle.CreateCtlTipoEmpleadoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{adminBundle.CreateCtlTipoEmpleadoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{ctlTipoEmpleadoController.selected.nombre}" title="#{adminBundle.CreateCtlTipoEmpleadoTitle_nombre}" required="true" requiredMessage="#{adminBundle.CreateCtlTipoEmpleadoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{adminBundle.CreateCtlTipoEmpleadoLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{ctlTipoEmpleadoController.selected.codigo}" title="#{adminBundle.CreateCtlTipoEmpleadoTitle_codigo}" required="true" requiredMessage="#{adminBundle.CreateCtlTipoEmpleadoRequiredMessage_codigo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ctlTipoEmpleadoController.create}" value="#{adminBundle.CreateCtlTipoEmpleadoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ctlTipoEmpleadoController.prepareList}" value="#{adminBundle.CreateCtlTipoEmpleadoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{adminBundle.CreateCtlTipoEmpleadoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

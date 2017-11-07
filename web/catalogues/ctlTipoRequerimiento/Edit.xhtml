@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{cataloguesBundle.EditCtlTipoRequerimientoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlTipoRequerimientoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ctlTipoRequerimientoController.selected.id}" title="#{cataloguesBundle.EditCtlTipoRequerimientoTitle_id}" required="true" requiredMessage="#{cataloguesBundle.EditCtlTipoRequerimientoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlTipoRequerimientoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{ctlTipoRequerimientoController.selected.nombre}" title="#{cataloguesBundle.EditCtlTipoRequerimientoTitle_nombre}" required="true" requiredMessage="#{cataloguesBundle.EditCtlTipoRequerimientoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlTipoRequerimientoLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{ctlTipoRequerimientoController.selected.codigo}" title="#{cataloguesBundle.EditCtlTipoRequerimientoTitle_codigo}" required="true" requiredMessage="#{cataloguesBundle.EditCtlTipoRequerimientoRequiredMessage_codigo}"/>
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlTipoRequerimientoLabel_idAreaRequerimiento}" for="idAreaRequerimiento" />
+                    <h:selectOneMenu id="idAreaRequerimiento" value="#{ctlTipoRequerimientoController.selected.idAreaRequerimiento}" title="#{cataloguesBundle.EditCtlTipoRequerimientoTitle_idAreaRequerimiento}" >
+                        <f:selectItems value="#{ctlAreaRequerimientoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{ctlTipoRequerimientoController.update}" value="#{cataloguesBundle.EditCtlTipoRequerimientoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{cataloguesBundle.EditCtlTipoRequerimientoViewLink}"/>
+                <br />
+                <h:commandLink action="#{ctlTipoRequerimientoController.prepareList}" value="#{cataloguesBundle.EditCtlTipoRequerimientoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{cataloguesBundle.EditCtlTipoRequerimientoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

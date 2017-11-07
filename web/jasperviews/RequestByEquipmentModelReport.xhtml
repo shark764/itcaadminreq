@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Generación de Reporte"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Listado de registros <small>vista de tabla</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+
+                        <p>Registros ingresados al sistema</p>
+
+                        <h:form>
+                            <ul>
+                                <c:forEach items="#{jasperBean.jasperReportOptions}" var="jrOption">
+                                    <li><h:link styleClass="btn btn-sm btn-default" outcome="#{jrOption.key}" value="#{jrOption.value}"/></li>
+                                </c:forEach>
+                            </ul>
+                        </h:form>
+                        
+                        <br />
+                        <br />
+                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="Inicio"/>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Listado de registros <small>vista de tabla</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+
+                        <p>Registros ingresados al sistema</p>
+
+                        <h:form styleClass="form-inline">
+                            <h:commandButton actionListener="#{requestByEquipmentModelReport.PDF}" value="PDF" />
+                            <h:commandButton actionListener="#{requestByEquipmentModelReport.DOCX}" value="Docx" />
+                            <h:commandButton actionListener="#{requestByEquipmentModelReport.XLSX}" value="Xlsx" />
+                            <h:commandButton actionListener="#{requestByEquipmentModelReport.ODT}" value="Odt" />
+                            <h:commandButton actionListener="#{requestByEquipmentModelReport.PPT}" value="Ppt" />
+                        </h:form>
+
+                        <div class="table-responsive">
+                            <h:dataTable value="#{requestByEquipmentModelReport.modelList}" var="modelItem" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
+                                <h:column>
+                                    <f:facet name="header">Cód. Marca</f:facet>
+                                    <h:outputText value="#{modelItem.t01codigo}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Marca</f:facet>
+                                    <h:outputText value="#{modelItem.t01nombre}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Cód. Modelo</f:facet>
+                                    <h:outputText value="#{modelItem.t02codigo}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Modelo</f:facet>
+                                    <h:outputText value="#{modelItem.t02nombre}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">N° requerimientos</f:facet>
+                                    <h:outputText value="#{modelItem.t04conteo}" />
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

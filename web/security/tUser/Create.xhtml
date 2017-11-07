@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{securityBundle.CreateTUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{securityBundle.CreateTUserLabel_username}" for="username" />
+                    <h:inputText id="username" value="#{tUserController.selected.username}" title="#{securityBundle.CreateTUserTitle_username}" required="true" requiredMessage="#{securityBundle.CreateTUserRequiredMessage_username}"/>
+                    <h:outputLabel value="#{securityBundle.CreateTUserLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{tUserController.selected.password}" title="#{securityBundle.CreateTUserTitle_password}" required="true" requiredMessage="#{securityBundle.CreateTUserRequiredMessage_password}"/>
+                    <h:outputLabel value="#{securityBundle.CreateTUserLabel_state}" for="state" />
+                    <h:inputText id="state" value="#{tUserController.selected.state}" title="#{securityBundle.CreateTUserTitle_state}" />
+                    <h:outputLabel value="#{securityBundle.CreateTUserLabel_firstname}" for="firstname" />
+                    <h:inputText id="firstname" value="#{tUserController.selected.firstname}" title="#{securityBundle.CreateTUserTitle_firstname}" />
+                    <h:outputLabel value="#{securityBundle.CreateTUserLabel_lastname}" for="lastname" />
+                    <h:inputText id="lastname" value="#{tUserController.selected.lastname}" title="#{securityBundle.CreateTUserTitle_lastname}" />
+                    <h:outputLabel value="#{securityBundle.CreateTUserLabel_creationDate}" for="creationDate" />
+                    <h:inputText id="creationDate" value="#{tUserController.selected.creationDate}" title="#{securityBundle.CreateTUserTitle_creationDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{securityBundle.CreateTUserLabel_lastLogin}" for="lastLogin" />
+                    <h:inputText id="lastLogin" value="#{tUserController.selected.lastLogin}" title="#{securityBundle.CreateTUserTitle_lastLogin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{securityBundle.CreateTUserLabel_connected}" for="connected" />
+                    <h:inputText id="connected" value="#{tUserController.selected.connected}" title="#{securityBundle.CreateTUserTitle_connected}" />
+                    <h:outputLabel value="#{securityBundle.CreateTUserLabel_idEmpleado}" for="idEmpleado" />
+                    <h:selectOneMenu id="idEmpleado" value="#{tUserController.selected.idEmpleado}" title="#{securityBundle.CreateTUserTitle_idEmpleado}" >
+                        <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tUserController.create}" value="#{securityBundle.CreateTUserSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tUserController.prepareList}" value="#{securityBundle.CreateTUserShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{securityBundle.CreateTUserIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

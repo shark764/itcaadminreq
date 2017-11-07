@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{maintenanceBundle.EditCtlTipoMantenimientoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{maintenanceBundle.EditCtlTipoMantenimientoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ctlTipoMantenimientoController.selected.id}" title="#{maintenanceBundle.EditCtlTipoMantenimientoTitle_id}" required="true" requiredMessage="#{maintenanceBundle.EditCtlTipoMantenimientoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{maintenanceBundle.EditCtlTipoMantenimientoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{ctlTipoMantenimientoController.selected.nombre}" title="#{maintenanceBundle.EditCtlTipoMantenimientoTitle_nombre}" required="true" requiredMessage="#{maintenanceBundle.EditCtlTipoMantenimientoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{maintenanceBundle.EditCtlTipoMantenimientoLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{ctlTipoMantenimientoController.selected.codigo}" title="#{maintenanceBundle.EditCtlTipoMantenimientoTitle_codigo}" />
+                </h:panelGrid>
+                <h:commandLink action="#{ctlTipoMantenimientoController.update}" value="#{maintenanceBundle.EditCtlTipoMantenimientoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{maintenanceBundle.EditCtlTipoMantenimientoViewLink}"/>
+                <br />
+                <h:commandLink action="#{ctlTipoMantenimientoController.prepareList}" value="#{maintenanceBundle.EditCtlTipoMantenimientoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{maintenanceBundle.EditCtlTipoMantenimientoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

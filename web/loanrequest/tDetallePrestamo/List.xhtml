@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{loanRequestBundle.ListTDetallePrestamoEmpty}" rendered="#{tDetallePrestamoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tDetallePrestamoController.items.rowCount > 0}">
+                    <h:outputText value="#{tDetallePrestamoController.pagination.pageFirstItem + 1}..#{tDetallePrestamoController.pagination.pageLastItem + 1}/#{tDetallePrestamoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tDetallePrestamoController.previous}" value="#{loanRequestBundle.Previous} #{tDetallePrestamoController.pagination.pageSize}" rendered="#{tDetallePrestamoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tDetallePrestamoController.next}" value="#{loanRequestBundle.Next} #{tDetallePrestamoController.pagination.pageSize}" rendered="#{tDetallePrestamoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tDetallePrestamoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_fechaPrestamo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaPrestamo}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_fechaLimite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaLimite}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_fechaEntrega}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaEntrega}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_comentario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.comentario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_idEquipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEquipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_idEstadoEntrega}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEstadoEntrega}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_idEstadoPrestamo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEstadoPrestamo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_idPrestamo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPrestamo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tDetallePrestamoController.prepareView}" value="#{loanRequestBundle.ListTDetallePrestamoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tDetallePrestamoController.prepareEdit}" value="#{loanRequestBundle.ListTDetallePrestamoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tDetallePrestamoController.destroy}" value="#{loanRequestBundle.ListTDetallePrestamoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tDetallePrestamoController.prepareCreate}" value="#{loanRequestBundle.ListTDetallePrestamoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{loanRequestBundle.ListTDetallePrestamoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

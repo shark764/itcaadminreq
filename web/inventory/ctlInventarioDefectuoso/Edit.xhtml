@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{inventoryBundle.EditCtlInventarioDefectuosoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{inventoryBundle.EditCtlInventarioDefectuosoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ctlInventarioDefectuosoController.selected.id}" title="#{inventoryBundle.EditCtlInventarioDefectuosoTitle_id}" required="true" requiredMessage="#{inventoryBundle.EditCtlInventarioDefectuosoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{inventoryBundle.EditCtlInventarioDefectuosoLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{ctlInventarioDefectuosoController.selected.descripcion}" title="#{inventoryBundle.EditCtlInventarioDefectuosoTitle_descripcion}" />
+                    <h:outputLabel value="#{inventoryBundle.EditCtlInventarioDefectuosoLabel_fechaIngreso}" for="fechaIngreso" />
+                    <h:inputText id="fechaIngreso" value="#{ctlInventarioDefectuosoController.selected.fechaIngreso}" title="#{inventoryBundle.EditCtlInventarioDefectuosoTitle_fechaIngreso}" required="true" requiredMessage="#{inventoryBundle.EditCtlInventarioDefectuosoRequiredMessage_fechaIngreso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{inventoryBundle.EditCtlInventarioDefectuosoLabel_idEquipo}" for="idEquipo" />
+                    <h:selectOneMenu id="idEquipo" value="#{ctlInventarioDefectuosoController.selected.idEquipo}" title="#{inventoryBundle.EditCtlInventarioDefectuosoTitle_idEquipo}" required="true" requiredMessage="#{inventoryBundle.EditCtlInventarioDefectuosoRequiredMessage_idEquipo}">
+                        <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{ctlInventarioDefectuosoController.update}" value="#{inventoryBundle.EditCtlInventarioDefectuosoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{inventoryBundle.EditCtlInventarioDefectuosoViewLink}"/>
+                <br />
+                <h:commandLink action="#{ctlInventarioDefectuosoController.prepareList}" value="#{inventoryBundle.EditCtlInventarioDefectuosoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{inventoryBundle.EditCtlInventarioDefectuosoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

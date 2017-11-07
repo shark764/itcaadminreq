@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{adminBundle.ListCtlProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{adminBundle.ListCtlProveedorEmpty}" rendered="#{ctlProveedorController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ctlProveedorController.items.rowCount > 0}">
+                    <h:outputText value="#{ctlProveedorController.pagination.pageFirstItem + 1}..#{ctlProveedorController.pagination.pageLastItem + 1}/#{ctlProveedorController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ctlProveedorController.previous}" value="#{adminBundle.Previous} #{ctlProveedorController.pagination.pageSize}" rendered="#{ctlProveedorController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ctlProveedorController.next}" value="#{adminBundle.Next} #{ctlProveedorController.pagination.pageSize}" rendered="#{ctlProveedorController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ctlProveedorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{adminBundle.ListCtlProveedorTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{adminBundle.ListCtlProveedorTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{adminBundle.ListCtlProveedorTitle_nit}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nit}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{adminBundle.ListCtlProveedorTitle_direccion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{adminBundle.ListCtlProveedorTitle_nrc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nrc}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{adminBundle.ListCtlProveedorTitle_EMail}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.EMail}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{adminBundle.ListCtlProveedorTitle_telefono}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{adminBundle.ListCtlProveedorTitle_sitioWeb}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sitioWeb}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ctlProveedorController.prepareView}" value="#{adminBundle.ListCtlProveedorViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ctlProveedorController.prepareEdit}" value="#{adminBundle.ListCtlProveedorEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ctlProveedorController.destroy}" value="#{adminBundle.ListCtlProveedorDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ctlProveedorController.prepareCreate}" value="#{adminBundle.ListCtlProveedorCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{adminBundle.ListCtlProveedorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{cataloguesBundle.EditCtlModeloEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlModeloEquipoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ctlModeloEquipoController.selected.id}" title="#{cataloguesBundle.EditCtlModeloEquipoTitle_id}" required="true" requiredMessage="#{cataloguesBundle.EditCtlModeloEquipoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlModeloEquipoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{ctlModeloEquipoController.selected.nombre}" title="#{cataloguesBundle.EditCtlModeloEquipoTitle_nombre}" required="true" requiredMessage="#{cataloguesBundle.EditCtlModeloEquipoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlModeloEquipoLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{ctlModeloEquipoController.selected.codigo}" title="#{cataloguesBundle.EditCtlModeloEquipoTitle_codigo}" />
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlModeloEquipoLabel_existencia}" for="existencia" />
+                    <h:inputText id="existencia" value="#{ctlModeloEquipoController.selected.existencia}" title="#{cataloguesBundle.EditCtlModeloEquipoTitle_existencia}" />
+                    <h:outputLabel value="#{cataloguesBundle.EditCtlModeloEquipoLabel_idMarca}" for="idMarca" />
+                    <h:selectOneMenu id="idMarca" value="#{ctlModeloEquipoController.selected.idMarca}" title="#{cataloguesBundle.EditCtlModeloEquipoTitle_idMarca}" required="true" requiredMessage="#{cataloguesBundle.EditCtlModeloEquipoRequiredMessage_idMarca}">
+                        <f:selectItems value="#{ctlMarcaEquipoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{ctlModeloEquipoController.update}" value="#{cataloguesBundle.EditCtlModeloEquipoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{cataloguesBundle.EditCtlModeloEquipoViewLink}"/>
+                <br />
+                <h:commandLink action="#{ctlModeloEquipoController.prepareList}" value="#{cataloguesBundle.EditCtlModeloEquipoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{cataloguesBundle.EditCtlModeloEquipoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
