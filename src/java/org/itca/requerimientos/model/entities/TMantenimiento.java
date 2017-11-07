@@ -95,6 +95,12 @@ public class TMantenimiento implements Serializable {
     @JoinColumn(name = "id_tipo_mantenimiento", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private CtlTipoMantenimiento idTipoMantenimiento;
+    @JoinColumn(name = "id_user_mod", referencedColumnName = "username")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TUser idUserMod;
+    @JoinColumn(name = "id_user_reg", referencedColumnName = "username")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private TUser idUserReg;
 
     public TMantenimiento() {
     }
@@ -197,6 +203,22 @@ public class TMantenimiento implements Serializable {
 
     public void setIdTipoMantenimiento(CtlTipoMantenimiento idTipoMantenimiento) {
         this.idTipoMantenimiento = idTipoMantenimiento;
+    }
+
+    public TUser getIdUserMod() {
+        return idUserMod;
+    }
+
+    public void setIdUserMod(TUser idUserMod) {
+        this.idUserMod = idUserMod;
+    }
+
+    public TUser getIdUserReg() {
+        return idUserReg;
+    }
+
+    public void setIdUserReg(TUser idUserReg) {
+        this.idUserReg = idUserReg;
     }
 
     @Override

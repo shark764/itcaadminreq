@@ -6,41 +6,55 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoLabel_id}"/>
-                    <h:outputText value="#{ctlModeloEquipoController.selected.id}" title="#{cataloguesBundle.ViewCtlModeloEquipoTitle_id}"/>
-                    <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoLabel_nombre}"/>
-                    <h:outputText value="#{ctlModeloEquipoController.selected.nombre}" title="#{cataloguesBundle.ViewCtlModeloEquipoTitle_nombre}"/>
-                    <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoLabel_codigo}"/>
-                    <h:outputText value="#{ctlModeloEquipoController.selected.codigo}" title="#{cataloguesBundle.ViewCtlModeloEquipoTitle_codigo}"/>
-                    <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoLabel_existencia}"/>
-                    <h:outputText value="#{ctlModeloEquipoController.selected.existencia}" title="#{cataloguesBundle.ViewCtlModeloEquipoTitle_existencia}"/>
-                    <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoLabel_idMarca}"/>
-                    <h:outputText value="#{ctlModeloEquipoController.selected.idMarca}" title="#{cataloguesBundle.ViewCtlModeloEquipoTitle_idMarca}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{ctlModeloEquipoController.destroyAndView}" value="#{cataloguesBundle.ViewCtlModeloEquipoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{cataloguesBundle.ViewCtlModeloEquipoEditLink}"/>
-                <br />
-                <h:commandLink action="#{ctlModeloEquipoController.prepareCreate}" value="#{cataloguesBundle.ViewCtlModeloEquipoCreateLink}" />
-                <br />
-                <h:commandLink action="#{ctlModeloEquipoController.prepareList}" value="#{cataloguesBundle.ViewCtlModeloEquipoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{cataloguesBundle.ViewCtlModeloEquipoIndexLink}"/>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <ui:define name="title">
+                                <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoTitle}"></h:outputText>
+                                <small>different form elements</small>
+                            </ui:define>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <ui:define name="body">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoLabel_id}" />
+                                    <h:outputText value="#{ctlModeloEquipoController.selected.id}" title="#{cataloguesBundle.ViewCtlModeloEquipoTitle_id}" />
+                                    <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoLabel_nombre}" />
+                                    <h:outputText value="#{ctlModeloEquipoController.selected.nombre}" title="#{cataloguesBundle.ViewCtlModeloEquipoTitle_nombre}" />
+                                    <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoLabel_codigo}" />
+                                    <h:outputText value="#{ctlModeloEquipoController.selected.codigo}" title="#{cataloguesBundle.ViewCtlModeloEquipoTitle_codigo}" />
+                                    <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoLabel_existencia}" />
+                                    <h:outputText value="#{ctlModeloEquipoController.selected.existencia}" title="#{cataloguesBundle.ViewCtlModeloEquipoTitle_existencia}" />
+                                    <h:outputText value="#{cataloguesBundle.ViewCtlModeloEquipoLabel_idMarca}" />
+                                    <h:outputText value="#{ctlModeloEquipoController.selected.idMarca}" title="#{cataloguesBundle.ViewCtlModeloEquipoTitle_idMarca}" />
+                                </h:panelGrid>
 
-            </h:form>
-        </ui:define>
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlModeloEquipoController.destroyAndView}" value="#{cataloguesBundle.ViewCtlModeloEquipoDestroyLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="Edit" value="#{cataloguesBundle.ViewCtlModeloEquipoEditLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-success" action="#{ctlModeloEquipoController.prepareCreate}" value="#{cataloguesBundle.ViewCtlModeloEquipoCreateLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlModeloEquipoController.prepareList}" value="#{cataloguesBundle.ViewCtlModeloEquipoShowAllLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{cataloguesBundle.ViewCtlModeloEquipoIndexLink}" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:define>
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
+        </div>  <!-- row -->
     </ui:composition>
 
 </html>

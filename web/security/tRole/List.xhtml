@@ -10,46 +10,66 @@
             <h:outputText value="#{securityBundle.ListTRoleTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{securityBundle.ListTRoleEmpty}" rendered="#{tRoleController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{tRoleController.items.rowCount > 0}">
-                    <h:outputText value="#{tRoleController.pagination.pageFirstItem + 1}..#{tRoleController.pagination.pageLastItem + 1}/#{tRoleController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{tRoleController.previous}" value="#{securityBundle.Previous} #{tRoleController.pagination.pageSize}" rendered="#{tRoleController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{tRoleController.next}" value="#{securityBundle.Next} #{tRoleController.pagination.pageSize}" rendered="#{tRoleController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{tRoleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{securityBundle.ListTRoleTitle_role}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.role}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{securityBundle.ListTRoleTitle_state}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.state}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{tRoleController.prepareView}" value="#{securityBundle.ListTRoleViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{tRoleController.prepareEdit}" value="#{securityBundle.ListTRoleEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{tRoleController.destroy}" value="#{securityBundle.ListTRoleDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{tRoleController.prepareCreate}" value="#{securityBundle.ListTRoleCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{securityBundle.ListTRoleIndexLink}"/>
-            </h:form>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Listado de registros <small>vista de tabla</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+
+                        <p>Registros ingresados al sistema</p>
+
+                        <h:form styleClass="">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:outputText escape="false" value="#{securityBundle.ListTRoleEmpty}" rendered="#{tRoleController.items.rowCount == 0}"/>
+                            <h:panelGroup rendered="#{tRoleController.items.rowCount > 0}">
+                                <h:outputText value="#{tRoleController.pagination.pageFirstItem + 1}..#{tRoleController.pagination.pageLastItem + 1}/#{tRoleController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tRoleController.previous}" value="#{securityBundle.Previous} #{tRoleController.pagination.pageSize}" rendered="#{tRoleController.pagination.hasPreviousPage}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tRoleController.next}" value="#{securityBundle.Next} #{tRoleController.pagination.pageSize}" rendered="#{tRoleController.pagination.hasNextPage}" />&nbsp;
+
+                                <div class="table-responsive">
+                                    <h:dataTable value="#{tRoleController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{securityBundle.ListTRoleTitle_role}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.role}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{securityBundle.ListTRoleTitle_state}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.state}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="&nbsp;" />
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-sm btn-default" action="#{tRoleController.prepareView}" value="#{securityBundle.ListTRoleViewLink}" />
+                                            <h:commandLink action="#{tRoleController.prepareEdit}" value="#{securityBundle.ListTRoleEditLink}" />
+                                            <h:commandLink action="#{tRoleController.destroy}" value="#{securityBundle.ListTRoleDestroyLink}" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </h:panelGroup>
+
+                            <div class="ln_solid"></div>
+
+                            <div class="form-group">
+                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <h:commandLink styleClass="btn btn-sm btn-default" action="#{tRoleController.prepareCreate}" value="#{securityBundle.ListTRoleCreateLink}" />
+                                    <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{securityBundle.ListTRoleIndexLink}" />
+                                </div>
+                            </div>
+                        </h:form>
+
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
         </ui:define>
     </ui:composition>
 

@@ -10,64 +10,84 @@
             <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{cataloguesBundle.ListCtlModeloEquipoEmpty}" rendered="#{ctlModeloEquipoController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{ctlModeloEquipoController.items.rowCount > 0}">
-                    <h:outputText value="#{ctlModeloEquipoController.pagination.pageFirstItem + 1}..#{ctlModeloEquipoController.pagination.pageLastItem + 1}/#{ctlModeloEquipoController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{ctlModeloEquipoController.previous}" value="#{cataloguesBundle.Previous} #{ctlModeloEquipoController.pagination.pageSize}" rendered="#{ctlModeloEquipoController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{ctlModeloEquipoController.next}" value="#{cataloguesBundle.Next} #{ctlModeloEquipoController.pagination.pageSize}" rendered="#{ctlModeloEquipoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{ctlModeloEquipoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle_nombre}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle_codigo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codigo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle_existencia}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.existencia}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle_idMarca}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idMarca}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{ctlModeloEquipoController.prepareView}" value="#{cataloguesBundle.ListCtlModeloEquipoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ctlModeloEquipoController.prepareEdit}" value="#{cataloguesBundle.ListCtlModeloEquipoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ctlModeloEquipoController.destroy}" value="#{cataloguesBundle.ListCtlModeloEquipoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{ctlModeloEquipoController.prepareCreate}" value="#{cataloguesBundle.ListCtlModeloEquipoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{cataloguesBundle.ListCtlModeloEquipoIndexLink}"/>
-            </h:form>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Listado de registros <small>vista de tabla</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+
+                        <p>Registros ingresados al sistema</p>
+
+                        <h:form styleClass="">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:outputText escape="false" value="#{cataloguesBundle.ListCtlModeloEquipoEmpty}" rendered="#{ctlModeloEquipoController.items.rowCount == 0}"/>
+                            <h:panelGroup rendered="#{ctlModeloEquipoController.items.rowCount > 0}">
+                                <h:outputText value="#{ctlModeloEquipoController.pagination.pageFirstItem + 1}..#{ctlModeloEquipoController.pagination.pageLastItem + 1}/#{ctlModeloEquipoController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlModeloEquipoController.previous}" value="#{cataloguesBundle.Previous} #{ctlModeloEquipoController.pagination.pageSize}" rendered="#{ctlModeloEquipoController.pagination.hasPreviousPage}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlModeloEquipoController.next}" value="#{cataloguesBundle.Next} #{ctlModeloEquipoController.pagination.pageSize}" rendered="#{ctlModeloEquipoController.pagination.hasNextPage}" />&nbsp;
+
+                                <div class="table-responsive">
+                                    <h:dataTable value="#{ctlModeloEquipoController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle_id}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.id}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle_nombre}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.nombre}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle_codigo}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.codigo}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle_existencia}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.existencia}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{cataloguesBundle.ListCtlModeloEquipoTitle_idMarca}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.idMarca}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="&nbsp;" />
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlModeloEquipoController.prepareView}" value="#{cataloguesBundle.ListCtlModeloEquipoViewLink}" />
+                                            <h:commandLink action="#{ctlModeloEquipoController.prepareEdit}" value="#{cataloguesBundle.ListCtlModeloEquipoEditLink}" />
+                                            <h:commandLink action="#{ctlModeloEquipoController.destroy}" value="#{cataloguesBundle.ListCtlModeloEquipoDestroyLink}" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </h:panelGroup>
+
+                            <div class="ln_solid"></div>
+
+                            <div class="form-group">
+                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlModeloEquipoController.prepareCreate}" value="#{cataloguesBundle.ListCtlModeloEquipoCreateLink}" />
+                                    <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{cataloguesBundle.ListCtlModeloEquipoIndexLink}" />
+                                </div>
+                            </div>
+                        </h:form>
+
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
         </ui:define>
     </ui:composition>
 

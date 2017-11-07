@@ -358,7 +358,7 @@ public class TEmpleado implements Serializable {
     @Override
     public String toString() {
         return "[" + this.idArea + "] " + this.apellido + ", " + this.nombre;
-        return "org.itca.requerimientos.model.entities.TEmpleado[ id=" + id + " ]";
+        // return "org.itca.requerimientos.model.entities.TEmpleado[ id=" + id + " ]";
     }
     
 }

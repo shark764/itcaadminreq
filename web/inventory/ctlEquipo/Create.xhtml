@@ -6,80 +6,139 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{inventoryBundle.CreateCtlEquipoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{ctlEquipoController.selected.id}" title="#{inventoryBundle.CreateCtlEquipoTitle_id}" required="true" requiredMessage="#{inventoryBundle.CreateCtlEquipoRequiredMessage_id}"/>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{ctlEquipoController.selected.nombre}" title="#{inventoryBundle.CreateCtlEquipoTitle_nombre}" required="true" requiredMessage="#{inventoryBundle.CreateCtlEquipoRequiredMessage_nombre}"/>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_serie}" for="serie" />
-                    <h:inputText id="serie" value="#{ctlEquipoController.selected.serie}" title="#{inventoryBundle.CreateCtlEquipoTitle_serie}" />
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_inventario}" for="inventario" />
-                    <h:inputText id="inventario" value="#{ctlEquipoController.selected.inventario}" title="#{inventoryBundle.CreateCtlEquipoTitle_inventario}" />
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_existencia}" for="existencia" />
-                    <h:inputText id="existencia" value="#{ctlEquipoController.selected.existencia}" title="#{inventoryBundle.CreateCtlEquipoTitle_existencia}" />
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_fechaAdquisicion}" for="fechaAdquisicion" />
-                    <h:inputText id="fechaAdquisicion" value="#{ctlEquipoController.selected.fechaAdquisicion}" title="#{inventoryBundle.CreateCtlEquipoTitle_fechaAdquisicion}" required="true" requiredMessage="#{inventoryBundle.CreateCtlEquipoRequiredMessage_fechaAdquisicion}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_ip}" for="ip" />
-                    <h:inputText id="ip" value="#{ctlEquipoController.selected.ip}" title="#{inventoryBundle.CreateCtlEquipoTitle_ip}" />
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_descripcion}" for="descripcion" />
-                    <h:inputText id="descripcion" value="#{ctlEquipoController.selected.descripcion}" title="#{inventoryBundle.CreateCtlEquipoTitle_descripcion}" />
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_idAreaAsignado}" for="idAreaAsignado" />
-                    <h:selectOneMenu id="idAreaAsignado" value="#{ctlEquipoController.selected.idAreaAsignado}" title="#{inventoryBundle.CreateCtlEquipoTitle_idAreaAsignado}" >
-                        <f:selectItems value="#{ctlAreaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_idCategoriaEquipo}" for="idCategoriaEquipo" />
-                    <h:selectOneMenu id="idCategoriaEquipo" value="#{ctlEquipoController.selected.idCategoriaEquipo}" title="#{inventoryBundle.CreateCtlEquipoTitle_idCategoriaEquipo}" required="true" requiredMessage="#{inventoryBundle.CreateCtlEquipoRequiredMessage_idCategoriaEquipo}">
-                        <f:selectItems value="#{ctlCategoriaEquipoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_idEmpleadoAsignado}" for="idEmpleadoAsignado" />
-                    <h:selectOneMenu id="idEmpleadoAsignado" value="#{ctlEquipoController.selected.idEmpleadoAsignado}" title="#{inventoryBundle.CreateCtlEquipoTitle_idEmpleadoAsignado}" >
-                        <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_idEquipoComponente}" for="idEquipoComponente" />
-                    <h:selectOneMenu id="idEquipoComponente" value="#{ctlEquipoController.selected.idEquipoComponente}" title="#{inventoryBundle.CreateCtlEquipoTitle_idEquipoComponente}" >
-                        <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_idEstadoEquipo}" for="idEstadoEquipo" />
-                    <h:selectOneMenu id="idEstadoEquipo" value="#{ctlEquipoController.selected.idEstadoEquipo}" title="#{inventoryBundle.CreateCtlEquipoTitle_idEstadoEquipo}" required="true" requiredMessage="#{inventoryBundle.CreateCtlEquipoRequiredMessage_idEstadoEquipo}">
-                        <f:selectItems value="#{ctlEstadoEquipoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_idModelo}" for="idModelo" />
-                    <h:selectOneMenu id="idModelo" value="#{ctlEquipoController.selected.idModelo}" title="#{inventoryBundle.CreateCtlEquipoTitle_idModelo}" >
-                        <f:selectItems value="#{ctlModeloEquipoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_idProveedor}" for="idProveedor" />
-                    <h:selectOneMenu id="idProveedor" value="#{ctlEquipoController.selected.idProveedor}" title="#{inventoryBundle.CreateCtlEquipoTitle_idProveedor}" >
-                        <f:selectItems value="#{ctlProveedorController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_idUserMod}" for="idUserMod" />
-                    <h:selectOneMenu id="idUserMod" value="#{ctlEquipoController.selected.idUserMod}" title="#{inventoryBundle.CreateCtlEquipoTitle_idUserMod}" >
-                        <f:selectItems value="#{tUserController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{inventoryBundle.CreateCtlEquipoLabel_idUserReg}" for="idUserReg" />
-                    <h:selectOneMenu id="idUserReg" value="#{ctlEquipoController.selected.idUserReg}" title="#{inventoryBundle.CreateCtlEquipoTitle_idUserReg}" required="true" requiredMessage="#{inventoryBundle.CreateCtlEquipoRequiredMessage_idUserReg}">
-                        <f:selectItems value="#{tUserController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{ctlEquipoController.create}" value="#{inventoryBundle.CreateCtlEquipoSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{ctlEquipoController.prepareList}" value="#{inventoryBundle.CreateCtlEquipoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{inventoryBundle.CreateCtlEquipoIndexLink}"/>
-            </h:form>
-        </ui:define>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <ui:define name="title">
+                                <h:outputText value="#{inventoryBundle.CreateCtlEquipoTitle}"></h:outputText>
+                                <small>different form elements</small>
+                            </ui:define>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <ui:define name="body">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_nombre}" for="nombre" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="nombre" value="#{ctlEquipoController.selected.nombre}" title="#{inventoryBundle.CreateCtlEquipoTitle_nombre}" required="true" requiredMessage="#{inventoryBundle.CreateCtlEquipoRequiredMessage_nombre}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_serie}" for="serie" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="serie" value="#{ctlEquipoController.selected.serie}" title="#{inventoryBundle.CreateCtlEquipoTitle_serie}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_inventario}" for="inventario" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="inventario" value="#{ctlEquipoController.selected.inventario}" title="#{inventoryBundle.CreateCtlEquipoTitle_inventario}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_existencia}" for="existencia" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="existencia" value="#{ctlEquipoController.selected.existencia}" title="#{inventoryBundle.CreateCtlEquipoTitle_existencia}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_ip}" for="ip" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="ip" value="#{ctlEquipoController.selected.ip}" title="#{inventoryBundle.CreateCtlEquipoTitle_ip}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_descripcion}" for="descripcion" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="descripcion" value="#{ctlEquipoController.selected.descripcion}" title="#{inventoryBundle.CreateCtlEquipoTitle_descripcion}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_idAreaAsignado}" for="idAreaAsignado" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idAreaAsignado" value="#{ctlEquipoController.selected.idAreaAsignado}" title="#{inventoryBundle.CreateCtlEquipoTitle_idAreaAsignado}">
+                                            <f:selectItems value="#{ctlAreaController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_idCategoriaEquipo}" for="idCategoriaEquipo" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idCategoriaEquipo" value="#{ctlEquipoController.selected.idCategoriaEquipo}" title="#{inventoryBundle.CreateCtlEquipoTitle_idCategoriaEquipo}" required="true" requiredMessage="#{inventoryBundle.CreateCtlEquipoRequiredMessage_idCategoriaEquipo}">
+                                            <f:selectItems value="#{ctlCategoriaEquipoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_idEmpleadoAsignado}" for="idEmpleadoAsignado" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEmpleadoAsignado" value="#{ctlEquipoController.selected.idEmpleadoAsignado}" title="#{inventoryBundle.CreateCtlEquipoTitle_idEmpleadoAsignado}">
+                                            <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_idEquipoComponente}" for="idEquipoComponente" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEquipoComponente" value="#{ctlEquipoController.selected.idEquipoComponente}" title="#{inventoryBundle.CreateCtlEquipoTitle_idEquipoComponente}">
+                                            <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_idEstadoEquipo}" for="idEstadoEquipo" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEstadoEquipo" value="#{ctlEquipoController.selected.idEstadoEquipo}" title="#{inventoryBundle.CreateCtlEquipoTitle_idEstadoEquipo}" required="true" requiredMessage="#{inventoryBundle.CreateCtlEquipoRequiredMessage_idEstadoEquipo}">
+                                            <f:selectItems value="#{ctlEstadoEquipoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_idModelo}" for="idModelo" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idModelo" value="#{ctlEquipoController.selected.idModelo}" title="#{inventoryBundle.CreateCtlEquipoTitle_idModelo}">
+                                            <f:selectItems value="#{ctlModeloEquipoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlEquipoLabel_idProveedor}" for="idProveedor" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idProveedor" value="#{ctlEquipoController.selected.idProveedor}" title="#{inventoryBundle.CreateCtlEquipoTitle_idProveedor}">
+                                            <f:selectItems value="#{ctlProveedorController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlEquipoController.create}" value="#{inventoryBundle.CreateCtlEquipoSaveLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlEquipoController.prepareList}" value="#{inventoryBundle.CreateCtlEquipoShowAllLink}" immediate="true" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{inventoryBundle.CreateCtlEquipoIndexLink}" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:define>
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
+        </div>  <!-- row -->
     </ui:composition>
 
 </html>

@@ -6,71 +6,85 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{requestBundle.ViewTDetalleSolicitudTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_id}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.id}" title="#{requestBundle.ViewTDetalleSolicitudTitle_id}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_fechaRequerimiento}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.fechaRequerimiento}" title="#{requestBundle.ViewTDetalleSolicitudTitle_fechaRequerimiento}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_fechaInicio}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.fechaInicio}" title="#{requestBundle.ViewTDetalleSolicitudTitle_fechaInicio}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_fechaLimite}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.fechaLimite}" title="#{requestBundle.ViewTDetalleSolicitudTitle_fechaLimite}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_fechaFin}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.fechaFin}" title="#{requestBundle.ViewTDetalleSolicitudTitle_fechaFin}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_descripcionFalla}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.descripcionFalla}" title="#{requestBundle.ViewTDetalleSolicitudTitle_descripcionFalla}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_descripcionSolucion}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.descripcionSolucion}" title="#{requestBundle.ViewTDetalleSolicitudTitle_descripcionSolucion}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_comentario}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.comentario}" title="#{requestBundle.ViewTDetalleSolicitudTitle_comentario}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idAreaRequerimiento}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.idAreaRequerimiento}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idAreaRequerimiento}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idEquipo}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.idEquipo}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idEquipo}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idEstadoSolicitud}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.idEstadoSolicitud}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idEstadoSolicitud}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idSolicitudRequerimiento}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.idSolicitudRequerimiento}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idSolicitudRequerimiento}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idTecnicoAsignado}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.idTecnicoAsignado}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idTecnicoAsignado}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idTipoFalla}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.idTipoFalla}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idTipoFalla}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idTipoRequerimiento}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.idTipoRequerimiento}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idTipoRequerimiento}"/>
-                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idTipoSolucion}"/>
-                    <h:outputText value="#{tDetalleSolicitudController.selected.idTipoSolucion}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idTipoSolucion}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{tDetalleSolicitudController.destroyAndView}" value="#{requestBundle.ViewTDetalleSolicitudDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{requestBundle.ViewTDetalleSolicitudEditLink}"/>
-                <br />
-                <h:commandLink action="#{tDetalleSolicitudController.prepareCreate}" value="#{requestBundle.ViewTDetalleSolicitudCreateLink}" />
-                <br />
-                <h:commandLink action="#{tDetalleSolicitudController.prepareList}" value="#{requestBundle.ViewTDetalleSolicitudShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{requestBundle.ViewTDetalleSolicitudIndexLink}"/>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <ui:define name="title">
+                                <h:outputText value="#{requestBundle.ViewTDetalleSolicitudTitle}"></h:outputText>
+                                <small>different form elements</small>
+                            </ui:define>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <ui:define name="body">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_id}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.id}" title="#{requestBundle.ViewTDetalleSolicitudTitle_id}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_fechaRequerimiento}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.fechaRequerimiento}" title="#{requestBundle.ViewTDetalleSolicitudTitle_fechaRequerimiento}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_fechaInicio}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.fechaInicio}" title="#{requestBundle.ViewTDetalleSolicitudTitle_fechaInicio}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_fechaLimite}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.fechaLimite}" title="#{requestBundle.ViewTDetalleSolicitudTitle_fechaLimite}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_fechaFin}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.fechaFin}" title="#{requestBundle.ViewTDetalleSolicitudTitle_fechaFin}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_descripcionFalla}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.descripcionFalla}" title="#{requestBundle.ViewTDetalleSolicitudTitle_descripcionFalla}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_descripcionSolucion}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.descripcionSolucion}" title="#{requestBundle.ViewTDetalleSolicitudTitle_descripcionSolucion}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_comentario}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.comentario}" title="#{requestBundle.ViewTDetalleSolicitudTitle_comentario}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idAreaRequerimiento}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.idAreaRequerimiento}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idAreaRequerimiento}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idEquipo}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.idEquipo}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idEquipo}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idEstadoSolicitud}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.idEstadoSolicitud}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idEstadoSolicitud}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idSolicitudRequerimiento}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.idSolicitudRequerimiento}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idSolicitudRequerimiento}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idTecnicoAsignado}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.idTecnicoAsignado}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idTecnicoAsignado}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idTipoFalla}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.idTipoFalla}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idTipoFalla}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idTipoRequerimiento}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.idTipoRequerimiento}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idTipoRequerimiento}" />
+                                    <h:outputText value="#{requestBundle.ViewTDetalleSolicitudLabel_idTipoSolucion}" />
+                                    <h:outputText value="#{tDetalleSolicitudController.selected.idTipoSolucion}" title="#{requestBundle.ViewTDetalleSolicitudTitle_idTipoSolucion}" />
+                                </h:panelGrid>
 
-            </h:form>
-        </ui:define>
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{tDetalleSolicitudController.destroyAndView}" value="#{requestBundle.ViewTDetalleSolicitudDestroyLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="Edit" value="#{requestBundle.ViewTDetalleSolicitudEditLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-success" action="#{tDetalleSolicitudController.prepareCreate}" value="#{requestBundle.ViewTDetalleSolicitudCreateLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{tDetalleSolicitudController.prepareList}" value="#{requestBundle.ViewTDetalleSolicitudShowAllLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{requestBundle.ViewTDetalleSolicitudIndexLink}" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:define>
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
+        </div>  <!-- row -->
     </ui:composition>
 
 </html>

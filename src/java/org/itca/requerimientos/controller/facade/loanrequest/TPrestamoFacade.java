@@ -5,9 +5,12 @@
  */
 package org.itca.requerimientos.controller.facade.loanrequest;
 
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.itca.requerimientos.controller.facade.AbstractFacade;
 import org.itca.requerimientos.model.entities.TPrestamo;
 
@@ -27,6 +30,27 @@ public class TPrestamoFacade extends AbstractFacade<TPrestamo> {
 
     public TPrestamoFacade() {
         super(TPrestamo.class);
+    }
+
+    public List<TPrestamo> findByEmployee(Integer id, int[] range)
+    {
+        Query q = em.createNamedQuery("TPrestamo.findByEmployee")
+        		.setParameter("id", id)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TPrestamo> list = q.getResultList();
+        return list;
+    }
+
+    public List<TPrestamo> entryRange(Date start, Date end, int[] range)
+    {
+        Query q = em.createNamedQuery("TPrestamo.entryRange")
+        		.setParameter("start", start)
+        		.setParameter("end", end)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TPrestamo> list = q.getResultList();
+        return list;
     }
     
 }

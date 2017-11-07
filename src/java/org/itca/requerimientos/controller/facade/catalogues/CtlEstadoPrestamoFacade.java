@@ -9,6 +9,7 @@ import org.itca.requerimientos.controller.facade.AbstractFacade;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.itca.requerimientos.model.entities.CtlEstadoPrestamo;
 
 /**
@@ -27,6 +28,13 @@ public class CtlEstadoPrestamoFacade extends AbstractFacade<CtlEstadoPrestamo> {
 
     public CtlEstadoPrestamoFacade() {
         super(CtlEstadoPrestamo.class);
+    }
+
+    public CtlEstadoPrestamo findByCodigo(String codigo)
+    {
+        Query q = em.createNamedQuery("CtlEstadoPrestamo.findByCodigo");
+        q.setParameter("codigo", codigo);
+        return (CtlEstadoPrestamo) q.getSingleResult();
     }
     
 }

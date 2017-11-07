@@ -28,5 +28,18 @@ public class TUserFacade extends AbstractFacade<TUser> {
     public TUserFacade() {
         super(TUser.class);
     }
+
+    public boolean login(String username, String password)
+    {
+        try {
+            TUser u = em.createNamedQuery("TUser.login", TUser.class)
+                    .setParameter("username", username)
+                    .setParameter("password", password)
+                    .getSingleResult();
+            return u != null;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     
 }

@@ -9,6 +9,7 @@ import org.itca.requerimientos.controller.facade.AbstractFacade;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.itca.requerimientos.model.entities.CtlEstadoSolicitud;
 
 /**
@@ -27,6 +28,13 @@ public class CtlEstadoSolicitudFacade extends AbstractFacade<CtlEstadoSolicitud>
 
     public CtlEstadoSolicitudFacade() {
         super(CtlEstadoSolicitud.class);
+    }
+
+    public CtlEstadoSolicitud findByCodigo(String codigo)
+    {
+        Query q = em.createNamedQuery("CtlEstadoSolicitud.findByCodigo")
+                .setParameter("codigo", codigo);
+        return (CtlEstadoSolicitud) q.getSingleResult();
     }
     
 }

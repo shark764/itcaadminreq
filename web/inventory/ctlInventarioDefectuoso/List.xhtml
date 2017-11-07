@@ -10,60 +10,80 @@
             <h:outputText value="#{inventoryBundle.ListCtlInventarioDefectuosoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{inventoryBundle.ListCtlInventarioDefectuosoEmpty}" rendered="#{ctlInventarioDefectuosoController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{ctlInventarioDefectuosoController.items.rowCount > 0}">
-                    <h:outputText value="#{ctlInventarioDefectuosoController.pagination.pageFirstItem + 1}..#{ctlInventarioDefectuosoController.pagination.pageLastItem + 1}/#{ctlInventarioDefectuosoController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{ctlInventarioDefectuosoController.previous}" value="#{inventoryBundle.Previous} #{ctlInventarioDefectuosoController.pagination.pageSize}" rendered="#{ctlInventarioDefectuosoController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{ctlInventarioDefectuosoController.next}" value="#{inventoryBundle.Next} #{ctlInventarioDefectuosoController.pagination.pageSize}" rendered="#{ctlInventarioDefectuosoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{ctlInventarioDefectuosoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{inventoryBundle.ListCtlInventarioDefectuosoTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{inventoryBundle.ListCtlInventarioDefectuosoTitle_descripcion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descripcion}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{inventoryBundle.ListCtlInventarioDefectuosoTitle_fechaIngreso}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaIngreso}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{inventoryBundle.ListCtlInventarioDefectuosoTitle_idEquipo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idEquipo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{ctlInventarioDefectuosoController.prepareView}" value="#{inventoryBundle.ListCtlInventarioDefectuosoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ctlInventarioDefectuosoController.prepareEdit}" value="#{inventoryBundle.ListCtlInventarioDefectuosoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ctlInventarioDefectuosoController.destroy}" value="#{inventoryBundle.ListCtlInventarioDefectuosoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{ctlInventarioDefectuosoController.prepareCreate}" value="#{inventoryBundle.ListCtlInventarioDefectuosoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{inventoryBundle.ListCtlInventarioDefectuosoIndexLink}"/>
-            </h:form>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Listado de registros <small>vista de tabla</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+
+                        <p>Registros ingresados al sistema</p>
+
+                        <h:form styleClass="">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:outputText escape="false" value="#{inventoryBundle.ListCtlInventarioDefectuosoEmpty}" rendered="#{ctlInventarioDefectuosoController.items.rowCount == 0}"/>
+                            <h:panelGroup rendered="#{ctlInventarioDefectuosoController.items.rowCount > 0}">
+                                <h:outputText value="#{ctlInventarioDefectuosoController.pagination.pageFirstItem + 1}..#{ctlInventarioDefectuosoController.pagination.pageLastItem + 1}/#{ctlInventarioDefectuosoController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInventarioDefectuosoController.previous}" value="#{inventoryBundle.Previous} #{ctlInventarioDefectuosoController.pagination.pageSize}" rendered="#{ctlInventarioDefectuosoController.pagination.hasPreviousPage}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInventarioDefectuosoController.next}" value="#{inventoryBundle.Next} #{ctlInventarioDefectuosoController.pagination.pageSize}" rendered="#{ctlInventarioDefectuosoController.pagination.hasNextPage}" />&nbsp;
+
+                                <div class="table-responsive">
+                                    <h:dataTable value="#{ctlInventarioDefectuosoController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{inventoryBundle.ListCtlInventarioDefectuosoTitle_id}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.id}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{inventoryBundle.ListCtlInventarioDefectuosoTitle_descripcion}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.descripcion}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{inventoryBundle.ListCtlInventarioDefectuosoTitle_fechaIngreso}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.fechaIngreso}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{inventoryBundle.ListCtlInventarioDefectuosoTitle_idEquipo}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.idEquipo}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="&nbsp;" />
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInventarioDefectuosoController.prepareView}" value="#{inventoryBundle.ListCtlInventarioDefectuosoViewLink}" />
+                                            <h:commandLink action="#{ctlInventarioDefectuosoController.prepareEdit}" value="#{inventoryBundle.ListCtlInventarioDefectuosoEditLink}" />
+                                            <h:commandLink action="#{ctlInventarioDefectuosoController.destroy}" value="#{inventoryBundle.ListCtlInventarioDefectuosoDestroyLink}" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </h:panelGroup>
+
+                            <div class="ln_solid"></div>
+
+                            <div class="form-group">
+                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInventarioDefectuosoController.prepareCreate}" value="#{inventoryBundle.ListCtlInventarioDefectuosoCreateLink}" />
+                                    <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{inventoryBundle.ListCtlInventarioDefectuosoIndexLink}" />
+                                </div>
+                            </div>
+                        </h:form>
+
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
         </ui:define>
     </ui:composition>
 

@@ -8,6 +8,7 @@ package org.itca.requerimientos.controller.facade.security;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.itca.requerimientos.controller.facade.AbstractFacade;
 import org.itca.requerimientos.model.entities.TUserRole;
 
@@ -27,6 +28,22 @@ public class TUserRoleFacade extends AbstractFacade<TUserRole> {
 
     public TUserRoleFacade() {
         super(TUserRole.class);
+    }
+
+    public TUserRole findByRolAndUser(String role, String username)
+    {
+        Query q = em.createNamedQuery("TUserRole.findByRolAndUser")
+                .setParameter("role", role)
+                .setParameter("username", username);
+        return (TUserRole) q.getSingleResult();
+    }
+
+    public boolean userHasRole(String role, String username)
+    {
+        Query q = em.createNamedQuery("TUserRole.findByRolAndUser")
+                .setParameter("role", role)
+                .setParameter("username", username);
+        return (TUserRole) q.getSingleResult() != null;
     }
     
 }

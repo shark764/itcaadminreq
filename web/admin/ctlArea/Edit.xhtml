@@ -6,31 +6,56 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{adminBundle.EditCtlAreaTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{adminBundle.EditCtlAreaLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{ctlAreaController.selected.nombre}" title="#{adminBundle.EditCtlAreaTitle_nombre}" required="true" requiredMessage="#{adminBundle.EditCtlAreaRequiredMessage_nombre}"/>
-                    <h:outputLabel value="#{adminBundle.EditCtlAreaLabel_codigo}" for="codigo" />
-                    <h:inputText id="codigo" value="#{ctlAreaController.selected.codigo}" title="#{adminBundle.EditCtlAreaTitle_codigo}" required="true" requiredMessage="#{adminBundle.EditCtlAreaRequiredMessage_codigo}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{ctlAreaController.update}" value="#{adminBundle.EditCtlAreaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{adminBundle.EditCtlAreaViewLink}"/>
-                <br />
-                <h:commandLink action="#{ctlAreaController.prepareList}" value="#{adminBundle.EditCtlAreaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{adminBundle.EditCtlAreaIndexLink}" />
-            </h:form>
-        </ui:define>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <ui:define name="title">
+                                <h:outputText value="#{adminBundle.EditCtlAreaTitle}"></h:outputText>
+                                <small>different form elements</small>
+                            </ui:define>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <ui:define name="body">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.EditCtlAreaLabel_nombre}" for="nombre" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="nombre" value="#{ctlAreaController.selected.nombre}" title="#{adminBundle.EditCtlAreaTitle_nombre}" required="true" requiredMessage="#{adminBundle.EditCtlAreaRequiredMessage_nombre}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.EditCtlAreaLabel_codigo}" for="codigo" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="codigo" value="#{ctlAreaController.selected.codigo}" title="#{adminBundle.EditCtlAreaTitle_codigo}" required="true" requiredMessage="#{adminBundle.EditCtlAreaRequiredMessage_codigo}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlAreaController.update}" value="#{adminBundle.EditCtlAreaSaveLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="View" value="#{adminBundle.EditCtlAreaViewLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-success" action="#{ctlAreaController.prepareList}" value="#{adminBundle.EditCtlAreaShowAllLink}" immediate="true" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{adminBundle.EditCtlAreaIndexLink}" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:define>
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
+        </div>  <!-- row -->
     </ui:composition>
 
 </html>

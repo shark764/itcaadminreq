@@ -10,52 +10,72 @@
             <h:outputText value="#{cataloguesBundle.ListCtlAreaRequerimientoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{cataloguesBundle.ListCtlAreaRequerimientoEmpty}" rendered="#{ctlAreaRequerimientoController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{ctlAreaRequerimientoController.items.rowCount > 0}">
-                    <h:outputText value="#{ctlAreaRequerimientoController.pagination.pageFirstItem + 1}..#{ctlAreaRequerimientoController.pagination.pageLastItem + 1}/#{ctlAreaRequerimientoController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{ctlAreaRequerimientoController.previous}" value="#{cataloguesBundle.Previous} #{ctlAreaRequerimientoController.pagination.pageSize}" rendered="#{ctlAreaRequerimientoController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{ctlAreaRequerimientoController.next}" value="#{cataloguesBundle.Next} #{ctlAreaRequerimientoController.pagination.pageSize}" rendered="#{ctlAreaRequerimientoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{ctlAreaRequerimientoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{cataloguesBundle.ListCtlAreaRequerimientoTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{cataloguesBundle.ListCtlAreaRequerimientoTitle_nombre}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{cataloguesBundle.ListCtlAreaRequerimientoTitle_codigo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codigo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{ctlAreaRequerimientoController.prepareView}" value="#{cataloguesBundle.ListCtlAreaRequerimientoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ctlAreaRequerimientoController.prepareEdit}" value="#{cataloguesBundle.ListCtlAreaRequerimientoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ctlAreaRequerimientoController.destroy}" value="#{cataloguesBundle.ListCtlAreaRequerimientoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{ctlAreaRequerimientoController.prepareCreate}" value="#{cataloguesBundle.ListCtlAreaRequerimientoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{cataloguesBundle.ListCtlAreaRequerimientoIndexLink}"/>
-            </h:form>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Listado de registros <small>vista de tabla</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+
+                        <p>Registros ingresados al sistema</p>
+
+                        <h:form styleClass="">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:outputText escape="false" value="#{cataloguesBundle.ListCtlAreaRequerimientoEmpty}" rendered="#{ctlAreaRequerimientoController.items.rowCount == 0}"/>
+                            <h:panelGroup rendered="#{ctlAreaRequerimientoController.items.rowCount > 0}">
+                                <h:outputText value="#{ctlAreaRequerimientoController.pagination.pageFirstItem + 1}..#{ctlAreaRequerimientoController.pagination.pageLastItem + 1}/#{ctlAreaRequerimientoController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaRequerimientoController.previous}" value="#{cataloguesBundle.Previous} #{ctlAreaRequerimientoController.pagination.pageSize}" rendered="#{ctlAreaRequerimientoController.pagination.hasPreviousPage}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaRequerimientoController.next}" value="#{cataloguesBundle.Next} #{ctlAreaRequerimientoController.pagination.pageSize}" rendered="#{ctlAreaRequerimientoController.pagination.hasNextPage}" />&nbsp;
+
+                                <div class="table-responsive">
+                                    <h:dataTable value="#{ctlAreaRequerimientoController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{cataloguesBundle.ListCtlAreaRequerimientoTitle_id}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.id}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{cataloguesBundle.ListCtlAreaRequerimientoTitle_nombre}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.nombre}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{cataloguesBundle.ListCtlAreaRequerimientoTitle_codigo}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.codigo}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="&nbsp;" />
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaRequerimientoController.prepareView}" value="#{cataloguesBundle.ListCtlAreaRequerimientoViewLink}" />
+                                            <h:commandLink action="#{ctlAreaRequerimientoController.prepareEdit}" value="#{cataloguesBundle.ListCtlAreaRequerimientoEditLink}" />
+                                            <h:commandLink action="#{ctlAreaRequerimientoController.destroy}" value="#{cataloguesBundle.ListCtlAreaRequerimientoDestroyLink}" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </h:panelGroup>
+
+                            <div class="ln_solid"></div>
+
+                            <div class="form-group">
+                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaRequerimientoController.prepareCreate}" value="#{cataloguesBundle.ListCtlAreaRequerimientoCreateLink}" />
+                                    <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{cataloguesBundle.ListCtlAreaRequerimientoIndexLink}" />
+                                </div>
+                            </div>
+                        </h:form>
+
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
         </ui:define>
     </ui:composition>
 

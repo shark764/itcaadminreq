@@ -6,39 +6,53 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{cataloguesBundle.ViewCtlTipoRequerimientoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{cataloguesBundle.ViewCtlTipoRequerimientoLabel_id}"/>
-                    <h:outputText value="#{ctlTipoRequerimientoController.selected.id}" title="#{cataloguesBundle.ViewCtlTipoRequerimientoTitle_id}"/>
-                    <h:outputText value="#{cataloguesBundle.ViewCtlTipoRequerimientoLabel_nombre}"/>
-                    <h:outputText value="#{ctlTipoRequerimientoController.selected.nombre}" title="#{cataloguesBundle.ViewCtlTipoRequerimientoTitle_nombre}"/>
-                    <h:outputText value="#{cataloguesBundle.ViewCtlTipoRequerimientoLabel_codigo}"/>
-                    <h:outputText value="#{ctlTipoRequerimientoController.selected.codigo}" title="#{cataloguesBundle.ViewCtlTipoRequerimientoTitle_codigo}"/>
-                    <h:outputText value="#{cataloguesBundle.ViewCtlTipoRequerimientoLabel_idAreaRequerimiento}"/>
-                    <h:outputText value="#{ctlTipoRequerimientoController.selected.idAreaRequerimiento}" title="#{cataloguesBundle.ViewCtlTipoRequerimientoTitle_idAreaRequerimiento}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{ctlTipoRequerimientoController.destroyAndView}" value="#{cataloguesBundle.ViewCtlTipoRequerimientoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{cataloguesBundle.ViewCtlTipoRequerimientoEditLink}"/>
-                <br />
-                <h:commandLink action="#{ctlTipoRequerimientoController.prepareCreate}" value="#{cataloguesBundle.ViewCtlTipoRequerimientoCreateLink}" />
-                <br />
-                <h:commandLink action="#{ctlTipoRequerimientoController.prepareList}" value="#{cataloguesBundle.ViewCtlTipoRequerimientoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{cataloguesBundle.ViewCtlTipoRequerimientoIndexLink}"/>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <ui:define name="title">
+                                <h:outputText value="#{cataloguesBundle.ViewCtlTipoRequerimientoTitle}"></h:outputText>
+                                <small>different form elements</small>
+                            </ui:define>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <ui:define name="body">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="#{cataloguesBundle.ViewCtlTipoRequerimientoLabel_id}" />
+                                    <h:outputText value="#{ctlTipoRequerimientoController.selected.id}" title="#{cataloguesBundle.ViewCtlTipoRequerimientoTitle_id}" />
+                                    <h:outputText value="#{cataloguesBundle.ViewCtlTipoRequerimientoLabel_nombre}" />
+                                    <h:outputText value="#{ctlTipoRequerimientoController.selected.nombre}" title="#{cataloguesBundle.ViewCtlTipoRequerimientoTitle_nombre}" />
+                                    <h:outputText value="#{cataloguesBundle.ViewCtlTipoRequerimientoLabel_codigo}" />
+                                    <h:outputText value="#{ctlTipoRequerimientoController.selected.codigo}" title="#{cataloguesBundle.ViewCtlTipoRequerimientoTitle_codigo}" />
+                                    <h:outputText value="#{cataloguesBundle.ViewCtlTipoRequerimientoLabel_idAreaRequerimiento}" />
+                                    <h:outputText value="#{ctlTipoRequerimientoController.selected.idAreaRequerimiento}" title="#{cataloguesBundle.ViewCtlTipoRequerimientoTitle_idAreaRequerimiento}" />
+                                </h:panelGrid>
 
-            </h:form>
-        </ui:define>
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlTipoRequerimientoController.destroyAndView}" value="#{cataloguesBundle.ViewCtlTipoRequerimientoDestroyLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="Edit" value="#{cataloguesBundle.ViewCtlTipoRequerimientoEditLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-success" action="#{ctlTipoRequerimientoController.prepareCreate}" value="#{cataloguesBundle.ViewCtlTipoRequerimientoCreateLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlTipoRequerimientoController.prepareList}" value="#{cataloguesBundle.ViewCtlTipoRequerimientoShowAllLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{cataloguesBundle.ViewCtlTipoRequerimientoIndexLink}" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:define>
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
+        </div>  <!-- row -->
     </ui:composition>
 
 </html>

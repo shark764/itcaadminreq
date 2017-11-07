@@ -6,45 +6,72 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{requestBundle.EditTInsumoUtilizadoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{requestBundle.EditTInsumoUtilizadoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{tInsumoUtilizadoController.selected.id}" title="#{requestBundle.EditTInsumoUtilizadoTitle_id}" required="true" requiredMessage="#{requestBundle.EditTInsumoUtilizadoRequiredMessage_id}"/>
-                    <h:outputLabel value="#{requestBundle.EditTInsumoUtilizadoLabel_utlilizado}" for="utlilizado" />
-                    <h:inputText id="utlilizado" value="#{tInsumoUtilizadoController.selected.utlilizado}" title="#{requestBundle.EditTInsumoUtilizadoTitle_utlilizado}" />
-                    <h:outputLabel value="#{requestBundle.EditTInsumoUtilizadoLabel_desperdicio}" for="desperdicio" />
-                    <h:inputText id="desperdicio" value="#{tInsumoUtilizadoController.selected.desperdicio}" title="#{requestBundle.EditTInsumoUtilizadoTitle_desperdicio}" />
-                    <h:outputLabel value="#{requestBundle.EditTInsumoUtilizadoLabel_idDetalleSolicitud}" for="idDetalleSolicitud" />
-                    <h:selectOneMenu id="idDetalleSolicitud" value="#{tInsumoUtilizadoController.selected.idDetalleSolicitud}" title="#{requestBundle.EditTInsumoUtilizadoTitle_idDetalleSolicitud}" required="true" requiredMessage="#{requestBundle.EditTInsumoUtilizadoRequiredMessage_idDetalleSolicitud}">
-                        <f:selectItems value="#{tDetalleSolicitudController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{requestBundle.EditTInsumoUtilizadoLabel_idEquipoIntercambio}" for="idEquipoIntercambio" />
-                    <h:selectOneMenu id="idEquipoIntercambio" value="#{tInsumoUtilizadoController.selected.idEquipoIntercambio}" title="#{requestBundle.EditTInsumoUtilizadoTitle_idEquipoIntercambio}" >
-                        <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{requestBundle.EditTInsumoUtilizadoLabel_idInsumo}" for="idInsumo" />
-                    <h:selectOneMenu id="idInsumo" value="#{tInsumoUtilizadoController.selected.idInsumo}" title="#{requestBundle.EditTInsumoUtilizadoTitle_idInsumo}" >
-                        <f:selectItems value="#{ctlInsumoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{tInsumoUtilizadoController.update}" value="#{requestBundle.EditTInsumoUtilizadoSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{requestBundle.EditTInsumoUtilizadoViewLink}"/>
-                <br />
-                <h:commandLink action="#{tInsumoUtilizadoController.prepareList}" value="#{requestBundle.EditTInsumoUtilizadoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{requestBundle.EditTInsumoUtilizadoIndexLink}" />
-            </h:form>
-        </ui:define>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <ui:define name="title">
+                                <h:outputText value="#{requestBundle.EditTInsumoUtilizadoTitle}"></h:outputText>
+                                <small>different form elements</small>
+                            </ui:define>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <ui:define name="body">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTInsumoUtilizadoLabel_utlilizado}" for="utlilizado" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="utlilizado" value="#{tInsumoUtilizadoController.selected.utlilizado}" title="#{requestBundle.EditTInsumoUtilizadoTitle_utlilizado}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTInsumoUtilizadoLabel_desperdicio}" for="desperdicio" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="desperdicio" value="#{tInsumoUtilizadoController.selected.desperdicio}" title="#{requestBundle.EditTInsumoUtilizadoTitle_desperdicio}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTInsumoUtilizadoLabel_idInsumo}" for="idInsumo" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idInsumo" value="#{tInsumoUtilizadoController.selected.idInsumo}" title="#{requestBundle.EditTInsumoUtilizadoTitle_idInsumo}">
+                                            <f:selectItems value="#{ctlInsumoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTInsumoUtilizadoLabel_idEquipoIntercambio}" for="idEquipoIntercambio" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEquipoIntercambio" value="#{tInsumoUtilizadoController.selected.idEquipoIntercambio}" title="#{requestBundle.EditTInsumoUtilizadoTitle_idEquipoIntercambio}">
+                                            <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{tInsumoUtilizadoController.update}" value="#{requestBundle.EditTInsumoUtilizadoSaveLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="View" value="#{requestBundle.EditTInsumoUtilizadoViewLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-success" action="#{tInsumoUtilizadoController.prepareList}" value="#{requestBundle.EditTInsumoUtilizadoShowAllLink}" immediate="true" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{requestBundle.EditTInsumoUtilizadoIndexLink}" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:define>
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
+        </div>  <!-- row -->
     </ui:composition>
 
 </html>

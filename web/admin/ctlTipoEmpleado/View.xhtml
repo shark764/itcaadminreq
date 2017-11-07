@@ -6,37 +6,51 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{adminBundle.ViewCtlTipoEmpleadoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{adminBundle.ViewCtlTipoEmpleadoLabel_id}"/>
-                    <h:outputText value="#{ctlTipoEmpleadoController.selected.id}" title="#{adminBundle.ViewCtlTipoEmpleadoTitle_id}"/>
-                    <h:outputText value="#{adminBundle.ViewCtlTipoEmpleadoLabel_nombre}"/>
-                    <h:outputText value="#{ctlTipoEmpleadoController.selected.nombre}" title="#{adminBundle.ViewCtlTipoEmpleadoTitle_nombre}"/>
-                    <h:outputText value="#{adminBundle.ViewCtlTipoEmpleadoLabel_codigo}"/>
-                    <h:outputText value="#{ctlTipoEmpleadoController.selected.codigo}" title="#{adminBundle.ViewCtlTipoEmpleadoTitle_codigo}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{ctlTipoEmpleadoController.destroyAndView}" value="#{adminBundle.ViewCtlTipoEmpleadoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{adminBundle.ViewCtlTipoEmpleadoEditLink}"/>
-                <br />
-                <h:commandLink action="#{ctlTipoEmpleadoController.prepareCreate}" value="#{adminBundle.ViewCtlTipoEmpleadoCreateLink}" />
-                <br />
-                <h:commandLink action="#{ctlTipoEmpleadoController.prepareList}" value="#{adminBundle.ViewCtlTipoEmpleadoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{adminBundle.ViewCtlTipoEmpleadoIndexLink}"/>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <ui:define name="title">
+                                <h:outputText value="#{adminBundle.ViewCtlTipoEmpleadoTitle}"></h:outputText>
+                                <small>different form elements</small>
+                            </ui:define>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <ui:define name="body">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="#{adminBundle.ViewCtlTipoEmpleadoLabel_id}" />
+                                    <h:outputText value="#{ctlTipoEmpleadoController.selected.id}" title="#{adminBundle.ViewCtlTipoEmpleadoTitle_id}" />
+                                    <h:outputText value="#{adminBundle.ViewCtlTipoEmpleadoLabel_nombre}" />
+                                    <h:outputText value="#{ctlTipoEmpleadoController.selected.nombre}" title="#{adminBundle.ViewCtlTipoEmpleadoTitle_nombre}" />
+                                    <h:outputText value="#{adminBundle.ViewCtlTipoEmpleadoLabel_codigo}" />
+                                    <h:outputText value="#{ctlTipoEmpleadoController.selected.codigo}" title="#{adminBundle.ViewCtlTipoEmpleadoTitle_codigo}" />
+                                </h:panelGrid>
 
-            </h:form>
-        </ui:define>
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlTipoEmpleadoController.destroyAndView}" value="#{adminBundle.ViewCtlTipoEmpleadoDestroyLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="Edit" value="#{adminBundle.ViewCtlTipoEmpleadoEditLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-success" action="#{ctlTipoEmpleadoController.prepareCreate}" value="#{adminBundle.ViewCtlTipoEmpleadoCreateLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlTipoEmpleadoController.prepareList}" value="#{adminBundle.ViewCtlTipoEmpleadoShowAllLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{adminBundle.ViewCtlTipoEmpleadoIndexLink}" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:define>
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
+        </div>  <!-- row -->
     </ui:composition>
 
 </html>

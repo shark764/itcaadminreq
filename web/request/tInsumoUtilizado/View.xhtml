@@ -6,43 +6,57 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_id}"/>
-                    <h:outputText value="#{tInsumoUtilizadoController.selected.id}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_id}"/>
-                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_utlilizado}"/>
-                    <h:outputText value="#{tInsumoUtilizadoController.selected.utlilizado}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_utlilizado}"/>
-                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_desperdicio}"/>
-                    <h:outputText value="#{tInsumoUtilizadoController.selected.desperdicio}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_desperdicio}"/>
-                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_idDetalleSolicitud}"/>
-                    <h:outputText value="#{tInsumoUtilizadoController.selected.idDetalleSolicitud}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_idDetalleSolicitud}"/>
-                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_idEquipoIntercambio}"/>
-                    <h:outputText value="#{tInsumoUtilizadoController.selected.idEquipoIntercambio}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_idEquipoIntercambio}"/>
-                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_idInsumo}"/>
-                    <h:outputText value="#{tInsumoUtilizadoController.selected.idInsumo}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_idInsumo}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{tInsumoUtilizadoController.destroyAndView}" value="#{requestBundle.ViewTInsumoUtilizadoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{requestBundle.ViewTInsumoUtilizadoEditLink}"/>
-                <br />
-                <h:commandLink action="#{tInsumoUtilizadoController.prepareCreate}" value="#{requestBundle.ViewTInsumoUtilizadoCreateLink}" />
-                <br />
-                <h:commandLink action="#{tInsumoUtilizadoController.prepareList}" value="#{requestBundle.ViewTInsumoUtilizadoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{requestBundle.ViewTInsumoUtilizadoIndexLink}"/>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <ui:define name="title">
+                                <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoTitle}"></h:outputText>
+                                <small>different form elements</small>
+                            </ui:define>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <ui:define name="body">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_id}" />
+                                    <h:outputText value="#{tInsumoUtilizadoController.selected.id}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_id}" />
+                                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_utlilizado}" />
+                                    <h:outputText value="#{tInsumoUtilizadoController.selected.utlilizado}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_utlilizado}" />
+                                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_desperdicio}" />
+                                    <h:outputText value="#{tInsumoUtilizadoController.selected.desperdicio}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_desperdicio}" />
+                                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_idDetalleSolicitud}" />
+                                    <h:outputText value="#{tInsumoUtilizadoController.selected.idDetalleSolicitud}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_idDetalleSolicitud}" />
+                                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_idEquipoIntercambio}" />
+                                    <h:outputText value="#{tInsumoUtilizadoController.selected.idEquipoIntercambio}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_idEquipoIntercambio}" />
+                                    <h:outputText value="#{requestBundle.ViewTInsumoUtilizadoLabel_idInsumo}" />
+                                    <h:outputText value="#{tInsumoUtilizadoController.selected.idInsumo}" title="#{requestBundle.ViewTInsumoUtilizadoTitle_idInsumo}" />
+                                </h:panelGrid>
 
-            </h:form>
-        </ui:define>
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{tInsumoUtilizadoController.destroyAndView}" value="#{requestBundle.ViewTInsumoUtilizadoDestroyLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="Edit" value="#{requestBundle.ViewTInsumoUtilizadoEditLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-success" action="#{tInsumoUtilizadoController.prepareCreate}" value="#{requestBundle.ViewTInsumoUtilizadoCreateLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{tInsumoUtilizadoController.prepareList}" value="#{requestBundle.ViewTInsumoUtilizadoShowAllLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{requestBundle.ViewTInsumoUtilizadoIndexLink}" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:define>
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
+        </div>  <!-- row -->
     </ui:composition>
 
 </html>

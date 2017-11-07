@@ -6,61 +6,89 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{loanRequestBundle.EditTDetallePrestamoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{loanRequestBundle.EditTDetallePrestamoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{tDetallePrestamoController.selected.id}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_id}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_id}"/>
-                    <h:outputLabel value="#{loanRequestBundle.EditTDetallePrestamoLabel_fechaPrestamo}" for="fechaPrestamo" />
-                    <h:inputText id="fechaPrestamo" value="#{tDetallePrestamoController.selected.fechaPrestamo}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_fechaPrestamo}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_fechaPrestamo}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{loanRequestBundle.EditTDetallePrestamoLabel_fechaLimite}" for="fechaLimite" />
-                    <h:inputText id="fechaLimite" value="#{tDetallePrestamoController.selected.fechaLimite}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_fechaLimite}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{loanRequestBundle.EditTDetallePrestamoLabel_fechaEntrega}" for="fechaEntrega" />
-                    <h:inputText id="fechaEntrega" value="#{tDetallePrestamoController.selected.fechaEntrega}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_fechaEntrega}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{loanRequestBundle.EditTDetallePrestamoLabel_descripcion}" for="descripcion" />
-                    <h:inputText id="descripcion" value="#{tDetallePrestamoController.selected.descripcion}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_descripcion}" />
-                    <h:outputLabel value="#{loanRequestBundle.EditTDetallePrestamoLabel_comentario}" for="comentario" />
-                    <h:inputText id="comentario" value="#{tDetallePrestamoController.selected.comentario}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_comentario}" />
-                    <h:outputLabel value="#{loanRequestBundle.EditTDetallePrestamoLabel_idEquipo}" for="idEquipo" />
-                    <h:selectOneMenu id="idEquipo" value="#{tDetallePrestamoController.selected.idEquipo}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEquipo}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_idEquipo}">
-                        <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{loanRequestBundle.EditTDetallePrestamoLabel_idEstadoEntrega}" for="idEstadoEntrega" />
-                    <h:selectOneMenu id="idEstadoEntrega" value="#{tDetallePrestamoController.selected.idEstadoEntrega}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEstadoEntrega}" >
-                        <f:selectItems value="#{ctlEstadoEntregaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{loanRequestBundle.EditTDetallePrestamoLabel_idEstadoPrestamo}" for="idEstadoPrestamo" />
-                    <h:selectOneMenu id="idEstadoPrestamo" value="#{tDetallePrestamoController.selected.idEstadoPrestamo}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEstadoPrestamo}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_idEstadoPrestamo}">
-                        <f:selectItems value="#{ctlEstadoPrestamoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{loanRequestBundle.EditTDetallePrestamoLabel_idPrestamo}" for="idPrestamo" />
-                    <h:selectOneMenu id="idPrestamo" value="#{tDetallePrestamoController.selected.idPrestamo}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idPrestamo}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_idPrestamo}">
-                        <f:selectItems value="#{tPrestamoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{tDetallePrestamoController.update}" value="#{loanRequestBundle.EditTDetallePrestamoSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{loanRequestBundle.EditTDetallePrestamoViewLink}"/>
-                <br />
-                <h:commandLink action="#{tDetallePrestamoController.prepareList}" value="#{loanRequestBundle.EditTDetallePrestamoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{loanRequestBundle.EditTDetallePrestamoIndexLink}" />
-            </h:form>
-        </ui:define>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <ui:define name="title">
+                                <h:outputText value="#{loanRequestBundle.EditTDetallePrestamoTitle}"></h:outputText>
+                                <small>different form elements</small>
+                            </ui:define>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <ui:define name="body">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTDetallePrestamoLabel_fechaLimite}" for="fechaLimite" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="fechaLimite" value="#{tDetallePrestamoController.selected.fechaLimite}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_fechaLimite}" >
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:inputText>
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTDetallePrestamoLabel_descripcion}" for="descripcion" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="descripcion" value="#{tDetallePrestamoController.selected.descripcion}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_descripcion}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTDetallePrestamoLabel_comentario}" for="comentario" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="comentario" value="#{tDetallePrestamoController.selected.comentario}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_comentario}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTDetallePrestamoLabel_idEquipo}" for="idEquipo" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEquipo" value="#{tDetallePrestamoController.selected.idEquipo}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEquipo}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_idEquipo}">
+                                            <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTDetallePrestamoLabel_idEstadoEntrega}" for="idEstadoEntrega" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEstadoEntrega" value="#{tDetallePrestamoController.selected.idEstadoEntrega}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEstadoEntrega}">
+                                            <f:selectItems value="#{ctlEstadoEntregaController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTDetallePrestamoLabel_idEstadoPrestamo}" for="idEstadoPrestamo" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEstadoPrestamo" value="#{tDetallePrestamoController.selected.idEstadoPrestamo}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEstadoPrestamo}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_idEstadoPrestamo}">
+                                            <f:selectItems value="#{ctlEstadoPrestamoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{tDetallePrestamoController.update}" value="#{loanRequestBundle.EditTDetallePrestamoSaveLink}" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="View" value="#{loanRequestBundle.EditTDetallePrestamoViewLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-success" action="#{tDetallePrestamoController.prepareList}" value="#{loanRequestBundle.EditTDetallePrestamoShowAllLink}" immediate="true" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{loanRequestBundle.EditTDetallePrestamoIndexLink}" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:define>
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
+        </div>  <!-- row -->
     </ui:composition>
 
 </html>

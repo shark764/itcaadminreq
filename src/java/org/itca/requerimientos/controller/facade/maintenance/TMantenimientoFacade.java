@@ -5,9 +5,12 @@
  */
 package org.itca.requerimientos.controller.facade.maintenance;
 
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.itca.requerimientos.controller.facade.AbstractFacade;
 import org.itca.requerimientos.model.entities.TMantenimiento;
 
@@ -27,6 +30,38 @@ public class TMantenimientoFacade extends AbstractFacade<TMantenimiento> {
 
     public TMantenimientoFacade() {
         super(TMantenimiento.class);
+    }
+
+    public List<TMantenimiento> findByIdRequestArea(Short id, int[] range)
+    {
+        Query q = em.createNamedQuery("TMantenimiento.findByIdRequestArea")
+        		.setParameter("id", id)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TMantenimiento> list = q.getResultList();
+        return list;
+    }
+
+    public List<TMantenimiento> limitRange(Date start, Date end, int[] range)
+    {
+        Query q = em.createNamedQuery("TMantenimiento.limitRange")
+        		.setParameter("start", start)
+        		.setParameter("end", end)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TMantenimiento> list = q.getResultList();
+        return list;
+    }
+
+    public List<TMantenimiento> startRange(Date start, Date end, int[] range)
+    {
+        Query q = em.createNamedQuery("TMantenimiento.startRange")
+        		.setParameter("start", start)
+        		.setParameter("end", end)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TMantenimiento> list = q.getResultList();
+        return list;
     }
     
 }

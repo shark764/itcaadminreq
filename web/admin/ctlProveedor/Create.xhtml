@@ -6,42 +6,90 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{adminBundle.CreateCtlProveedorTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{adminBundle.CreateCtlProveedorLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{ctlProveedorController.selected.id}" title="#{adminBundle.CreateCtlProveedorTitle_id}" required="true" requiredMessage="#{adminBundle.CreateCtlProveedorRequiredMessage_id}"/>
-                    <h:outputLabel value="#{adminBundle.CreateCtlProveedorLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{ctlProveedorController.selected.nombre}" title="#{adminBundle.CreateCtlProveedorTitle_nombre}" required="true" requiredMessage="#{adminBundle.CreateCtlProveedorRequiredMessage_nombre}"/>
-                    <h:outputLabel value="#{adminBundle.CreateCtlProveedorLabel_nit}" for="nit" />
-                    <h:inputText id="nit" value="#{ctlProveedorController.selected.nit}" title="#{adminBundle.CreateCtlProveedorTitle_nit}" />
-                    <h:outputLabel value="#{adminBundle.CreateCtlProveedorLabel_direccion}" for="direccion" />
-                    <h:inputText id="direccion" value="#{ctlProveedorController.selected.direccion}" title="#{adminBundle.CreateCtlProveedorTitle_direccion}" />
-                    <h:outputLabel value="#{adminBundle.CreateCtlProveedorLabel_nrc}" for="nrc" />
-                    <h:inputText id="nrc" value="#{ctlProveedorController.selected.nrc}" title="#{adminBundle.CreateCtlProveedorTitle_nrc}" />
-                    <h:outputLabel value="#{adminBundle.CreateCtlProveedorLabel_EMail}" for="EMail" />
-                    <h:inputText id="EMail" value="#{ctlProveedorController.selected.EMail}" title="#{adminBundle.CreateCtlProveedorTitle_EMail}" />
-                    <h:outputLabel value="#{adminBundle.CreateCtlProveedorLabel_telefono}" for="telefono" />
-                    <h:inputText id="telefono" value="#{ctlProveedorController.selected.telefono}" title="#{adminBundle.CreateCtlProveedorTitle_telefono}" />
-                    <h:outputLabel value="#{adminBundle.CreateCtlProveedorLabel_sitioWeb}" for="sitioWeb" />
-                    <h:inputText id="sitioWeb" value="#{ctlProveedorController.selected.sitioWeb}" title="#{adminBundle.CreateCtlProveedorTitle_sitioWeb}" />
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{ctlProveedorController.create}" value="#{adminBundle.CreateCtlProveedorSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{ctlProveedorController.prepareList}" value="#{adminBundle.CreateCtlProveedorShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{adminBundle.CreateCtlProveedorIndexLink}"/>
-            </h:form>
-        </ui:define>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <ui:define name="title">
+                                <h:outputText value="#{adminBundle.CreateCtlProveedorTitle}"></h:outputText>
+                                <small>different form elements</small>
+                            </ui:define>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <ui:define name="body">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateCtlProveedorLabel_nombre}" for="nombre" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="nombre" value="#{ctlProveedorController.selected.nombre}" title="#{adminBundle.CreateCtlProveedorTitle_nombre}" required="true" requiredMessage="#{adminBundle.CreateCtlProveedorRequiredMessage_nombre}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateCtlProveedorLabel_nit}" for="nit" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="nit" value="#{ctlProveedorController.selected.nit}" title="#{adminBundle.CreateCtlProveedorTitle_nit}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateCtlProveedorLabel_direccion}" for="direccion" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="direccion" value="#{ctlProveedorController.selected.direccion}" title="#{adminBundle.CreateCtlProveedorTitle_direccion}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateCtlProveedorLabel_nrc}" for="nrc" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="nrc" value="#{ctlProveedorController.selected.nrc}" title="#{adminBundle.CreateCtlProveedorTitle_nrc}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateCtlProveedorLabel_EMail}" for="EMail" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="EMail" value="#{ctlProveedorController.selected.EMail}" title="#{adminBundle.CreateCtlProveedorTitle_EMail}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateCtlProveedorLabel_telefono}" for="telefono" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="telefono" value="#{ctlProveedorController.selected.telefono}" title="#{adminBundle.CreateCtlProveedorTitle_telefono}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateCtlProveedorLabel_sitioWeb}" for="sitioWeb" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="sitioWeb" value="#{ctlProveedorController.selected.sitioWeb}" title="#{adminBundle.CreateCtlProveedorTitle_sitioWeb}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlProveedorController.create}" value="#{adminBundle.CreateCtlProveedorSaveLink}" />
+                                        <h:commandLink styleClass="btn btn-sm btn-primary" action="#{ctlProveedorController.prepareList}" value="#{adminBundle.CreateCtlProveedorShowAllLink}" immediate="true" />
+                                        <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{adminBundle.CreateCtlProveedorIndexLink}" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:define>
+                    </div>  <!-- x_content -->
+                </div>  <!-- x_panel -->
+            </div>  <!-- col -->
+        </div>  <!-- row -->
     </ui:composition>
 
 </html>

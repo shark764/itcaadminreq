@@ -31,14 +31,13 @@ public class TEmpleadoFacade extends AbstractFacade<TEmpleado> {
         super(TEmpleado.class);
     }
 
-    public List<TEmpleado> notReturnedByEmployee(Integer id, int[] range)
+    public List<TEmpleado> findByBoss(Integer id, int[] range)
     {
-        List<TEmpleado> list = null;
-        Query q = em.createNamedQuery("TEmpleado.findByBoss");
-        q.setParameter("id", id);
-        q.setMaxResults(range[1] - range[0] + 1);
-        q.setFirstResult(range[0]);
-        list = q.getResultList();
+        Query q = em.createNamedQuery("TEmpleado.findByBoss")
+                .setParameter("id", id)
+                .setMaxResults(range[1] - range[0] + 1)
+                .setFirstResult(range[0]);
+        List<TEmpleado> list = q.getResultList();
         return list;
     }
     

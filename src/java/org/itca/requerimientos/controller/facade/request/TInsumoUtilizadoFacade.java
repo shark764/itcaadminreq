@@ -5,9 +5,12 @@
  */
 package org.itca.requerimientos.controller.facade.request;
 
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.itca.requerimientos.controller.facade.AbstractFacade;
 import org.itca.requerimientos.model.entities.TInsumoUtilizado;
 
@@ -27,6 +30,69 @@ public class TInsumoUtilizadoFacade extends AbstractFacade<TInsumoUtilizado> {
 
     public TInsumoUtilizadoFacade() {
         super(TInsumoUtilizado.class);
+    }
+
+    public List<TInsumoUtilizado> usedRange(Short start, Short end, int[] range)
+    {
+        Query q = em.createNamedQuery("TInsumoUtilizado.usedRange")
+        		.setParameter("start", start)
+        		.setParameter("end", end)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TInsumoUtilizado> list = q.getResultList();
+        return list;
+    }
+
+    public List<TInsumoUtilizado> wastedRange(Short start, Short end, int[] range)
+    {
+        Query q = em.createNamedQuery("TInsumoUtilizado.wastedRange")
+        		.setParameter("start", start)
+        		.setParameter("end", end)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TInsumoUtilizado> list = q.getResultList();
+        return list;
+    }
+
+    public List<TInsumoUtilizado> findByEquipment(Long id, int[] range)
+    {
+        Query q = em.createNamedQuery("TInsumoUtilizado.findByEquipment")
+        		.setParameter("id", id)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TInsumoUtilizado> list = q.getResultList();
+        return list;
+    }
+
+    public List<TInsumoUtilizado> entryRange(Date start, Date end, int[] range)
+    {
+        Query q = em.createNamedQuery("TInsumoUtilizado.entryRange")
+        		.setParameter("start", start)
+        		.setParameter("end", end)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TInsumoUtilizado> list = q.getResultList();
+        return list;
+    }
+
+    public List<TInsumoUtilizado> findByEquipmentUsed(Long id, int[] range)
+    {
+        Query q = em.createNamedQuery("TInsumoUtilizado.findByEquipmentUsed")
+        		.setParameter("id", id)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TInsumoUtilizado> list = q.getResultList();
+        return list;
+    }
+
+    public List<TInsumoUtilizado> findByResourceUsed(Short id, int[] range)
+    {
+        Query q = em.createNamedQuery("TInsumoUtilizado.findByResourceUsed")
+        		.setParameter("id", id)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TInsumoUtilizado> list = q.getResultList();
+        return list;
     }
     
 }
