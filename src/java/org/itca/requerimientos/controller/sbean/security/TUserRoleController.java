@@ -86,6 +86,7 @@ public class TUserRoleController implements Serializable {
     }
 
     public String prepareList() {
+        recreatePagination();
         recreateModel();
         return "List";
     }
@@ -93,6 +94,15 @@ public class TUserRoleController implements Serializable {
     public String prepareView() {
         current = (TUserRole) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
+    
+    public String createAndView() {
+        if (current == null) {
+            recreatePagination();
+            recreateModel();
+            return "List";
+        }
         return "View";
     }
 
@@ -109,7 +119,8 @@ public class TUserRoleController implements Serializable {
             current.getTUserRolePK().setUsername(current.getTUser().getUsername());
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/SecurityBundle").getString("TUserRoleCreated"));
-            return prepareCreate();
+            // return prepareCreate();
+            return createAndView();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/org/itca/requerimientos/bundles/SecurityBundle").getString("PersistenceErrorOccured"));
             return null;
@@ -152,6 +163,7 @@ public class TUserRoleController implements Serializable {
             return "View";
         } else {
             // all items were removed - go back to list
+            recreatePagination();
             recreateModel();
             return "List";
         }

@@ -85,6 +85,7 @@ public class CtlTipoEmpleadoController implements Serializable {
     }
 
     public String prepareList() {
+        recreatePagination();
         recreateModel();
         return "List";
     }
@@ -92,6 +93,15 @@ public class CtlTipoEmpleadoController implements Serializable {
     public String prepareView() {
         current = (CtlTipoEmpleado) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
+    
+    public String createAndView() {
+        if (current == null) {
+            recreatePagination();
+            recreateModel();
+            return "List";
+        }
         return "View";
     }
 
@@ -105,7 +115,8 @@ public class CtlTipoEmpleadoController implements Serializable {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/AdminBundle").getString("CtlTipoEmpleadoCreated"));
-            return prepareCreate();
+            // return prepareCreate();
+            return createAndView();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/org/itca/requerimientos/bundles/AdminBundle").getString("PersistenceErrorOccured"));
             return null;
@@ -146,6 +157,7 @@ public class CtlTipoEmpleadoController implements Serializable {
             return "View";
         } else {
             // all items were removed - go back to list
+            recreatePagination();
             recreateModel();
             return "List";
         }
