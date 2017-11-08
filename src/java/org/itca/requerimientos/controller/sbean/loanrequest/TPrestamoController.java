@@ -50,6 +50,82 @@ public class TPrestamoController implements Serializable {
     public void setPaginationSizes(int[] paginationSizes) {
         this.paginationSizes = paginationSizes;
     }
+    
+    @EJB
+    private org.itca.requerimientos.controller.facade.loanrequest.TDetallePrestamoFacade ejbTDetallePrestamoFacade;
+    private List<TDetallePrestamo> loanRequestDetailList;
+    private boolean hasNew = false;
+    
+    @EJB
+    private org.itca.requerimientos.controller.facade.catalogues.CtlEstadoPrestamoFacade ejbCtlEstadoPrestamoFacade;
+
+    public boolean isHasNew() {
+        return hasNew;
+    }
+
+    public void setHasNew(boolean hasNew) {
+        this.hasNew = hasNew;
+    }
+    
+    public List<TDetallePrestamo> getLoanRequestDetailList() {
+        if (this.loanRequestDetailList == null) {
+            if (current == null) {
+                this.loanRequestDetailList = new ArrayList<TDetallePrestamo>();  // nueva lista si current es null
+                return loanRequestDetailList;
+            }
+            this.loanRequestDetailList = current.getDetallePrestamoList();  // asignar lista de objetos dependientes
+        }
+        return loanRequestDetailList;
+    }
+
+    public void setLoanRequestDetailList(List<TDetallePrestamo> loanRequestDetailList) {
+        this.loanRequestDetailList = loanRequestDetailList;
+    }
+    
+    public void updateLoanRequestDetail(TDetallePrestamo dp) {
+        this.hasNew = false;    // cambiar de registro a edición
+        if(current.getId() != null) {   // registrar si existe entidad padre
+            if(dp.getId() != null) {
+                this.ejbTDetallePrestamoFacade.edit(dp); // editar existente
+            }
+            else {
+                dp.setFechaPrestamo(new Date());
+                
+                Date dt = new Date();
+                Calendar cl = Calendar.getInstance(); 
+                cl.setTime(dt); 
+                cl.add(Calendar.DATE, 8);
+                dt = cl.getTime();
+                dp.setFechaLimite(dt);
+
+                dp.setIdEstadoPrestamo(ejbCtlEstadoPrestamoFacade.findByCodigo("001"));
+                this.ejbTDetallePrestamoFacade.create(dp);   // crear nuevo
+            }
+        }
+        System.out.println("Updating: [" + dp.getIdEquipo()+ "] " + dp.getIdPrestamo() + " - INI " + dp.getFechaPrestamo()+ " - LIM " + dp.getFechaLimite());
+        // recreateModel();
+        // return null;
+    }
+    
+    public void removeLoanRequestDetail(TDetallePrestamo dp) {
+        this.hasNew = false;
+        System.out.println("Removing: [" + dp.getIdEquipo()+ "] " + dp.getIdPrestamo());
+        this.loanRequestDetailList.remove(dp);    // borrar de lista
+        if(dp.getId() != null) {
+            this.ejbTDetallePrestamoFacade.remove(dp);   // borrar registro de PU
+        }
+        // recreateModel();
+        // return null;
+    }
+    
+    public void addNewLoanRequestDetail() {
+        if (this.loanRequestDetailList == null) {
+            this.loanRequestDetailList = new ArrayList<TDetallePrestamo>();
+        }
+        this.loanRequestDetailList.add(new TDetallePrestamo(current));
+        this.hasNew = true;
+        System.out.println("Adding - count: " + this.loanRequestDetailList.size());
+    }
 
     public TPrestamoController() {
     }
@@ -107,12 +183,29 @@ public class TPrestamoController implements Serializable {
 
     public String prepareCreate() {
         current = new TPrestamo();
+        this.loanRequestDetailList = current.getDetallePrestamoList();
         selectedItemIndex = -1;
         return "Create";
     }
 
     public String create() {
         try {
+            if (this.loanRequestDetailList != null) {
+                for (DetallePrestamo dp : this.loanRequestDetailList) {
+                    dp.setFechaPrestamo(new Date());
+
+                    Date dt = new Date();
+                    Calendar cl = Calendar.getInstance(); 
+                    cl.setTime(dt); 
+                    cl.add(Calendar.DATE, 8);
+                    dt = cl.getTime();
+                    dp.setFechaLimite(dt);
+
+                    dp.setIdEstadoPrestamo(ejbEstadoPrestamoFacade.findByCodigo("001"));
+                }
+                current.setDetallePrestamoList(this.loanRequestDetailList);
+            }
+            current.setFecha(new Date());
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/LoanRequestBundle").getString("TPrestamoCreated"));
             // return prepareCreate();
@@ -125,6 +218,7 @@ public class TPrestamoController implements Serializable {
 
     public String prepareEdit() {
         current = (TPrestamo) getItems().getRowData();
+        this.loanRequestDetailList = current.getDetallePrestamoList();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }

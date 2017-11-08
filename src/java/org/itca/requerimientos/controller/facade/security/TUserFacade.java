@@ -41,5 +41,12 @@ public class TUserFacade extends AbstractFacade<TUser> {
             return false;
         }
     }
+
+    public TUser findByUsername(String username)
+    {
+        Query q = em.createNamedQuery("TUser.findByUsername")
+                .setParameter("username", username);
+        return (TUser) q.getSingleResult();
+    }
     
 }

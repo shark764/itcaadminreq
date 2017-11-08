@@ -50,6 +50,82 @@ public class TSolicitudRequerimientoController implements Serializable {
     public void setPaginationSizes(int[] paginationSizes) {
         this.paginationSizes = paginationSizes;
     }
+    
+    @EJB
+    private org.itca.requerimientos.controller.facade.request.DetalleSolicitudFacade ejbDetalleSolicitudFacade;
+    private List<DetalleSolicitud> requestDetailList;
+    private boolean hasNew = false;
+    
+    @EJB
+    private org.itca.requerimientos.controller.facade.catalogues.EstadoSolicitudFacade ejbEstadoSolicitudFacade;
+
+    public boolean isHasNew() {
+        return hasNew;
+    }
+
+    public void setHasNew(boolean hasNew) {
+        this.hasNew = hasNew;
+    }
+    
+    public List<DetalleSolicitud> getRequestDetailList() {
+        if (this.requestDetailList == null) {
+            if (current == null) {
+                this.requestDetailList = new ArrayList<DetalleSolicitud>();  // nueva lista si current es null
+                return requestDetailList;
+            }
+            this.requestDetailList = current.getDetalleSolicitudList();  // asignar lista de objetos dependientes
+        }
+        return requestDetailList;
+    }
+
+    public void setRequestDetailList(List<DetalleSolicitud> requestDetailList) {
+        this.requestDetailList = requestDetailList;
+    }
+    
+    public void updateRequestDetail(DetalleSolicitud ds) {
+        this.hasNew = false;    // cambiar de registro a edición
+        if(current.getId() != null) {   // registrar si existe entidad padre
+            if(ds.getId() != null) {
+                this.ejbDetalleSolicitudFacade.edit(ds); // editar existente
+            }
+            else {
+                ds.setFechaInicio(new Date());
+                
+                Date dt = new Date();
+                Calendar cl = Calendar.getInstance(); 
+                cl.setTime(dt); 
+                cl.add(Calendar.DATE, 8);
+                dt = cl.getTime();
+                ds.setFechaLimite(dt);
+                
+                ds.setIdEstadoSolicitud(ejbEstadoSolicitudFacade.findByCodigo("001"));
+                this.ejbDetalleSolicitudFacade.create(ds);   // crear nuevo
+            }
+        }
+        System.out.println("Updating: [" + ds.getIdEquipo()+ "] " + ds.getIdTipoFalla() + " - INI " + ds.getFechaInicio() + " - LIM " + ds.getFechaLimite());
+        // recreateModel();
+        // return null;
+    }
+    
+    public void removeRequestDetail(DetalleSolicitud ds) {
+        this.hasNew = false;
+        System.out.println("Removing: [" + ds.getIdEquipo()+ "] " + ds.getIdTipoFalla());
+        this.requestDetailList.remove(ds);    // borrar de lista
+        if(ds.getId() != null) {
+            this.ejbDetalleSolicitudFacade.remove(ds);   // borrar registro de PU
+        }
+        // recreateModel();
+        // return null;
+    }
+    
+    public void addNewRequestDetail() {
+        if (this.requestDetailList == null) {
+            this.requestDetailList = new ArrayList<DetalleSolicitud>();
+        }
+        this.requestDetailList.add(new DetalleSolicitud(current));
+        this.hasNew = true;
+        System.out.println("Adding - count: " + this.requestDetailList.size());
+    }
 
     public TSolicitudRequerimientoController() {
     }
@@ -107,12 +183,29 @@ public class TSolicitudRequerimientoController implements Serializable {
 
     public String prepareCreate() {
         current = new TSolicitudRequerimiento();
+        this.requestDetailList = current.getDetalleSolicitudList();
         selectedItemIndex = -1;
         return "Create";
     }
 
     public String create() {
         try {
+            if (this.requestDetailList != null) {
+                for (DetalleSolicitud ds : this.requestDetailList) {
+                    ds.setFechaInicio(new Date());
+
+                    Date dt = new Date();
+                    Calendar cl = Calendar.getInstance(); 
+                    cl.setTime(dt); 
+                    cl.add(Calendar.DATE, 8);
+                    dt = cl.getTime();
+                    ds.setFechaLimite(dt);
+
+                    ds.setIdEstadoSolicitud(ejbEstadoSolicitudFacade.findByCodigo("001"));
+                }
+                current.setDetalleSolicitudList(this.requestDetailList);
+            }
+            current.setFecha(new Date());
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/RequestBundle").getString("TSolicitudRequerimientoCreated"));
             // return prepareCreate();
@@ -125,6 +218,7 @@ public class TSolicitudRequerimientoController implements Serializable {
 
     public String prepareEdit() {
         current = (TSolicitudRequerimiento) getItems().getRowData();
+        this.requestDetailList = current.getDetalleSolicitudList();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }

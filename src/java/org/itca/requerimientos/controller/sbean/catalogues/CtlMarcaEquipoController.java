@@ -50,6 +50,69 @@ public class CtlMarcaEquipoController implements Serializable {
     public void setPaginationSizes(int[] paginationSizes) {
         this.paginationSizes = paginationSizes;
     }
+    
+    @EJB
+    private org.itca.requerimientos.controller.facade.catalogues.CtlModeloEquipoFacade ejbCtlModeloEquipoFacade;
+    private List<CtlModeloEquipo> equipmentModelList;
+    private boolean hasNew = false;
+
+    public boolean isHasNew() {
+        return hasNew;
+    }
+
+    public void setHasNew(boolean hasNew) {
+        this.hasNew = hasNew;
+    }
+    
+    public List<CtlModeloEquipo> getEquipmentModelList() {
+        if (this.equipmentModelList == null) {
+            if (current == null) {
+                this.equipmentModelList = new ArrayList<CtlModeloEquipo>();  // nueva lista si current es null
+                return equipmentModelList;
+            }
+            this.equipmentModelList = current.getModeloEquipoList();  // asignar lista de objetos dependientes
+        }
+        return equipmentModelList;
+    }
+
+    public void setEquipmentModelList(List<CtlModeloEquipo> equipmentModelList) {
+        this.equipmentModelList = equipmentModelList;
+    }
+    
+    public void updateEquipmentModel(CtlModeloEquipo mq) {
+        this.hasNew = false;    // cambiar de registro a edición
+        if(current.getId() != null) {   // registrar si existe entidad padre
+            if(mq.getId() != null) {
+                this.ejbCtlModeloEquipoFacade.edit(mq); // editar existente
+            }
+            else {
+                this.ejbCtlModeloEquipoFacade.create(mq);   // crear nuevo
+            }
+        }
+        System.out.println("Updating: [" + mq.getCodigo()+ "] " + mq.getNombre());
+        // recreateModel();
+        // return null;
+    }
+    
+    public void removeEquipmentModel(CtlModeloEquipo mq) {
+        this.hasNew = false;
+        System.out.println("Removing: [" + mq.getCodigo()+ "] " + mq.getNombre());
+        this.equipmentModelList.remove(mq);    // borrar de lista
+        if(mq.getId() != null) {
+            this.ejbCtlModeloEquipoFacade.remove(mq);   // borrar registro de PU
+        }
+        // recreateModel();
+        // return null;
+    }
+    
+    public void addNewEquipmentModel() {
+        if (this.equipmentModelList == null) {
+            this.equipmentModelList = new ArrayList<CtlModeloEquipo>();
+        }
+        this.equipmentModelList.add((new CtlModeloEquipo(current)));
+        this.hasNew = true;
+        System.out.println("Adding - count: " + this.equipmentModelList.size());
+    }
 
     public CtlMarcaEquipoController() {
     }
@@ -107,12 +170,16 @@ public class CtlMarcaEquipoController implements Serializable {
 
     public String prepareCreate() {
         current = new CtlMarcaEquipo();
+        this.equipmentModelList = current.getModeloEquipoList();
         selectedItemIndex = -1;
         return "Create";
     }
 
     public String create() {
         try {
+            if (this.equipmentModelList != null) {
+                current.setModeloEquipoList(this.equipmentModelList);
+            }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/CataloguesBundle").getString("CtlMarcaEquipoCreated"));
             // return prepareCreate();
@@ -125,12 +192,16 @@ public class CtlMarcaEquipoController implements Serializable {
 
     public String prepareEdit() {
         current = (CtlMarcaEquipo) getItems().getRowData();
+        this.equipmentModelList = current.getModeloEquipoList();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
 
     public String update() {
         try {
+            // if (this.equipmentModelList != null) {
+            //     current.setModeloEquipoList(this.equipmentModelList);
+            // }
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/CataloguesBundle").getString("CtlMarcaEquipoUpdated"));
             return "View";

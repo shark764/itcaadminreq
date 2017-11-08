@@ -18,11 +18,18 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "userSessionBean")
 @SessionScoped
 public class UserSessionBean implements Serializable {
+
+    @EJB
+    private org.itca.requerimientos.controller.facade.security.TUserFacade tUserFacade;
+    private org.itca.requerimientos.controller.facade.security.TUserRoleFacade tUserRoleFacade;
+
+    private TUser userLogged;
     
     public void logout() {
         FacesContext context = FacesContext.getCurrentInstance();
         System.out.println("user: " + context.getExternalContext().getUserPrincipal());
         context.getExternalContext().invalidateSession();
+        this.userLogged = null;
         try {
             context.getExternalContext().redirect(context.getExternalContext().getRequestContextPath() + "/views/login.xhtml");
         } catch (IOException e) {
@@ -30,6 +37,16 @@ public class UserSessionBean implements Serializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public TUser getUserLogged() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        this.userLogged = tUserFacade.findByUsername(context.getExternalContext().getUserPrincipal());
+        return this.userLogged;
+    }
+
+    public void setUserLogged(TUser userLogged) {
+        this.userLogged = userLogged;
     }
 
     /**
