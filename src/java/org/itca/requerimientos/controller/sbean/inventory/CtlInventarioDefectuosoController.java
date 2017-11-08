@@ -28,6 +28,28 @@ public class CtlInventarioDefectuosoController implements Serializable {
     private org.itca.requerimientos.controller.facade.inventory.CtlInventarioDefectuosoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+    private int pageSizeDataModel = 15;
+    private int[] paginationSizes = new int[]{5, 10, 15, 20, 25, 30, 50, 100};
+
+    public int getPageSizeDataModel() {
+        if (pageSizeDataModel < 5) {
+            pageSizeDataModel = 15;
+        }
+        return pageSizeDataModel;
+    }
+
+    public void setPageSizeDataModel(int pageSizeDataModel) {
+        this.pageSizeDataModel = pageSizeDataModel;
+    }
+
+    public int[] getPaginationSizes() {
+        return paginationSizes;
+    }
+
+    public void setPaginationSizes(int[] paginationSizes) {
+        this.paginationSizes = paginationSizes;
+    }
 
     public CtlInventarioDefectuosoController() {
     }
@@ -46,7 +68,7 @@ public class CtlInventarioDefectuosoController implements Serializable {
 
     public PaginationHelper getPagination() {
         if (pagination == null) {
-            pagination = new PaginationHelper(10) {
+            pagination = new PaginationHelper(getPageSizeDataModel()) {
 
                 @Override
                 public int getItemsCount() {
@@ -221,6 +243,7 @@ public class CtlInventarioDefectuosoController implements Serializable {
             if (object instanceof CtlInventarioDefectuoso) {
                 CtlInventarioDefectuoso o = (CtlInventarioDefectuoso) object;
                 return getStringKey(o.getId());
+                // return object.toString();
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + CtlInventarioDefectuoso.class.getName());
             }
