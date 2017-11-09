@@ -10,6 +10,110 @@
             <h:outputText value="#{inventoryBundle.ListCtlEquipoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+
+            <h:panelGroup rendered="#{ctlEquipoController.items.rowCount > 0}">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Filtros <small>seleccione una de las opciones de filtrado</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+
+                        <h4>Opciones de filtrado </h4>
+                        <p class="font-gray-dark">
+                            Cada opción funciona de manera individual y debe presionar <strong>Aceptar</strong> para aplicar filtro.
+                        </p>
+                        <h:form styleClass="form-inline">
+                            <div class="form-group">
+                                <h:outputLabel value="Filtro" />
+                                <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlEquipoController.dataFilterType}" required="true">
+                                    <f:selectItems value="#{ctlEquipoController.dataFilterTypeValue}"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlEquipoController.applyDataFilterType}" />
+                            <h:messages />
+                        </h:form>
+
+                        <h:panelGroup rendered="#{ctlEquipoController.dataFilterType != 'NONE' and ctlEquipoController.dataFilterType == 'nonStock'}">
+                            <h4>Cantidad máxima en stock </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Cantidad máxima" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{ctlEquipoController.minStock}" required="true" />
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlEquipoController.filterByMinStock}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{ctlEquipoController.dataFilterType != 'NONE' and ctlEquipoController.dataFilterType == 'stockRange'}">
+                            <h4>Rango de existencia en stock </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Cantidad mínima" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{ctlEquipoController.startStock}" required="true" />
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="Cantidad máxima" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{ctlEquipoController.endStock}" required="true" />
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlEquipoController.filterByStockRange}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{ctlEquipoController.dataFilterType != 'NONE' and ctlEquipoController.dataFilterType == 'findByProvider'}">
+                            <h4>Filtrar por proveedor </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Proveedor" />
+                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlEquipoController.equipmentProvider}" required="true">
+                                        <f:selectItems value="#{ctlProveedorController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlEquipoController.filterByEquipmentProvider}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{ctlEquipoController.dataFilterType != 'NONE' and ctlEquipoController.dataFilterType == 'findByModel'}">
+                            <h4>Filtrar por modelo </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Modelo" />
+                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlEquipoController.equipmentModel}" required="true">
+                                        <f:selectItems value="#{ctlModeloEquipoController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlEquipoController.filterByEquipmentModel}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{ctlEquipoController.dataFilterType != 'NONE' and ctlEquipoController.dataFilterType == 'entryRange'}">
+                            <h4>Rango de fecha de adquisición </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Fecha inicio" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{ctlEquipoController.startDate}" required="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="Fecha fin" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{ctlEquipoController.endDate}" required="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlEquipoController.filterByEntryRange}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </h:panelGroup>
+
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
@@ -27,6 +131,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{inventoryBundle.ListCtlEquipoEmpty}" rendered="#{ctlEquipoController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{ctlEquipoController.items.rowCount > 0}">
+                                <h:outputText value="Mostrar" />
+                                <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlEquipoController.pageSizeDataModel}" required="true">
+                                    <f:selectItems value="#{ctlEquipoController.paginationSizes}"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="registros" />
                                 <h:outputText value="#{ctlEquipoController.pagination.pageFirstItem + 1}..#{ctlEquipoController.pagination.pageLastItem + 1}/#{ctlEquipoController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEquipoController.previous}" value="#{inventoryBundle.Previous} #{ctlEquipoController.pagination.pageSize}" rendered="#{ctlEquipoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEquipoController.next}" value="#{inventoryBundle.Next} #{ctlEquipoController.pagination.pageSize}" rendered="#{ctlEquipoController.pagination.hasNextPage}" />&nbsp;
@@ -144,6 +253,7 @@
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEquipoController.prepareView}" value="#{inventoryBundle.ListCtlEquipoViewLink}" />
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEquipoController.prepareEdit}" value="#{inventoryBundle.ListCtlEquipoEditLink}" />
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEquipoController.destroy}" value="#{inventoryBundle.ListCtlEquipoDestroyLink}" />
+                                            <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEquipoController.addToDefective}" value="Defectuoso"/>
                                         </h:column>
                                     </h:dataTable>
                                 </div>

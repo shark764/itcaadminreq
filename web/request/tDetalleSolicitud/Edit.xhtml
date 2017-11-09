@@ -26,6 +26,15 @@
                             </h:panelGroup>
                             <h:form styleClass="form-horizontal form-label-left">
                                 <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTDetalleSolicitudLabel_fechaLimite}" for="fechaLimite" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="fechaLimite" value="#{tDetalleSolicitudController.selected.fechaLimite}" title="#{requestBundle.EditTDetalleSolicitudTitle_fechaLimite}" >
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:inputText>
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTDetalleSolicitudLabel_descripcionFalla}" for="descripcionFalla" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
                                         <h:inputText styleClass="form-control has-feedback-left input-sm" id="descripcionFalla" value="#{tDetalleSolicitudController.selected.descripcionFalla}" title="#{requestBundle.EditTDetalleSolicitudTitle_descripcionFalla}" />
@@ -71,6 +80,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTDetalleSolicitudLabel_idSolicitudRequerimiento}" for="idSolicitudRequerimiento" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idSolicitudRequerimiento" value="#{tDetalleSolicitudController.selected.idSolicitudRequerimiento}" title="#{requestBundle.EditTDetalleSolicitudTitle_idSolicitudRequerimiento}" required="true" requiredMessage="#{requestBundle.EditTDetalleSolicitudRequiredMessage_idSolicitudRequerimiento}">
+                                            <f:selectItems value="#{tSolicitudRequerimientoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTDetalleSolicitudLabel_idTecnicoAsignado}" for="idTecnicoAsignado" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
                                         <h:selectOneMenu styleClass="form-control input-sm" id="idTecnicoAsignado" value="#{tDetalleSolicitudController.selected.idTecnicoAsignado}" title="#{requestBundle.EditTDetalleSolicitudTitle_idTecnicoAsignado}">
@@ -102,6 +119,52 @@
                                         </h:selectOneMenu>
                                     </div>
                                 </div>
+
+                                <div class="ln_solid"></div>
+
+                                <h:panelGroup rendered="#{not empty tDetalleSolicitudController.resourcesUsedList}">
+                                    <div class="table-responsive">
+                                        <h:dataTable value="#{tDetalleSolicitudController.resourcesUsedList}" var="iu" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
+                                            <h:column>
+                                                <f:facet name="header">ID</f:facet>
+                                                <h:outputText value="#{iu.id}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Insumo</f:facet>
+                                                <h:selectOneMenu value="#{iu.idInsumo}">
+                                                    <f:selectItems value="#{ctlInsumoController.itemsAvailableSelectOne}"/>
+                                                </h:selectOneMenu>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Equipo / Componente</f:facet>
+                                                <h:selectOneMenu value="#{iu.idEquipoIntercambio}">
+                                                    <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
+                                                </h:selectOneMenu>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Utilizado</f:facet>
+                                                <h:inputText value="#{iu.utlilizado}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Desperdicio</f:facet>
+                                                <h:inputText value="#{iu.desperdicio}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header"><h:outputText value="&nbsp;"/></f:facet>
+                                                <h:commandButton styleClass="btn btn-sm btn-default" value="#{not empty iu.utlilizado ? 'Actualizar' : 'Agregar'}" action="#{tDetalleSolicitudController.updateResourcesUsed(iu)}"/>
+                                                <h:outputText value=" "/>
+                                                <h:commandButton styleClass="btn btn-sm btn-default" value="Borrar" action="#{tDetalleSolicitudController.removeResourcesUsed(iu)}"/>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </h:panelGroup>
+
+                                <div class="ln_solid"></div>
+
+                                <h:panelGroup rendered="#{not tDetalleSolicitudController.hasNew}">
+                                    <h:commandButton styleClass="btn btn-sm btn-default" value="Agregar nuevo" action="#{tDetalleSolicitudController.addNewResourcesUsed}" id="add_new" />
+                                    <h:messages />
+                                </h:panelGroup>
 
                                 <div class="ln_solid"></div>
 

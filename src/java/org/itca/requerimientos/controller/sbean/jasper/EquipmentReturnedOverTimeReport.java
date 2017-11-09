@@ -43,10 +43,10 @@ public class EquipmentReturnedOverTimeReport implements Serializable {
     private List<RetrasoPrestamoJasper> modelList;
     private JasperPrint jasperPrint;
     
-    @EJB private TDetallePrestamoFacade detallePrestamoFacade;
+    @EJB private TDetallePrestamoFacade ejbTDetallePrestamoFacade;
 
     public List<RetrasoPrestamoJasper> getModelList() {
-        modelList = detallePrestamoFacade.findAllForEquipmentReturnedOverTimeReport();
+        modelList = ejbTDetallePrestamoFacade.findAllForEquipmentReturnedOverTimeReport();
         return modelList;
     }
 

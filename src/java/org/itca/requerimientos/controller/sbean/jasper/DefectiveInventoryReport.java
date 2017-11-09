@@ -43,10 +43,10 @@ public class DefectiveInventoryReport implements Serializable {
     private List<InventarioDefectuosoJasper> modelList;
     private JasperPrint jasperPrint;
     
-    @EJB private CtlInventarioDefectuosoFacade inventarioDefectuosoFacade;
+    @EJB private CtlInventarioDefectuosoFacade ejbCtlInventarioDefectuosoFacade;
 
     public List<InventarioDefectuosoJasper> getModelList() {
-        modelList = inventarioDefectuosoFacade.findAllForDefectiveInventoryReport();
+        modelList = ejbCtlInventarioDefectuosoFacade.findAllForDefectiveInventoryReport();
         return modelList;
     }
 

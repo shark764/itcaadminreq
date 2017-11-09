@@ -23,6 +23,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.itca.requerimientos.model.entities.CtlAreaRequerimiento;
 import org.itca.requerimientos.model.entities.CtlEquipo;
 import org.itca.requerimientos.model.entities.CtlTipoFalla;
 import org.itca.requerimientos.model.entities.CtlTipoRequerimiento;
@@ -140,6 +141,7 @@ public class TechnicianController implements Serializable {
     private String dataFilterType;
     private TEmpleado employee;
     private CtlEquipo equipment;
+    private CtlAreaRequerimiento requestArea;
     private CtlTipoRequerimiento requestType;
     private CtlTipoFalla faultType;
     private CtlTipoSolucion solutionType;
@@ -169,6 +171,7 @@ public class TechnicianController implements Serializable {
         dataFilterTypeValue.put("Buscar entre rango de fecha de solicitud", "entryRange");
         dataFilterTypeValue.put("Buscar requerimientos por técnico asignado", "findByAssignedTechnician");
         dataFilterTypeValue.put("Buscar requerimientos por solución", "findBySolutionType");
+        dataFilterTypeValue.put("Buscar requerimientos por área de soporte", "findByRequestArea");
         dataFilterTypeValue.put("Buscar requerimientos por tipo de mantenimiento", "findByRequestType");
         dataFilterTypeValue.put("Buscar requerimientos por falla presentada", "findByFaultType");
     }
@@ -191,6 +194,14 @@ public class TechnicianController implements Serializable {
 
     public void setEquipment(CtlEquipo equipment) {
         this.equipment = equipment;
+    }
+
+    public CtlAreaRequerimiento getRequestArea() {
+        return requestArea;
+    }
+
+    public void setRequestArea(CtlAreaRequerimiento requestArea) {
+        this.requestArea = requestArea;
     }
 
     public CtlTipoRequerimiento getRequestType() {
@@ -251,6 +262,11 @@ public class TechnicianController implements Serializable {
 
     public void filterByEquipment() {
         System.out.println("equipment is: " + equipment);
+        recreateModel();
+    }
+
+    public void filterByRequestArea() {
+        System.out.println("requestArea is: " + requestArea);
         recreateModel();
     }
 
@@ -347,6 +363,9 @@ public class TechnicianController implements Serializable {
                     }
                     else if ("findBySolutionType".equals(dataFilterType) && solutionType != null) {
                         return new ListDataModel(getFacade().findBySolutionType(solutionType.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findByRequestArea".equals(dataFilterType) && requestArea != null) {
+                        return new ListDataModel(getFacade().findByRequestArea(requestArea.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                     }
                     else if ("findByRequestType".equals(dataFilterType) && requestType != null) {
                         return new ListDataModel(getFacade().findByRequestType(requestType.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));

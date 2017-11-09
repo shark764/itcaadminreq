@@ -85,6 +85,16 @@ public class TDetalleSolicitudFacade extends AbstractFacade<TDetalleSolicitud> {
         return list;
     }
 
+    public List findByRequestArea(Short id, int[] range)
+    {
+        Query q = em.createNamedQuery("TDetalleSolicitud.findByRequestArea")
+        		.setParameter("id", id)
+        		.setMaxResults(range[1] - range[0] + 1)
+        		.setFirstResult(range[0]);
+        List<TDetalleSolicitud> list = q.getResultList();
+        return list;
+    }
+
     public List<TDetalleSolicitud> findByRequestType(Short id, int[] range)
     {
         Query q = em.createNamedQuery("TDetalleSolicitud.findByRequestType")

@@ -43,10 +43,10 @@ public class StockByEquipmentModelReport implements Serializable {
     private List<ModeloEquipoJasper> modelList;
     private JasperPrint jasperPrint;
     
-    @EJB private CtlModeloEquipoFacade modeloEquipoFacade;
+    @EJB private CtlModeloEquipoFacade ejbCtlModeloEquipoFacade;
 
     public List<ModeloEquipoJasper> getModelList() {
-        modelList = modeloEquipoFacade.findAllForStockByEquipmentModelReport();
+        modelList = ejbCtlModeloEquipoFacade.findAllForStockByEquipmentModelReport();
         return modelList;
     }
 

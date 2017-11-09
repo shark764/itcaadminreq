@@ -27,6 +27,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{cataloguesBundle.ListCtlAreaRequerimientoEmpty}" rendered="#{ctlAreaRequerimientoController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{ctlAreaRequerimientoController.items.rowCount > 0}">
+                                <h:outputText value="Mostrar" />
+                                <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlAreaRequerimientoController.pageSizeDataModel}" required="true">
+                                    <f:selectItems value="#{ctlAreaRequerimientoController.paginationSizes}"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="registros" />
                                 <h:outputText value="#{ctlAreaRequerimientoController.pagination.pageFirstItem + 1}..#{ctlAreaRequerimientoController.pagination.pageLastItem + 1}/#{ctlAreaRequerimientoController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaRequerimientoController.previous}" value="#{cataloguesBundle.Previous} #{ctlAreaRequerimientoController.pagination.pageSize}" rendered="#{ctlAreaRequerimientoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaRequerimientoController.next}" value="#{cataloguesBundle.Next} #{ctlAreaRequerimientoController.pagination.pageSize}" rendered="#{ctlAreaRequerimientoController.pagination.hasNextPage}" />&nbsp;

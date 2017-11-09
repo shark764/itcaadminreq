@@ -27,6 +27,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{securityBundle.ListTUserEmpty}" rendered="#{tUserController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{tUserController.items.rowCount > 0}">
+                                <h:outputText value="Mostrar" />
+                                <h:selectOneMenu styleClass="form-control input-sm" value="#{tUserController.pageSizeDataModel}" required="true">
+                                    <f:selectItems value="#{tUserController.paginationSizes}"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="registros" />
                                 <h:outputText value="#{tUserController.pagination.pageFirstItem + 1}..#{tUserController.pagination.pageLastItem + 1}/#{tUserController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tUserController.previous}" value="#{securityBundle.Previous} #{tUserController.pagination.pageSize}" rendered="#{tUserController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tUserController.next}" value="#{securityBundle.Next} #{tUserController.pagination.pageSize}" rendered="#{tUserController.pagination.hasNextPage}" />&nbsp;

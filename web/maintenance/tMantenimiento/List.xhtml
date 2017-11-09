@@ -27,6 +27,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{maintenanceBundle.ListTMantenimientoEmpty}" rendered="#{tMantenimientoController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{tMantenimientoController.items.rowCount > 0}">
+                                <h:outputText value="Mostrar" />
+                                <h:selectOneMenu styleClass="form-control input-sm" value="#{tMantenimientoController.pageSizeDataModel}" required="true">
+                                    <f:selectItems value="#{tMantenimientoController.paginationSizes}"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="registros" />
                                 <h:outputText value="#{tMantenimientoController.pagination.pageFirstItem + 1}..#{tMantenimientoController.pagination.pageLastItem + 1}/#{tMantenimientoController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tMantenimientoController.previous}" value="#{maintenanceBundle.Previous} #{tMantenimientoController.pagination.pageSize}" rendered="#{tMantenimientoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tMantenimientoController.next}" value="#{maintenanceBundle.Next} #{tMantenimientoController.pagination.pageSize}" rendered="#{tMantenimientoController.pagination.hasNextPage}" />&nbsp;

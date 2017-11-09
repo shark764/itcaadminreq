@@ -27,6 +27,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{loanRequestBundle.ListTDetallePrestamoEmpty}" rendered="#{tDetallePrestamoController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{tDetallePrestamoController.items.rowCount > 0}">
+                                <h:outputText value="Mostrar" />
+                                <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetallePrestamoController.pageSizeDataModel}" required="true">
+                                    <f:selectItems value="#{tDetallePrestamoController.paginationSizes}"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="registros" />
                                 <h:outputText value="#{tDetallePrestamoController.pagination.pageFirstItem + 1}..#{tDetallePrestamoController.pagination.pageLastItem + 1}/#{tDetallePrestamoController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetallePrestamoController.previous}" value="#{loanRequestBundle.Previous} #{tDetallePrestamoController.pagination.pageSize}" rendered="#{tDetallePrestamoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetallePrestamoController.next}" value="#{loanRequestBundle.Next} #{tDetallePrestamoController.pagination.pageSize}" rendered="#{tDetallePrestamoController.pagination.hasNextPage}" />&nbsp;
@@ -106,6 +111,7 @@
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetallePrestamoController.prepareView}" value="#{loanRequestBundle.ListTDetallePrestamoViewLink}" />
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetallePrestamoController.prepareEdit}" value="#{loanRequestBundle.ListTDetallePrestamoEditLink}" />
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetallePrestamoController.destroy}" value="#{loanRequestBundle.ListTDetallePrestamoDestroyLink}" />
+                                            <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetallePrestamoController.returnEquipment}" value="Retorno"/>
                                         </h:column>
                                     </h:dataTable>
                                 </div>

@@ -43,10 +43,10 @@ public class RequestByEquipmentModelReport implements Serializable {
     private List<SolicitudEquipoJasper> modelList;
     private JasperPrint jasperPrint;
     
-    @EJB private TDetalleSolicitudFacade detalleSolicitudFacade;
+    @EJB private TDetalleSolicitudFacade ejbTDetalleSolicitudFacade;
 
     public List<SolicitudEquipoJasper> getModelList() {
-        modelList = detalleSolicitudFacade.findAllForRequestByEquipmentModelReport();
+        modelList = ejbTDetalleSolicitudFacade.findAllForRequestByEquipmentModelReport();
         return modelList;
     }
 

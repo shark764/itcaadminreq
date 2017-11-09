@@ -291,7 +291,12 @@ public class TDetallePrestamoController implements Serializable {
     public String update() {
         try {
             if (current.getFechaLimite() == null) {
-                current.setFechaLimite(current.getFechaPrestamo());
+                Date dt = new Date(current.getFechaPrestamo().getTime());
+                Calendar cl = Calendar.getInstance(); 
+                cl.setTime(dt); 
+                cl.add(Calendar.DATE, 8);
+                dt = cl.getTime();
+                current.setFechaLimite(dt);
             }
             if ("010".equals(current.getIdEstadoPrestamo().getCodigo()) && current.getFechaEntrega() == null) {
                 current.setFechaEntrega(new Date());

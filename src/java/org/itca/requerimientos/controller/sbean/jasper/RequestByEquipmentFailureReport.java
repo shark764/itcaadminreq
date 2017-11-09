@@ -43,10 +43,10 @@ public class RequestByEquipmentFailureReport implements Serializable {
     private List<SolicitudFallaJasper> modelList;
     private JasperPrint jasperPrint;
     
-    @EJB private TDetalleSolicitudFacade detalleSolicitudFacade;
+    @EJB private TDetalleSolicitudFacade ejbTDetalleSolicitudFacade;
 
     public List<SolicitudFallaJasper> getModelList() {
-        modelList = detalleSolicitudFacade.findAllForRequestByEquipmentFailureReport();
+        modelList = ejbTDetalleSolicitudFacade.findAllForRequestByEquipmentFailureReport();
         return modelList;
     }
 

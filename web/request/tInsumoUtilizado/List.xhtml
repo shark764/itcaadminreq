@@ -27,6 +27,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{requestBundle.ListTInsumoUtilizadoEmpty}" rendered="#{tInsumoUtilizadoController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{tInsumoUtilizadoController.items.rowCount > 0}">
+                                <h:outputText value="Mostrar" />
+                                <h:selectOneMenu styleClass="form-control input-sm" value="#{tInsumoUtilizadoController.pageSizeDataModel}" required="true">
+                                    <f:selectItems value="#{tInsumoUtilizadoController.paginationSizes}"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="registros" />
                                 <h:outputText value="#{tInsumoUtilizadoController.pagination.pageFirstItem + 1}..#{tInsumoUtilizadoController.pagination.pageLastItem + 1}/#{tInsumoUtilizadoController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tInsumoUtilizadoController.previous}" value="#{requestBundle.Previous} #{tInsumoUtilizadoController.pagination.pageSize}" rendered="#{tInsumoUtilizadoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tInsumoUtilizadoController.next}" value="#{requestBundle.Next} #{tInsumoUtilizadoController.pagination.pageSize}" rendered="#{tInsumoUtilizadoController.pagination.hasNextPage}" />&nbsp;

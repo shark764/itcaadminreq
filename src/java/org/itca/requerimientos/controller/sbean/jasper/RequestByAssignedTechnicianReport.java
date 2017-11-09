@@ -43,10 +43,10 @@ public class RequestByAssignedTechnicianReport implements Serializable {
     private List<SolicitudTecnicoJasper> modelList;
     private JasperPrint jasperPrint;
     
-    @EJB private TDetalleSolicitudFacade detalleSolicitudFacade;
+    @EJB private TDetalleSolicitudFacade ejbTDetalleSolicitudFacade;
 
     public List<SolicitudTecnicoJasper> getModelList() {
-        modelList = detalleSolicitudFacade.findAllForRequestByAssignedTechnicianReport();
+        modelList = ejbTDetalleSolicitudFacade.findAllForRequestByAssignedTechnicianReport();
         return modelList;
     }
 
