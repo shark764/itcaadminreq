@@ -6,6 +6,12 @@ import org.itca.requerimientos.controller.sbean.util.PaginationHelper;
 import org.itca.requerimientos.controller.facade.request.TDetalleSolicitudFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +23,12 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.itca.requerimientos.model.entities.CtlEquipo;
+import org.itca.requerimientos.model.entities.CtlTipoFalla;
+import org.itca.requerimientos.model.entities.CtlTipoRequerimiento;
+import org.itca.requerimientos.model.entities.CtlTipoSolucion;
+import org.itca.requerimientos.model.entities.TEmpleado;
+import org.itca.requerimientos.model.entities.TInsumoUtilizado;
 
 @ManagedBean(name = "tDetalleSolicitudController")
 @SessionScoped
@@ -51,9 +63,8 @@ public class TDetalleSolicitudController implements Serializable {
         this.paginationSizes = paginationSizes;
     }
     
-    @EJB
-    private org.itca.requerimientos.controller.facade.request.InsumoUtilizadoFacade ejbInsumoUtilizadoFacade;
-    private List<InsumoUtilizado> resourcesUsedList;
+    @EJB private org.itca.requerimientos.controller.facade.request.TInsumoUtilizadoFacade ejbTInsumoUtilizadoFacade;
+    private List<TInsumoUtilizado> resourcesUsedList;
     private boolean hasNew = false;
 
     public boolean isHasNew() {
@@ -64,29 +75,29 @@ public class TDetalleSolicitudController implements Serializable {
         this.hasNew = hasNew;
     }
     
-    public List<InsumoUtilizado> getResourcesUsedList() {
+    public List<TInsumoUtilizado> getResourcesUsedList() {
         if (this.resourcesUsedList == null) {
             if (current == null) {
-                this.resourcesUsedList = new ArrayList<InsumoUtilizado>();  // nueva lista si current es null
+                this.resourcesUsedList = new ArrayList<TInsumoUtilizado>();  // nueva lista si current es null
                 return resourcesUsedList;
             }
-            this.resourcesUsedList = current.getInsumoUtilizadoList();  // asignar lista de objetos dependientes
+            this.resourcesUsedList = current.getTInsumoUtilizadoList();  // asignar lista de objetos dependientes
         }
         return resourcesUsedList;
     }
 
-    public void setResourcesUsedList(List<InsumoUtilizado> resourcesUsedList) {
+    public void setResourcesUsedList(List<TInsumoUtilizado> resourcesUsedList) {
         this.resourcesUsedList = resourcesUsedList;
     }
     
-    public void updateResourcesUsed(InsumoUtilizado iu) {
+    public void updateResourcesUsed(TInsumoUtilizado iu) {
         this.hasNew = false;    // cambiar de registro a edición
         if(current.getId() != null) {   // registrar si existe entidad padre
             if(iu.getId() != null) {
-                this.ejbInsumoUtilizadoFacade.edit(iu); // editar existente
+                this.ejbTInsumoUtilizadoFacade.edit(iu); // editar existente
             }
             else {
-                this.ejbInsumoUtilizadoFacade.create(iu);   // crear nuevo
+                this.ejbTInsumoUtilizadoFacade.create(iu);   // crear nuevo
             }
         }
         System.out.println("Updating: [" + iu.getIdDetalleSolicitud()+ "] - U " + iu.getUtlilizado()+ " - D " + iu.getDesperdicio());
@@ -94,12 +105,12 @@ public class TDetalleSolicitudController implements Serializable {
         // return null;
     }
     
-    public void removeResourcesUsed(InsumoUtilizado iu) {
+    public void removeResourcesUsed(TInsumoUtilizado iu) {
         this.hasNew = false;
         System.out.println("Removing: [" + iu.getIdDetalleSolicitud()+ "] " + iu.getUtlilizado() + " - " + iu.getDesperdicio());
         this.resourcesUsedList.remove(iu);    // borrar de lista
         if(iu.getId() != null) {
-            this.ejbInsumoUtilizadoFacade.remove(iu);   // borrar registro de PU
+            this.ejbTInsumoUtilizadoFacade.remove(iu);   // borrar registro de PU
         }
         // recreateModel();
         // return null;
@@ -107,14 +118,14 @@ public class TDetalleSolicitudController implements Serializable {
     
     public void addNewResourcesUsed() {
         if (this.resourcesUsedList == null) {
-            this.resourcesUsedList = new ArrayList<InsumoUtilizado>();
+            this.resourcesUsedList = new ArrayList<TInsumoUtilizado>();
         }
-        this.resourcesUsedList.add(new InsumoUtilizado(current));
+        this.resourcesUsedList.add(new TInsumoUtilizado(current));
         this.hasNew = true;
         System.out.println("Adding - count: " + this.resourcesUsedList.size());
     }
     
-    public void updateSelectedRow(DetalleSolicitud dsItem) {
+    public void updateSelectedRow(TDetalleSolicitud dsItem) {
             // if(dsItem.getId() != null) {
                 getFacade().edit(dsItem); // editar existente
             // }
@@ -127,11 +138,11 @@ public class TDetalleSolicitudController implements Serializable {
     }
 
     private String dataFilterType;
-    private Empleado employee;
-    private Equipo equipment;
-    private TipoRequerimiento requestType;
-    private TipoFalla faultType;
-    private TipoSolucion solutionType;
+    private TEmpleado employee;
+    private CtlEquipo equipment;
+    private CtlTipoRequerimiento requestType;
+    private CtlTipoFalla faultType;
+    private CtlTipoSolucion solutionType;
     private Date startDate;
     private Date endDate;
 
@@ -166,43 +177,43 @@ public class TDetalleSolicitudController implements Serializable {
         return dataFilterTypeValue;
     }
 
-    public Empleado getEmployee() {
+    public TEmpleado getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Empleado employee) {
+    public void setEmployee(TEmpleado employee) {
         this.employee = employee;
     }
 
-    public Equipo getEquipment() {
+    public CtlEquipo getEquipment() {
         return equipment;
     }
 
-    public void setEquipment(Equipo equipment) {
+    public void setEquipment(CtlEquipo equipment) {
         this.equipment = equipment;
     }
 
-    public TipoRequerimiento getRequestType() {
+    public CtlTipoRequerimiento getRequestType() {
         return requestType;
     }
 
-    public void setRequestType(TipoRequerimiento requestType) {
+    public void setRequestType(CtlTipoRequerimiento requestType) {
         this.requestType = requestType;
     }
 
-    public TipoFalla getFaultType() {
+    public CtlTipoFalla getFaultType() {
         return faultType;
     }
 
-    public void setFaultType(TipoFalla faultType) {
+    public void setFaultType(CtlTipoFalla faultType) {
         this.faultType = faultType;
     }
 
-    public TipoSolucion getSolutionType() {
+    public CtlTipoSolucion getSolutionType() {
         return solutionType;
     }
 
-    public void setSolutionType(TipoSolucion solutionType) {
+    public void setSolutionType(CtlTipoSolucion solutionType) {
         this.solutionType = solutionType;
     }
 
@@ -310,6 +321,39 @@ public class TDetalleSolicitudController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
+                    if ("limitTime".equals(dataFilterType)) {
+                        return new ListDataModel(getFacade().limitTime(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    if ("solvedOverTime".equals(dataFilterType)) {
+                        return new ListDataModel(getFacade().solvedOverTime(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findByEquipment".equals(dataFilterType) && equipment != null) {
+                        return new ListDataModel(getFacade().findByEquipment(equipment.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findByEmployee".equals(dataFilterType) && employee != null) {
+                        return new ListDataModel(getFacade().findByEmployee(employee.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    if ("notSolved".equals(dataFilterType)) {
+                        return new ListDataModel(getFacade().notSolved(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("notSolvedByAssignedTechnician".equals(dataFilterType) && employee != null) {
+                        return new ListDataModel(getFacade().notSolvedByAssignedTechnician(employee.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("entryRange".equals(dataFilterType) && startDate != null && endDate != null) {
+                        return new ListDataModel(getFacade().entryRange(startDate, endDate, new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findByAssignedTechnician".equals(dataFilterType) && employee != null) {
+                        return new ListDataModel(getFacade().findByAssignedTechnician(employee.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findBySolutionType".equals(dataFilterType) && solutionType != null) {
+                        return new ListDataModel(getFacade().findBySolutionType(solutionType.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findByRequestType".equals(dataFilterType) && requestType != null) {
+                        return new ListDataModel(getFacade().findByRequestType(requestType.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findByFaultType".equals(dataFilterType) && faultType != null) {
+                        return new ListDataModel(getFacade().findByFaultType(faultType.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };
@@ -340,7 +384,7 @@ public class TDetalleSolicitudController implements Serializable {
 
     public String prepareCreate() {
         current = new TDetalleSolicitud();
-        this.resourcesUsedList = current.getInsumoUtilizadoList();
+        this.resourcesUsedList = current.getTInsumoUtilizadoList();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -361,7 +405,7 @@ public class TDetalleSolicitudController implements Serializable {
             }
             
             if (this.resourcesUsedList != null) {
-                current.setInsumoUtilizadoList(this.resourcesUsedList);
+                current.setTInsumoUtilizadoList(this.resourcesUsedList);
             }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/RequestBundle").getString("TDetalleSolicitudCreated"));
@@ -375,7 +419,7 @@ public class TDetalleSolicitudController implements Serializable {
 
     public String prepareEdit() {
         current = (TDetalleSolicitud) getItems().getRowData();
-        this.resourcesUsedList = current.getInsumoUtilizadoList();
+        this.resourcesUsedList = current.getTInsumoUtilizadoList();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }

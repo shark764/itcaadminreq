@@ -6,6 +6,10 @@ import org.itca.requerimientos.controller.sbean.util.PaginationHelper;
 import org.itca.requerimientos.controller.facade.loanrequest.TDetallePrestamoFacade;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +21,8 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.itca.requerimientos.model.entities.CtlEquipo;
+import org.itca.requerimientos.model.entities.TEmpleado;
 
 @ManagedBean(name = "tDetallePrestamoController")
 @SessionScoped
@@ -51,8 +57,7 @@ public class TDetallePrestamoController implements Serializable {
         this.paginationSizes = paginationSizes;
     }
     
-    @EJB
-    private org.itca.requerimientos.controller.facade.catalogues.CtlEstadoPrestamoFacade ejbCtlEstadoPrestamoFacade;
+    @EJB private org.itca.requerimientos.controller.facade.catalogues.CtlEstadoPrestamoFacade ejbCtlEstadoPrestamoFacade;
 
     public String returnEquipment() {
         current = (TDetallePrestamo) getItems().getRowData();
@@ -198,6 +203,27 @@ public class TDetallePrestamoController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
+                    if ("limitTime".equals(dataFilterType)) {
+                        return new ListDataModel(getFacade().limitTime(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findByEmployee".equals(dataFilterType) && employee != null) {
+                        return new ListDataModel(getFacade().findByEmployee(employee.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findByEquipment".equals(dataFilterType) && equipment != null) {
+                        return new ListDataModel(getFacade().findByEquipment(equipment.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("returnedOverTime".equals(dataFilterType)) {
+                        return new ListDataModel(getFacade().returnedOverTime(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("notReturned".equals(dataFilterType)) {
+                        return new ListDataModel(getFacade().notReturned(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("notReturnedByEmployee".equals(dataFilterType) && employee != null) {
+                        return new ListDataModel(getFacade().notReturnedByEmployee(employee.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("entryRange".equals(dataFilterType) && startDate != null && endDate != null) {
+                        return new ListDataModel(getFacade().entryRange(startDate, endDate, new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };
@@ -234,6 +260,18 @@ public class TDetallePrestamoController implements Serializable {
 
     public String create() {
         try {
+            current.setFechaPrestamo(new Date());
+
+            Date dt = new Date();
+            Calendar cl = Calendar.getInstance(); 
+            cl.setTime(dt); 
+            cl.add(Calendar.DATE, 8);
+            dt = cl.getTime();
+            current.setFechaLimite(dt);
+
+            if ("010".equals(current.getIdEstadoPrestamo().getCodigo())) {
+                current.setFechaEntrega(new Date());
+            }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/LoanRequestBundle").getString("TDetallePrestamoCreated"));
             // return prepareCreate();
@@ -252,6 +290,12 @@ public class TDetallePrestamoController implements Serializable {
 
     public String update() {
         try {
+            if (current.getFechaLimite() == null) {
+                current.setFechaLimite(current.getFechaPrestamo());
+            }
+            if ("010".equals(current.getIdEstadoPrestamo().getCodigo()) && current.getFechaEntrega() == null) {
+                current.setFechaEntrega(new Date());
+            }
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/LoanRequestBundle").getString("TDetallePrestamoUpdated"));
             return "View";

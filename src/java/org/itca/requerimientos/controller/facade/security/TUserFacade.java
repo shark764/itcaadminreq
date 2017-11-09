@@ -8,6 +8,7 @@ package org.itca.requerimientos.controller.facade.security;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.itca.requerimientos.controller.facade.AbstractFacade;
 import org.itca.requerimientos.model.entities.TUser;
 

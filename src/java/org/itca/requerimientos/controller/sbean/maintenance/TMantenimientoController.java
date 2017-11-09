@@ -6,6 +6,7 @@ import org.itca.requerimientos.controller.sbean.util.PaginationHelper;
 import org.itca.requerimientos.controller.facade.maintenance.TMantenimientoFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -50,6 +51,8 @@ public class TMantenimientoController implements Serializable {
     public void setPaginationSizes(int[] paginationSizes) {
         this.paginationSizes = paginationSizes;
     }
+
+    @EJB private org.itca.requerimientos.controller.facade.security.TUserFacade ejbTUserFacade;
 
     public TMantenimientoController() {
     }
@@ -113,6 +116,11 @@ public class TMantenimientoController implements Serializable {
 
     public String create() {
         try {
+            current.setFecha(new Date());
+            
+            FacesContext context = FacesContext.getCurrentInstance();
+            current.setIdUserReg(ejbTUserFacade.findByUsername(context.getExternalContext().getUserPrincipal().getName()));
+            
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/MaintenanceBundle").getString("TMantenimientoCreated"));
             // return prepareCreate();
@@ -131,6 +139,10 @@ public class TMantenimientoController implements Serializable {
 
     public String update() {
         try {
+            
+            FacesContext context = FacesContext.getCurrentInstance();
+            current.setIdUserMod(ejbTUserFacade.findByUsername(context.getExternalContext().getUserPrincipal().getName()));
+            
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/MaintenanceBundle").getString("TMantenimientoUpdated"));
             return "View";

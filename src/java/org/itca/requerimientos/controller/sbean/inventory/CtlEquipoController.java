@@ -6,6 +6,9 @@ import org.itca.requerimientos.controller.sbean.util.PaginationHelper;
 import org.itca.requerimientos.controller.facade.inventory.CtlEquipoFacade;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +20,9 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.itca.requerimientos.model.entities.CtlInventarioDefectuoso;
+import org.itca.requerimientos.model.entities.CtlModeloEquipo;
+import org.itca.requerimientos.model.entities.CtlProveedor;
 
 @ManagedBean(name = "ctlEquipoController")
 @SessionScoped
@@ -51,8 +57,7 @@ public class CtlEquipoController implements Serializable {
         this.paginationSizes = paginationSizes;
     }
     
-    @EJB
-    private org.itca.requerimientos.controller.facade.inventory.CtlInventarioDefectuosoFacade ejbCtlInventarioDefectuosoFacade;
+    @EJB private org.itca.requerimientos.controller.facade.inventory.CtlInventarioDefectuosoFacade ejbCtlInventarioDefectuosoFacade;
 
     private CtlInventarioDefectuoso defectiveEquipment;
 
@@ -65,7 +70,7 @@ public class CtlEquipoController implements Serializable {
     }
 
     public String addToDefective() {
-        current = (Equipo) getItems().getRowData();
+        current = (CtlEquipo) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         this.defectiveEquipment = new CtlInventarioDefectuoso(current);
         System.out.println("go to form: " + this.defectiveEquipment);
@@ -227,6 +232,21 @@ public class CtlEquipoController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
+                    if ("nonStock".equals(dataFilterType) && minStock != null) {
+                        return new ListDataModel(getFacade().nonStock(minStock, new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("stockRange".equals(dataFilterType) && startStock != null && endStock != null) {
+                        return new ListDataModel(getFacade().stockRange(startStock, endStock, new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findByProvider".equals(dataFilterType) && equipmentProvider != null) {
+                        return new ListDataModel(getFacade().findByProvider(equipmentProvider.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("findByModel".equals(dataFilterType) && equipmentModel != null) {
+                        return new ListDataModel(getFacade().findByModel(equipmentModel.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("entryRange".equals(dataFilterType) && startDate != null && endDate != null) {
+                        return new ListDataModel(getFacade().entryRange(startDate, endDate, new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };

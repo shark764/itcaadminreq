@@ -6,6 +6,10 @@ import org.itca.requerimientos.controller.sbean.util.PaginationHelper;
 import org.itca.requerimientos.controller.facade.loanrequest.TPrestamoFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +21,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.itca.requerimientos.model.entities.TDetallePrestamo;
 
 @ManagedBean(name = "tPrestamoController")
 @SessionScoped
@@ -51,13 +56,13 @@ public class TPrestamoController implements Serializable {
         this.paginationSizes = paginationSizes;
     }
     
-    @EJB
-    private org.itca.requerimientos.controller.facade.loanrequest.TDetallePrestamoFacade ejbTDetallePrestamoFacade;
+    @EJB private org.itca.requerimientos.controller.facade.loanrequest.TDetallePrestamoFacade ejbTDetallePrestamoFacade;
     private List<TDetallePrestamo> loanRequestDetailList;
     private boolean hasNew = false;
     
-    @EJB
-    private org.itca.requerimientos.controller.facade.catalogues.CtlEstadoPrestamoFacade ejbCtlEstadoPrestamoFacade;
+    @EJB private org.itca.requerimientos.controller.facade.catalogues.CtlEstadoPrestamoFacade ejbCtlEstadoPrestamoFacade;
+
+    @EJB private org.itca.requerimientos.controller.facade.security.TUserFacade ejbTUserFacade;
 
     public boolean isHasNew() {
         return hasNew;
@@ -73,7 +78,7 @@ public class TPrestamoController implements Serializable {
                 this.loanRequestDetailList = new ArrayList<TDetallePrestamo>();  // nueva lista si current es null
                 return loanRequestDetailList;
             }
-            this.loanRequestDetailList = current.getDetallePrestamoList();  // asignar lista de objetos dependientes
+            this.loanRequestDetailList = current.getTDetallePrestamoList();  // asignar lista de objetos dependientes
         }
         return loanRequestDetailList;
     }
@@ -183,7 +188,7 @@ public class TPrestamoController implements Serializable {
 
     public String prepareCreate() {
         current = new TPrestamo();
-        this.loanRequestDetailList = current.getDetallePrestamoList();
+        this.loanRequestDetailList = current.getTDetallePrestamoList();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -191,7 +196,7 @@ public class TPrestamoController implements Serializable {
     public String create() {
         try {
             if (this.loanRequestDetailList != null) {
-                for (DetallePrestamo dp : this.loanRequestDetailList) {
+                for (TDetallePrestamo dp : this.loanRequestDetailList) {
                     dp.setFechaPrestamo(new Date());
 
                     Date dt = new Date();
@@ -201,11 +206,15 @@ public class TPrestamoController implements Serializable {
                     dt = cl.getTime();
                     dp.setFechaLimite(dt);
 
-                    dp.setIdEstadoPrestamo(ejbEstadoPrestamoFacade.findByCodigo("001"));
+                    dp.setIdEstadoPrestamo(ejbCtlEstadoPrestamoFacade.findByCodigo("001"));
                 }
-                current.setDetallePrestamoList(this.loanRequestDetailList);
+                current.setTDetallePrestamoList(this.loanRequestDetailList);
             }
             current.setFecha(new Date());
+            
+            FacesContext context = FacesContext.getCurrentInstance();
+            current.setIdUserReg(ejbTUserFacade.findByUsername(context.getExternalContext().getUserPrincipal().getName()));
+            
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/LoanRequestBundle").getString("TPrestamoCreated"));
             // return prepareCreate();
@@ -218,13 +227,17 @@ public class TPrestamoController implements Serializable {
 
     public String prepareEdit() {
         current = (TPrestamo) getItems().getRowData();
-        this.loanRequestDetailList = current.getDetallePrestamoList();
+        this.loanRequestDetailList = current.getTDetallePrestamoList();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
 
     public String update() {
         try {
+            
+            FacesContext context = FacesContext.getCurrentInstance();
+            current.setIdUserMod(ejbTUserFacade.findByUsername(context.getExternalContext().getUserPrincipal().getName()));
+            
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/LoanRequestBundle").getString("TPrestamoUpdated"));
             return "View";

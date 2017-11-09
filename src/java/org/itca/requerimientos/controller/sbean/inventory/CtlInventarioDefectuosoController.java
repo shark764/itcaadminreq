@@ -6,6 +6,9 @@ import org.itca.requerimientos.controller.sbean.util.PaginationHelper;
 import org.itca.requerimientos.controller.facade.inventory.CtlInventarioDefectuosoFacade;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +20,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.itca.requerimientos.model.entities.CtlModeloEquipo;
 
 @ManagedBean(name = "ctlInventarioDefectuosoController")
 @SessionScoped

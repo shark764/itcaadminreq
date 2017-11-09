@@ -6,6 +6,10 @@ import org.itca.requerimientos.controller.sbean.util.PaginationHelper;
 import org.itca.requerimientos.controller.facade.request.TSolicitudRequerimientoFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +21,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.itca.requerimientos.model.entities.TDetalleSolicitud;
 
 @ManagedBean(name = "tSolicitudRequerimientoController")
 @SessionScoped
@@ -51,13 +56,13 @@ public class TSolicitudRequerimientoController implements Serializable {
         this.paginationSizes = paginationSizes;
     }
     
-    @EJB
-    private org.itca.requerimientos.controller.facade.request.DetalleSolicitudFacade ejbDetalleSolicitudFacade;
-    private List<DetalleSolicitud> requestDetailList;
+    @EJB private org.itca.requerimientos.controller.facade.request.TDetalleSolicitudFacade ejbTDetalleSolicitudFacade;
+    private List<TDetalleSolicitud> requestDetailList;
     private boolean hasNew = false;
     
-    @EJB
-    private org.itca.requerimientos.controller.facade.catalogues.EstadoSolicitudFacade ejbEstadoSolicitudFacade;
+    @EJB private org.itca.requerimientos.controller.facade.catalogues.CtlEstadoSolicitudFacade ejbCtlEstadoSolicitudFacade;
+
+    @EJB private org.itca.requerimientos.controller.facade.security.TUserFacade ejbTUserFacade;
 
     public boolean isHasNew() {
         return hasNew;
@@ -67,26 +72,26 @@ public class TSolicitudRequerimientoController implements Serializable {
         this.hasNew = hasNew;
     }
     
-    public List<DetalleSolicitud> getRequestDetailList() {
+    public List<TDetalleSolicitud> getRequestDetailList() {
         if (this.requestDetailList == null) {
             if (current == null) {
-                this.requestDetailList = new ArrayList<DetalleSolicitud>();  // nueva lista si current es null
+                this.requestDetailList = new ArrayList<TDetalleSolicitud>();  // nueva lista si current es null
                 return requestDetailList;
             }
-            this.requestDetailList = current.getDetalleSolicitudList();  // asignar lista de objetos dependientes
+            this.requestDetailList = current.getTDetalleSolicitudList();  // asignar lista de objetos dependientes
         }
         return requestDetailList;
     }
 
-    public void setRequestDetailList(List<DetalleSolicitud> requestDetailList) {
+    public void setRequestDetailList(List<TDetalleSolicitud> requestDetailList) {
         this.requestDetailList = requestDetailList;
     }
     
-    public void updateRequestDetail(DetalleSolicitud ds) {
+    public void updateRequestDetail(TDetalleSolicitud ds) {
         this.hasNew = false;    // cambiar de registro a edición
         if(current.getId() != null) {   // registrar si existe entidad padre
             if(ds.getId() != null) {
-                this.ejbDetalleSolicitudFacade.edit(ds); // editar existente
+                this.ejbTDetalleSolicitudFacade.edit(ds); // editar existente
             }
             else {
                 ds.setFechaInicio(new Date());
@@ -98,8 +103,8 @@ public class TSolicitudRequerimientoController implements Serializable {
                 dt = cl.getTime();
                 ds.setFechaLimite(dt);
                 
-                ds.setIdEstadoSolicitud(ejbEstadoSolicitudFacade.findByCodigo("001"));
-                this.ejbDetalleSolicitudFacade.create(ds);   // crear nuevo
+                ds.setIdEstadoSolicitud(ejbCtlEstadoSolicitudFacade.findByCodigo("001"));
+                this.ejbTDetalleSolicitudFacade.create(ds);   // crear nuevo
             }
         }
         System.out.println("Updating: [" + ds.getIdEquipo()+ "] " + ds.getIdTipoFalla() + " - INI " + ds.getFechaInicio() + " - LIM " + ds.getFechaLimite());
@@ -107,12 +112,12 @@ public class TSolicitudRequerimientoController implements Serializable {
         // return null;
     }
     
-    public void removeRequestDetail(DetalleSolicitud ds) {
+    public void removeRequestDetail(TDetalleSolicitud ds) {
         this.hasNew = false;
         System.out.println("Removing: [" + ds.getIdEquipo()+ "] " + ds.getIdTipoFalla());
         this.requestDetailList.remove(ds);    // borrar de lista
         if(ds.getId() != null) {
-            this.ejbDetalleSolicitudFacade.remove(ds);   // borrar registro de PU
+            this.ejbTDetalleSolicitudFacade.remove(ds);   // borrar registro de PU
         }
         // recreateModel();
         // return null;
@@ -120,9 +125,9 @@ public class TSolicitudRequerimientoController implements Serializable {
     
     public void addNewRequestDetail() {
         if (this.requestDetailList == null) {
-            this.requestDetailList = new ArrayList<DetalleSolicitud>();
+            this.requestDetailList = new ArrayList<TDetalleSolicitud>();
         }
-        this.requestDetailList.add(new DetalleSolicitud(current));
+        this.requestDetailList.add(new TDetalleSolicitud(current));
         this.hasNew = true;
         System.out.println("Adding - count: " + this.requestDetailList.size());
     }
@@ -183,7 +188,7 @@ public class TSolicitudRequerimientoController implements Serializable {
 
     public String prepareCreate() {
         current = new TSolicitudRequerimiento();
-        this.requestDetailList = current.getDetalleSolicitudList();
+        this.requestDetailList = current.getTDetalleSolicitudList();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -191,7 +196,7 @@ public class TSolicitudRequerimientoController implements Serializable {
     public String create() {
         try {
             if (this.requestDetailList != null) {
-                for (DetalleSolicitud ds : this.requestDetailList) {
+                for (TDetalleSolicitud ds : this.requestDetailList) {
                     ds.setFechaInicio(new Date());
 
                     Date dt = new Date();
@@ -201,11 +206,15 @@ public class TSolicitudRequerimientoController implements Serializable {
                     dt = cl.getTime();
                     ds.setFechaLimite(dt);
 
-                    ds.setIdEstadoSolicitud(ejbEstadoSolicitudFacade.findByCodigo("001"));
+                    ds.setIdEstadoSolicitud(ejbCtlEstadoSolicitudFacade.findByCodigo("001"));
                 }
-                current.setDetalleSolicitudList(this.requestDetailList);
+                current.setTDetalleSolicitudList(this.requestDetailList);
             }
             current.setFecha(new Date());
+            
+            FacesContext context = FacesContext.getCurrentInstance();
+            current.setIdUserReg(ejbTUserFacade.findByUsername(context.getExternalContext().getUserPrincipal().getName()));
+            
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/RequestBundle").getString("TSolicitudRequerimientoCreated"));
             // return prepareCreate();
@@ -218,13 +227,17 @@ public class TSolicitudRequerimientoController implements Serializable {
 
     public String prepareEdit() {
         current = (TSolicitudRequerimiento) getItems().getRowData();
-        this.requestDetailList = current.getDetalleSolicitudList();
+        this.requestDetailList = current.getTDetalleSolicitudList();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
 
     public String update() {
         try {
+            
+            FacesContext context = FacesContext.getCurrentInstance();
+            current.setIdUserMod(ejbTUserFacade.findByUsername(context.getExternalContext().getUserPrincipal().getName()));
+            
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/RequestBundle").getString("TSolicitudRequerimientoUpdated"));
             return "View";

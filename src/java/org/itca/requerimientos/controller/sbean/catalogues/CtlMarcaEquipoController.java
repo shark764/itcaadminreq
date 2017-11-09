@@ -6,6 +6,8 @@ import org.itca.requerimientos.controller.sbean.util.PaginationHelper;
 import org.itca.requerimientos.controller.facade.catalogues.CtlMarcaEquipoFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +19,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.itca.requerimientos.model.entities.CtlModeloEquipo;
 
 @ManagedBean(name = "ctlMarcaEquipoController")
 @SessionScoped
@@ -51,8 +54,7 @@ public class CtlMarcaEquipoController implements Serializable {
         this.paginationSizes = paginationSizes;
     }
     
-    @EJB
-    private org.itca.requerimientos.controller.facade.catalogues.CtlModeloEquipoFacade ejbCtlModeloEquipoFacade;
+    @EJB private org.itca.requerimientos.controller.facade.catalogues.CtlModeloEquipoFacade ejbCtlModeloEquipoFacade;
     private List<CtlModeloEquipo> equipmentModelList;
     private boolean hasNew = false;
 
@@ -70,7 +72,7 @@ public class CtlMarcaEquipoController implements Serializable {
                 this.equipmentModelList = new ArrayList<CtlModeloEquipo>();  // nueva lista si current es null
                 return equipmentModelList;
             }
-            this.equipmentModelList = current.getModeloEquipoList();  // asignar lista de objetos dependientes
+            this.equipmentModelList = current.getCtlModeloEquipoList();  // asignar lista de objetos dependientes
         }
         return equipmentModelList;
     }
@@ -170,7 +172,7 @@ public class CtlMarcaEquipoController implements Serializable {
 
     public String prepareCreate() {
         current = new CtlMarcaEquipo();
-        this.equipmentModelList = current.getModeloEquipoList();
+        this.equipmentModelList = current.getCtlModeloEquipoList();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -178,7 +180,7 @@ public class CtlMarcaEquipoController implements Serializable {
     public String create() {
         try {
             if (this.equipmentModelList != null) {
-                current.setModeloEquipoList(this.equipmentModelList);
+                current.setCtlModeloEquipoList(this.equipmentModelList);
             }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/CataloguesBundle").getString("CtlMarcaEquipoCreated"));
@@ -192,7 +194,7 @@ public class CtlMarcaEquipoController implements Serializable {
 
     public String prepareEdit() {
         current = (CtlMarcaEquipo) getItems().getRowData();
-        this.equipmentModelList = current.getModeloEquipoList();
+        this.equipmentModelList = current.getCtlModeloEquipoList();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }

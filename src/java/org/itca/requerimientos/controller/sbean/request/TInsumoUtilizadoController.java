@@ -6,6 +6,9 @@ import org.itca.requerimientos.controller.sbean.util.PaginationHelper;
 import org.itca.requerimientos.controller.facade.request.TInsumoUtilizadoFacade;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +20,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.itca.requerimientos.model.entities.CtlEquipo;
 
 @ManagedBean(name = "tInsumoUtilizadoController")
 @SessionScoped
@@ -56,7 +60,7 @@ public class TInsumoUtilizadoController implements Serializable {
     private Short endUsed;
     private Short startWasted;
     private Short endWasted;
-    private Equipo equipment;
+    private CtlEquipo equipment;
     private Date startDate;
     private Date endDate;
 
@@ -116,11 +120,11 @@ public class TInsumoUtilizadoController implements Serializable {
         this.endWasted = endWasted;
     }
 
-    public Equipo getEquipment() {
+    public CtlEquipo getEquipment() {
         return equipment;
     }
 
-    public void setEquipment(Equipo equipment) {
+    public void setEquipment(CtlEquipo equipment) {
         this.equipment = equipment;
     }
 
@@ -192,6 +196,18 @@ public class TInsumoUtilizadoController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
+                    if ("findByEquipment".equals(dataFilterType) && equipment != null) {
+                        return new ListDataModel(getFacade().findByEquipment(equipment.getId(), new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("usedRange".equals(dataFilterType) && startUsed != null && endUsed != null) {
+                        return new ListDataModel(getFacade().usedRange(startUsed, endUsed, new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("wastedRange".equals(dataFilterType) && startWasted != null && endWasted != null) {
+                        return new ListDataModel(getFacade().wastedRange(startWasted, endWasted, new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
+                    else if ("entryRange".equals(dataFilterType) && startDate != null && endDate != null) {
+                        return new ListDataModel(getFacade().entryRange(startDate, endDate, new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };

@@ -7,9 +7,11 @@ package org.itca.requerimientos.controller.sbean.security;
 
 import java.io.IOException;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.itca.requerimientos.model.entities.TUser;
 
 /**
  *
@@ -19,9 +21,7 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class UserSessionBean implements Serializable {
 
-    @EJB
-    private org.itca.requerimientos.controller.facade.security.TUserFacade tUserFacade;
-    private org.itca.requerimientos.controller.facade.security.TUserRoleFacade tUserRoleFacade;
+    @EJB private org.itca.requerimientos.controller.facade.security.TUserFacade ejbTUserFacade;
 
     private TUser userLogged;
     
@@ -41,7 +41,7 @@ public class UserSessionBean implements Serializable {
 
     public TUser getUserLogged() {
         FacesContext context = FacesContext.getCurrentInstance();
-        this.userLogged = tUserFacade.findByUsername(context.getExternalContext().getUserPrincipal());
+        this.userLogged = ejbTUserFacade.findByUsername(context.getExternalContext().getUserPrincipal().getName());
         return this.userLogged;
     }
 
