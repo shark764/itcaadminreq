@@ -36,7 +36,7 @@ public class TPrestamoFacade extends AbstractFacade<TPrestamo> {
     {
         Query q = em.createNamedQuery("TPrestamo.findByEmployee")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TPrestamo> list = q.getResultList();
         return list;
@@ -47,7 +47,7 @@ public class TPrestamoFacade extends AbstractFacade<TPrestamo> {
         Query q = em.createNamedQuery("TPrestamo.entryRange")
         		.setParameter("start", start)
         		.setParameter("end", end)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TPrestamo> list = q.getResultList();
         return list;

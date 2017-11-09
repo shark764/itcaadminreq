@@ -35,7 +35,7 @@ public class CtlInsumoFacade extends AbstractFacade<CtlInsumo> {
     {
         Query q = em.createNamedQuery("CtlInsumo.nonStock")
         		.setParameter("min", min)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<CtlInsumo> list = q.getResultList();
         return list;
@@ -46,7 +46,7 @@ public class CtlInsumoFacade extends AbstractFacade<CtlInsumo> {
         Query q = em.createNamedQuery("CtlInsumo.stockRange")
         		.setParameter("start", start)
         		.setParameter("end", end)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<CtlInsumo> list = q.getResultList();
         return list;

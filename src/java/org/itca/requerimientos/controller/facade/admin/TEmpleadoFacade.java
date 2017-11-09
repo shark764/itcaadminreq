@@ -35,7 +35,7 @@ public class TEmpleadoFacade extends AbstractFacade<TEmpleado> {
     {
         Query q = em.createNamedQuery("TEmpleado.findByBoss")
                 .setParameter("id", id)
-                .setMaxResults(range[1] - range[0] + 1)
+                .setMaxResults(range[1] - range[0])
                 .setFirstResult(range[0]);
         List<TEmpleado> list = q.getResultList();
         return list;

@@ -131,11 +131,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{inventoryBundle.ListCtlEquipoEmpty}" rendered="#{ctlEquipoController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{ctlEquipoController.items.rowCount > 0}">
-                                <h:outputText value="Mostrar" />
+                                <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlEquipoController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{ctlEquipoController.paginationSizes}"/>
                                 </h:selectOneMenu>
-                                <h:outputText value="registros" />
+                                <h:outputText value=" registros" />
                                 <h:outputText value="#{ctlEquipoController.pagination.pageFirstItem + 1}..#{ctlEquipoController.pagination.pageLastItem + 1}/#{ctlEquipoController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEquipoController.previous}" value="#{inventoryBundle.Previous} #{ctlEquipoController.pagination.pageSize}" rendered="#{ctlEquipoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEquipoController.next}" value="#{inventoryBundle.Next} #{ctlEquipoController.pagination.pageSize}" rendered="#{ctlEquipoController.pagination.hasNextPage}" />&nbsp;

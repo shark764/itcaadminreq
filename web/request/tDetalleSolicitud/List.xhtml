@@ -211,11 +211,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{requestBundle.ListTDetalleSolicitudEmpty}" rendered="#{tDetalleSolicitudController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{tDetalleSolicitudController.items.rowCount > 0}">
-                                <h:outputText value="Mostrar" />
+                                <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{tDetalleSolicitudController.paginationSizes}"/>
                                 </h:selectOneMenu>
-                                <h:outputText value="registros" />
+                                <h:outputText value=" registros" />
                                 <h:outputText value="#{tDetalleSolicitudController.pagination.pageFirstItem + 1}..#{tDetalleSolicitudController.pagination.pageLastItem + 1}/#{tDetalleSolicitudController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.previous}" value="#{requestBundle.Previous} #{tDetalleSolicitudController.pagination.pageSize}" rendered="#{tDetalleSolicitudController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.next}" value="#{requestBundle.Next} #{tDetalleSolicitudController.pagination.pageSize}" rendered="#{tDetalleSolicitudController.pagination.hasNextPage}" />&nbsp;

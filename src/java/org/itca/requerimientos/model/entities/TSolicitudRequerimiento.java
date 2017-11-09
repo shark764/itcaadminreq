@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "TSolicitudRequerimiento.findByArea", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.idArea.id = :id"),
     @NamedQuery(name = "TSolicitudRequerimiento.findByEmployee", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.idEmpleado.id = :id"),
-    @NamedQuery(name = "TSolicitudRequerimiento.entryRange", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.fecha >= :start AND s.fecha <= :end"),
+    @NamedQuery(name = "TSolicitudRequerimiento.entryRange", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.fecha >= :start AND t.fecha <= :end"),
     @NamedQuery(name = "TSolicitudRequerimiento.findAll", query = "SELECT t FROM TSolicitudRequerimiento t"),
     @NamedQuery(name = "TSolicitudRequerimiento.findById", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.id = :id"),
     @NamedQuery(name = "TSolicitudRequerimiento.findByCodigo", query = "SELECT t FROM TSolicitudRequerimiento t WHERE t.codigo = :codigo"),

@@ -37,7 +37,7 @@ public class TDetallePrestamoFacade extends AbstractFacade<TDetallePrestamo> {
     {
         Query q = em.createNamedQuery("TDetallePrestamo.returnedOverTime")
         		// .setParameter("limit", new Date())
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TDetallePrestamo> list = q.getResultList();
         return list;
@@ -47,7 +47,7 @@ public class TDetallePrestamoFacade extends AbstractFacade<TDetallePrestamo> {
     {
         Query q = em.createNamedQuery("TDetallePrestamo.notReturnedLimit")
         		.setParameter("now", new Date())
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TDetallePrestamo> list = q.getResultList();
         return list;
@@ -56,7 +56,7 @@ public class TDetallePrestamoFacade extends AbstractFacade<TDetallePrestamo> {
     public List<TDetallePrestamo> notReturned(int[] range)
     {
         Query q = em.createNamedQuery("TDetallePrestamo.notReturned")
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TDetallePrestamo> list = q.getResultList();
         return list;
@@ -66,7 +66,7 @@ public class TDetallePrestamoFacade extends AbstractFacade<TDetallePrestamo> {
     {
         Query q = em.createNamedQuery("TDetallePrestamo.notReturnedByEmployee")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TDetallePrestamo> list = q.getResultList();
         return list;
@@ -77,7 +77,7 @@ public class TDetallePrestamoFacade extends AbstractFacade<TDetallePrestamo> {
         Query q = em.createNamedQuery("TDetallePrestamo.entryRange")
         		.setParameter("start", start)
         		.setParameter("end", end)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TDetallePrestamo> list = q.getResultList();
         return list;
@@ -87,7 +87,7 @@ public class TDetallePrestamoFacade extends AbstractFacade<TDetallePrestamo> {
     {
         Query q = em.createNamedQuery("TDetallePrestamo.findByEquipment")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TDetallePrestamo> list = q.getResultList();
         return list;
@@ -97,7 +97,7 @@ public class TDetallePrestamoFacade extends AbstractFacade<TDetallePrestamo> {
     {
         Query q = em.createNamedQuery("TDetallePrestamo.findByEmployee")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TDetallePrestamo> list = q.getResultList();
         return list;
@@ -107,7 +107,7 @@ public class TDetallePrestamoFacade extends AbstractFacade<TDetallePrestamo> {
     {
         Query q = em.createNamedQuery("TDetallePrestamo.limitTime")
         		.setParameter("now", new Date())
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TDetallePrestamo> list = q.getResultList();
         return list;

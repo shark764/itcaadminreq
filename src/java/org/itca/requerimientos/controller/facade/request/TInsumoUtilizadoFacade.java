@@ -37,7 +37,7 @@ public class TInsumoUtilizadoFacade extends AbstractFacade<TInsumoUtilizado> {
         Query q = em.createNamedQuery("TInsumoUtilizado.usedRange")
         		.setParameter("start", start)
         		.setParameter("end", end)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TInsumoUtilizado> list = q.getResultList();
         return list;
@@ -48,7 +48,7 @@ public class TInsumoUtilizadoFacade extends AbstractFacade<TInsumoUtilizado> {
         Query q = em.createNamedQuery("TInsumoUtilizado.wastedRange")
         		.setParameter("start", start)
         		.setParameter("end", end)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TInsumoUtilizado> list = q.getResultList();
         return list;
@@ -58,7 +58,7 @@ public class TInsumoUtilizadoFacade extends AbstractFacade<TInsumoUtilizado> {
     {
         Query q = em.createNamedQuery("TInsumoUtilizado.findByEquipment")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TInsumoUtilizado> list = q.getResultList();
         return list;
@@ -69,7 +69,7 @@ public class TInsumoUtilizadoFacade extends AbstractFacade<TInsumoUtilizado> {
         Query q = em.createNamedQuery("TInsumoUtilizado.entryRange")
         		.setParameter("start", start)
         		.setParameter("end", end)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TInsumoUtilizado> list = q.getResultList();
         return list;
@@ -79,7 +79,7 @@ public class TInsumoUtilizadoFacade extends AbstractFacade<TInsumoUtilizado> {
     {
         Query q = em.createNamedQuery("TInsumoUtilizado.findByEquipmentUsed")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TInsumoUtilizado> list = q.getResultList();
         return list;
@@ -89,7 +89,7 @@ public class TInsumoUtilizadoFacade extends AbstractFacade<TInsumoUtilizado> {
     {
         Query q = em.createNamedQuery("TInsumoUtilizado.findByResourceUsed")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TInsumoUtilizado> list = q.getResultList();
         return list;

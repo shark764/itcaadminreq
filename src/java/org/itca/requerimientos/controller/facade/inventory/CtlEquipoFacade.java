@@ -36,7 +36,7 @@ public class CtlEquipoFacade extends AbstractFacade<CtlEquipo> {
     {
         Query q = em.createNamedQuery("CtlEquipo.nonStock")
         		.setParameter("min", min)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<CtlEquipo> list = q.getResultList();
         return list;
@@ -47,7 +47,7 @@ public class CtlEquipoFacade extends AbstractFacade<CtlEquipo> {
         Query q = em.createNamedQuery("CtlEquipo.entryRange")
         		.setParameter("start", start)
         		.setParameter("end", end)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<CtlEquipo> list = q.getResultList();
         return list;
@@ -57,7 +57,7 @@ public class CtlEquipoFacade extends AbstractFacade<CtlEquipo> {
     {
         Query q = em.createNamedQuery("CtlEquipo.findByProvider")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<CtlEquipo> list = q.getResultList();
         return list;
@@ -68,7 +68,7 @@ public class CtlEquipoFacade extends AbstractFacade<CtlEquipo> {
         Query q = em.createNamedQuery("CtlEquipo.stockRange")
         		.setParameter("start", start)
         		.setParameter("end", end)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<CtlEquipo> list = q.getResultList();
         return list;
@@ -78,7 +78,7 @@ public class CtlEquipoFacade extends AbstractFacade<CtlEquipo> {
     {
         Query q = em.createNamedQuery("CtlEquipo.findByModel")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<CtlEquipo> list = q.getResultList();
         return list;

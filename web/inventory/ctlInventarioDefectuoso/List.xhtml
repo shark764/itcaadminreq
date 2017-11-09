@@ -89,11 +89,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{inventoryBundle.ListCtlInventarioDefectuosoEmpty}" rendered="#{ctlInventarioDefectuosoController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{ctlInventarioDefectuosoController.items.rowCount > 0}">
-                                <h:outputText value="Mostrar" />
+                                <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlInventarioDefectuosoController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{ctlInventarioDefectuosoController.paginationSizes}"/>
                                 </h:selectOneMenu>
-                                <h:outputText value="registros" />
+                                <h:outputText value=" registros" />
                                 <h:outputText value="#{ctlInventarioDefectuosoController.pagination.pageFirstItem + 1}..#{ctlInventarioDefectuosoController.pagination.pageLastItem + 1}/#{ctlInventarioDefectuosoController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInventarioDefectuosoController.previous}" value="#{inventoryBundle.Previous} #{ctlInventarioDefectuosoController.pagination.pageSize}" rendered="#{ctlInventarioDefectuosoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInventarioDefectuosoController.next}" value="#{inventoryBundle.Next} #{ctlInventarioDefectuosoController.pagination.pageSize}" rendered="#{ctlInventarioDefectuosoController.pagination.hasNextPage}" />&nbsp;

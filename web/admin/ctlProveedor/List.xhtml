@@ -27,11 +27,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{adminBundle.ListCtlProveedorEmpty}" rendered="#{ctlProveedorController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{ctlProveedorController.items.rowCount > 0}">
-                                <h:outputText value="Mostrar" />
+                                <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlProveedorController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{ctlProveedorController.paginationSizes}"/>
                                 </h:selectOneMenu>
-                                <h:outputText value="registros" />
+                                <h:outputText value=" registros" />
                                 <h:outputText value="#{ctlProveedorController.pagination.pageFirstItem + 1}..#{ctlProveedorController.pagination.pageLastItem + 1}/#{ctlProveedorController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlProveedorController.previous}" value="#{adminBundle.Previous} #{ctlProveedorController.pagination.pageSize}" rendered="#{ctlProveedorController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlProveedorController.next}" value="#{adminBundle.Next} #{ctlProveedorController.pagination.pageSize}" rendered="#{ctlProveedorController.pagination.hasNextPage}" />&nbsp;

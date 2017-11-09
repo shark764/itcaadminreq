@@ -27,11 +27,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{cataloguesBundle.ListCtlTipoSolucionEmpty}" rendered="#{ctlTipoSolucionController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{ctlTipoSolucionController.items.rowCount > 0}">
-                                <h:outputText value="Mostrar" />
+                                <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlTipoSolucionController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{ctlTipoSolucionController.paginationSizes}"/>
                                 </h:selectOneMenu>
-                                <h:outputText value="registros" />
+                                <h:outputText value=" registros" />
                                 <h:outputText value="#{ctlTipoSolucionController.pagination.pageFirstItem + 1}..#{ctlTipoSolucionController.pagination.pageLastItem + 1}/#{ctlTipoSolucionController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlTipoSolucionController.previous}" value="#{cataloguesBundle.Previous} #{ctlTipoSolucionController.pagination.pageSize}" rendered="#{ctlTipoSolucionController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlTipoSolucionController.next}" value="#{cataloguesBundle.Next} #{ctlTipoSolucionController.pagination.pageSize}" rendered="#{ctlTipoSolucionController.pagination.hasNextPage}" />&nbsp;

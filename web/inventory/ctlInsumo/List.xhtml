@@ -83,11 +83,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{inventoryBundle.ListCtlInsumoEmpty}" rendered="#{ctlInsumoController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{ctlInsumoController.items.rowCount > 0}">
-                                <h:outputText value="Mostrar" />
+                                <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlInsumoController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{ctlInsumoController.paginationSizes}"/>
                                 </h:selectOneMenu>
-                                <h:outputText value="registros" />
+                                <h:outputText value=" registros" />
                                 <h:outputText value="#{ctlInsumoController.pagination.pageFirstItem + 1}..#{ctlInsumoController.pagination.pageLastItem + 1}/#{ctlInsumoController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInsumoController.previous}" value="#{inventoryBundle.Previous} #{ctlInsumoController.pagination.pageSize}" rendered="#{ctlInsumoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInsumoController.next}" value="#{inventoryBundle.Next} #{ctlInsumoController.pagination.pageSize}" rendered="#{ctlInsumoController.pagination.hasNextPage}" />&nbsp;

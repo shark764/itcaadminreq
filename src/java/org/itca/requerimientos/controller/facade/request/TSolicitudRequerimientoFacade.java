@@ -36,7 +36,7 @@ public class TSolicitudRequerimientoFacade extends AbstractFacade<TSolicitudRequ
     {
         Query q = em.createNamedQuery("TSolicitudRequerimiento.findByArea")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TSolicitudRequerimiento> list = q.getResultList();
         return list;
@@ -46,7 +46,7 @@ public class TSolicitudRequerimientoFacade extends AbstractFacade<TSolicitudRequ
     {
         Query q = em.createNamedQuery("TSolicitudRequerimiento.findByEmployee")
         		.setParameter("id", id)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TSolicitudRequerimiento> list = q.getResultList();
         return list;
@@ -57,7 +57,7 @@ public class TSolicitudRequerimientoFacade extends AbstractFacade<TSolicitudRequ
         Query q = em.createNamedQuery("TSolicitudRequerimiento.entryRange")
         		.setParameter("start", start)
         		.setParameter("end", end)
-        		.setMaxResults(range[1] - range[0] + 1)
+        		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);
         List<TSolicitudRequerimiento> list = q.getResultList();
         return list;

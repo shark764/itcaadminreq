@@ -27,11 +27,11 @@
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{requestBundle.ListTSolicitudRequerimientoEmpty}" rendered="#{tSolicitudRequerimientoController.items.rowCount == 0}"/>
                             <h:panelGroup rendered="#{tSolicitudRequerimientoController.items.rowCount > 0}">
-                                <h:outputText value="Mostrar" />
+                                <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{tSolicitudRequerimientoController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{tSolicitudRequerimientoController.paginationSizes}"/>
                                 </h:selectOneMenu>
-                                <h:outputText value="registros" />
+                                <h:outputText value=" registros" />
                                 <h:outputText value="#{tSolicitudRequerimientoController.pagination.pageFirstItem + 1}..#{tSolicitudRequerimientoController.pagination.pageLastItem + 1}/#{tSolicitudRequerimientoController.pagination.itemsCount}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tSolicitudRequerimientoController.previous}" value="#{requestBundle.Previous} #{tSolicitudRequerimientoController.pagination.pageSize}" rendered="#{tSolicitudRequerimientoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tSolicitudRequerimientoController.next}" value="#{requestBundle.Next} #{tSolicitudRequerimientoController.pagination.pageSize}" rendered="#{tSolicitudRequerimientoController.pagination.hasNextPage}" />&nbsp;
