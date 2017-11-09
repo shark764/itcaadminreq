@@ -21,7 +21,7 @@
 
                         <p>Registros ingresados al sistema</p>
 
-                        <h:form styleClass="">
+                        <h:form styleClass="" id="jsf_list_ajaxForm_dataTable">
                             <h:panelGroup id="messagePanel" layout="block">
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
@@ -30,11 +30,14 @@
                                 <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlEstadoEquipoController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{ctlEstadoEquipoController.paginationSizes}"/>
+                                    <f:ajax listener="#{ctlEstadoEquipoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                 </h:selectOneMenu>
                                 <h:outputText value=" registros" />
                                 <h:outputText value="#{ctlEstadoEquipoController.pagination.pageFirstItem + 1}..#{ctlEstadoEquipoController.pagination.pageLastItem + 1}/#{ctlEstadoEquipoController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEstadoEquipoController.goToFirstPage}" value="#{cataloguesBundle.FirstPage}" rendered="#{ctlEstadoEquipoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEstadoEquipoController.previous}" value="#{cataloguesBundle.Previous} #{ctlEstadoEquipoController.pagination.pageSize}" rendered="#{ctlEstadoEquipoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEstadoEquipoController.next}" value="#{cataloguesBundle.Next} #{ctlEstadoEquipoController.pagination.pageSize}" rendered="#{ctlEstadoEquipoController.pagination.hasNextPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlEstadoEquipoController.goToLastPage}" value="#{cataloguesBundle.LastPage}" rendered="#{ctlEstadoEquipoController.pagination.hasNextPage}" />&nbsp;
 
                                 <div class="table-responsive">
                                     <h:dataTable value="#{ctlEstadoEquipoController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">

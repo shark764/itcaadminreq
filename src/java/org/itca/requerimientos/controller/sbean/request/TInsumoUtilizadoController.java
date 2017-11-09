@@ -17,6 +17,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
@@ -332,6 +333,17 @@ public class TInsumoUtilizadoController implements Serializable {
     private void recreatePagination() {
         pagination = null;
     }
+    
+    public String recreatePageSize(AjaxBehaviorEvent e) {
+        return goToFirstPage();
+    }
+
+    public String goToFirstPage() {
+        // getPagination().goToFirstPage();
+        recreatePagination();
+        recreateModel();
+        return "List";
+    }
 
     public String next() {
         getPagination().nextPage();
@@ -341,6 +353,12 @@ public class TInsumoUtilizadoController implements Serializable {
 
     public String previous() {
         getPagination().previousPage();
+        recreateModel();
+        return "List";
+    }
+
+    public String goToLastPage() {
+        getPagination().goToLastPage();
         recreateModel();
         return "List";
     }

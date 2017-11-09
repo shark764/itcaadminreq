@@ -11,7 +11,7 @@
         </ui:define>
         <ui:define name="body">
 
-            <h:panelGroup rendered="#{ctlinventarioDefectuosoController.items.rowCount > 0}">
+            <h:panelGroup rendered="#{ctlInventarioDefectuosoController.items.rowCount > 0}">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Filtros <small>seleccione una de las opciones de filtrado</small></h2>
@@ -27,44 +27,44 @@
                         <h:form styleClass="form-inline">
                             <div class="form-group">
                                 <h:outputLabel value="Filtro" />
-                                <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlinventarioDefectuosoController.dataFilterType}" required="true">
-                                    <f:selectItems value="#{ctlinventarioDefectuosoController.dataFilterTypeValue}"/>
+                                <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlInventarioDefectuosoController.dataFilterType}" required="true">
+                                    <f:selectItems value="#{ctlInventarioDefectuosoController.dataFilterTypeValue}"/>
                                 </h:selectOneMenu>
                             </div>
-                            <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlinventarioDefectuosoController.applyDataFilterType}" />
+                            <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlInventarioDefectuosoController.applyDataFilterType}" />
                             <h:messages />
                         </h:form>
 
-                        <h:panelGroup rendered="#{ctlinventarioDefectuosoController.dataFilterType != 'NONE' and ctlinventarioDefectuosoController.dataFilterType == 'findByEquipmentModel'}">
+                        <h:panelGroup rendered="#{ctlInventarioDefectuosoController.dataFilterType != 'NONE' and ctlInventarioDefectuosoController.dataFilterType == 'findByEquipmentModel'}">
                             <h4>Filtrar por modelo </h4>
                             <h:form styleClass="form-inline">
                                 <div class="form-group">
                                     <h:outputLabel value="Modelo" />
-                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlinventarioDefectuosoController.equipmentModel}" required="true">
+                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlInventarioDefectuosoController.equipmentModel}" required="true">
                                         <f:selectItems value="#{ctlModeloEquipoController.itemsAvailableSelectOne}"/>
                                     </h:selectOneMenu>
                                 </div>
-                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlinventarioDefectuosoController.filterByEquipmentModel}" />
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlInventarioDefectuosoController.filterByEquipmentModel}" />
                                 <h:messages />
                             </h:form>
                         </h:panelGroup>
 
-                        <h:panelGroup rendered="#{ctlinventarioDefectuosoController.dataFilterType != 'NONE' and ctlinventarioDefectuosoController.dataFilterType == 'entryRange'}">
+                        <h:panelGroup rendered="#{ctlInventarioDefectuosoController.dataFilterType != 'NONE' and ctlInventarioDefectuosoController.dataFilterType == 'entryRange'}">
                             <h4>Filtrar por rango de fecha de falla </h4>
                             <h:form styleClass="form-inline">
                                 <div class="form-group">
                                     <h:outputLabel value="Fecha inicio" />
-                                    <h:inputText styleClass="form-control input-sm" value="#{ctlinventarioDefectuosoController.startDate}" required="true">
+                                    <h:inputText styleClass="form-control input-sm" value="#{ctlInventarioDefectuosoController.startDate}" required="true">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                     </h:inputText>
                                 </div>
                                 <div class="form-group">
                                     <h:outputLabel value="Fecha fin" />
-                                    <h:inputText styleClass="form-control input-sm" value="#{ctlinventarioDefectuosoController.endDate}" required="true">
+                                    <h:inputText styleClass="form-control input-sm" value="#{ctlInventarioDefectuosoController.endDate}" required="true">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                     </h:inputText>
                                 </div>
-                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlinventarioDefectuosoController.filterByEntryRange}" />
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlInventarioDefectuosoController.filterByEntryRange}" />
                                 <h:messages />
                             </h:form>
                         </h:panelGroup>
@@ -83,7 +83,7 @@
 
                         <p>Registros ingresados al sistema</p>
 
-                        <h:form styleClass="">
+                        <h:form styleClass="" id="jsf_list_ajaxForm_dataTable">
                             <h:panelGroup id="messagePanel" layout="block">
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
@@ -92,11 +92,14 @@
                                 <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlInventarioDefectuosoController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{ctlInventarioDefectuosoController.paginationSizes}"/>
+                                    <f:ajax listener="#{ctlInventarioDefectuosoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                 </h:selectOneMenu>
                                 <h:outputText value=" registros" />
                                 <h:outputText value="#{ctlInventarioDefectuosoController.pagination.pageFirstItem + 1}..#{ctlInventarioDefectuosoController.pagination.pageLastItem + 1}/#{ctlInventarioDefectuosoController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInventarioDefectuosoController.goToFirstPage}" value="#{inventoryBundle.FirstPage}" rendered="#{ctlInventarioDefectuosoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInventarioDefectuosoController.previous}" value="#{inventoryBundle.Previous} #{ctlInventarioDefectuosoController.pagination.pageSize}" rendered="#{ctlInventarioDefectuosoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInventarioDefectuosoController.next}" value="#{inventoryBundle.Next} #{ctlInventarioDefectuosoController.pagination.pageSize}" rendered="#{ctlInventarioDefectuosoController.pagination.hasNextPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInventarioDefectuosoController.goToLastPage}" value="#{inventoryBundle.LastPage}" rendered="#{ctlInventarioDefectuosoController.pagination.hasNextPage}" />&nbsp;
 
                                 <div class="table-responsive">
                                     <h:dataTable value="#{ctlInventarioDefectuosoController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">

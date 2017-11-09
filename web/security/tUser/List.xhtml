@@ -21,7 +21,7 @@
 
                         <p>Registros ingresados al sistema</p>
 
-                        <h:form styleClass="">
+                        <h:form styleClass="" id="jsf_list_ajaxForm_dataTable">
                             <h:panelGroup id="messagePanel" layout="block">
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
@@ -30,11 +30,14 @@
                                 <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{tUserController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{tUserController.paginationSizes}"/>
+                                    <f:ajax listener="#{tUserController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                 </h:selectOneMenu>
                                 <h:outputText value=" registros" />
                                 <h:outputText value="#{tUserController.pagination.pageFirstItem + 1}..#{tUserController.pagination.pageLastItem + 1}/#{tUserController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tUserController.goToFirstPage}" value="#{securityBundle.FirstPage}" rendered="#{tUserController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tUserController.previous}" value="#{securityBundle.Previous} #{tUserController.pagination.pageSize}" rendered="#{tUserController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tUserController.next}" value="#{securityBundle.Next} #{tUserController.pagination.pageSize}" rendered="#{tUserController.pagination.hasNextPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tUserController.goToLastPage}" value="#{securityBundle.LastPage}" rendered="#{tUserController.pagination.hasNextPage}" />&nbsp;
 
                                 <div class="table-responsive">
                                     <h:dataTable value="#{tUserController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">

@@ -54,5 +54,19 @@ public abstract class PaginationHelper {
     public int getPageSize() {
         return pageSize;
     }
+    
+    public int getCurrentPage() {
+        return this.page;
+    }
+
+    public void goToFirstPage() {
+        this.page = 0;
+    }
+
+    public void goToLastPage() {
+        int count = getItemsCount();
+      
+        this.page = count % pageSize == 0 ? (count / pageSize) - 1 : count / pageSize;
+    }
 
 }

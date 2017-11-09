@@ -21,7 +21,7 @@
 
                         <p>Registros ingresados al sistema</p>
 
-                        <h:form styleClass="">
+                        <h:form styleClass="" id="jsf_list_ajaxForm_dataTable">
                             <h:panelGroup id="messagePanel" layout="block">
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
@@ -30,11 +30,14 @@
                                 <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlTipoMantenimientoController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{ctlTipoMantenimientoController.paginationSizes}"/>
+                                    <f:ajax listener="#{ctlTipoMantenimientoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                 </h:selectOneMenu>
                                 <h:outputText value=" registros" />
                                 <h:outputText value="#{ctlTipoMantenimientoController.pagination.pageFirstItem + 1}..#{ctlTipoMantenimientoController.pagination.pageLastItem + 1}/#{ctlTipoMantenimientoController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlTipoMantenimientoController.goToFirstPage}" value="#{maintenanceBundle.FirstPage}" rendered="#{ctlTipoMantenimientoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlTipoMantenimientoController.previous}" value="#{maintenanceBundle.Previous} #{ctlTipoMantenimientoController.pagination.pageSize}" rendered="#{ctlTipoMantenimientoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlTipoMantenimientoController.next}" value="#{maintenanceBundle.Next} #{ctlTipoMantenimientoController.pagination.pageSize}" rendered="#{ctlTipoMantenimientoController.pagination.hasNextPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlTipoMantenimientoController.goToLastPage}" value="#{maintenanceBundle.LastPage}" rendered="#{ctlTipoMantenimientoController.pagination.hasNextPage}" />&nbsp;
 
                                 <div class="table-responsive">
                                     <h:dataTable value="#{ctlTipoMantenimientoController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">

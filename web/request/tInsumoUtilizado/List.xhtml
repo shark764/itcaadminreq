@@ -21,7 +21,7 @@
 
                         <p>Registros ingresados al sistema</p>
 
-                        <h:form styleClass="">
+                        <h:form styleClass="" id="jsf_list_ajaxForm_dataTable">
                             <h:panelGroup id="messagePanel" layout="block">
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
@@ -30,11 +30,14 @@
                                 <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{tInsumoUtilizadoController.pageSizeDataModel}" required="true">
                                     <f:selectItems value="#{tInsumoUtilizadoController.paginationSizes}"/>
+                                    <f:ajax listener="#{tInsumoUtilizadoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                 </h:selectOneMenu>
                                 <h:outputText value=" registros" />
                                 <h:outputText value="#{tInsumoUtilizadoController.pagination.pageFirstItem + 1}..#{tInsumoUtilizadoController.pagination.pageLastItem + 1}/#{tInsumoUtilizadoController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tInsumoUtilizadoController.goToFirstPage}" value="#{requestBundle.FirstPage}" rendered="#{tInsumoUtilizadoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tInsumoUtilizadoController.previous}" value="#{requestBundle.Previous} #{tInsumoUtilizadoController.pagination.pageSize}" rendered="#{tInsumoUtilizadoController.pagination.hasPreviousPage}"/>&nbsp;
                                 <h:commandLink styleClass="btn btn-sm btn-default" action="#{tInsumoUtilizadoController.next}" value="#{requestBundle.Next} #{tInsumoUtilizadoController.pagination.pageSize}" rendered="#{tInsumoUtilizadoController.pagination.hasNextPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tInsumoUtilizadoController.goToLastPage}" value="#{requestBundle.LastPage}" rendered="#{tInsumoUtilizadoController.pagination.hasNextPage}" />&nbsp;
 
                                 <div class="table-responsive">
                                     <h:dataTable value="#{tInsumoUtilizadoController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
