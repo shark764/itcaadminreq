@@ -55,7 +55,7 @@ import org.itca.requerimientos.model.entities.jasper.RetrasoPrestamoJasper;
     @NamedQuery(name = "TDetallePrestamo.findByDescripcion", query = "SELECT t FROM TDetallePrestamo t WHERE t.descripcion = :descripcion"),
     @NamedQuery(name = "TDetallePrestamo.findByComentario", query = "SELECT t FROM TDetallePrestamo t WHERE t.comentario = :comentario")})
 @NamedNativeQueries({
-    @NamedNativeQuery(name = "TDetallePrestamo.equipmentReturnedOverTimeReport", query = "SELECT t04.codigo as t04codigo, t04.nombre as t04nombre, t01.nombre AS t01nombre, t02.fecha_prestamo as t02fechaprestamo, t02.fecha_entrega as t02fechaentrega, ABS(DATEDIFF(t02.fecha_limite, t02.fecha_entrega)) as t02retraso FROM equipo AS t01 JOIN detalle_prestamo AS t02 ON t01.id = t02.id_equipo JOIN prestamo AS t03 ON t03.id = t02.id_prestamo JOIN area AS t04 ON t04.id = t03.id_area WHERE t02.fecha_entrega IS NOT NULL AND t02.fecha_limite < t02.fecha_entrega ORDER BY 6 DESC, 5 DESC, 2, 3", resultSetMapping = "RetrasoPrestamoJasperValueMapping"),
+    @NamedNativeQuery(name = "TDetallePrestamo.equipmentReturnedOverTimeReport", query = "SELECT t04.codigo as t04codigo, t04.nombre as t04nombre, t01.nombre AS t01nombre, t02.fecha_prestamo as t02fechaprestamo, t02.fecha_entrega as t02fechaentrega, ABS(DATEDIFF(t02.fecha_limite, t02.fecha_entrega)) as t02retraso FROM ctl_equipo AS t01 JOIN t_detalle_prestamo AS t02 ON t01.id = t02.id_equipo JOIN t_prestamo AS t03 ON t03.id = t02.id_prestamo JOIN ctl_area AS t04 ON t04.id = t03.id_area WHERE t02.fecha_entrega IS NOT NULL AND t02.fecha_limite < t02.fecha_entrega ORDER BY 6 DESC, 5 DESC, 2, 3", resultSetMapping = "RetrasoPrestamoJasperValueMapping"),
 })
 @SqlResultSetMappings({
     @SqlResultSetMapping(

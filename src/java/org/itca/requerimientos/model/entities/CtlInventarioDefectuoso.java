@@ -47,7 +47,7 @@ import org.itca.requerimientos.model.entities.jasper.InventarioDefectuosoJasper;
     @NamedQuery(name = "CtlInventarioDefectuoso.findByDescripcion", query = "SELECT c FROM CtlInventarioDefectuoso c WHERE c.descripcion = :descripcion"),
     @NamedQuery(name = "CtlInventarioDefectuoso.findByFechaIngreso", query = "SELECT c FROM CtlInventarioDefectuoso c WHERE c.fechaIngreso = :fechaIngreso")})
 @NamedNativeQueries({
-    @NamedNativeQuery(name = "CtlInventarioDefectuoso.defectiveInventoryReport", query = "SELECT t01.id AS t01id, t01.codigo AS t01codigo, t01.nombre AS t01nombre, t02.id AS t02id, t02.codigo AS t02codigo, t02.nombre AS t02nombre, t02.existencia AS t02existencia, t03.nombre AS t03nombre, t03.inventario AS t03inventario, t03.serie AS t03serie, t04.fecha_ingreso AS t04fecha FROM inventario_defectuoso AS t04 JOIN equipo AS t03 ON t03.id = t04.id_equipo JOIN modelo_equipo AS t02 ON t02.id = t03.id_modelo JOIN marca_equipo AS t01 ON t01.id = t02.id_marca ORDER BY 11 DESC, 3, 6", resultSetMapping = "InventarioDefectuosoJasperValueMapping"),
+    @NamedNativeQuery(name = "CtlInventarioDefectuoso.defectiveInventoryReport", query = "SELECT t01.id AS t01id, t01.codigo AS t01codigo, t01.nombre AS t01nombre, t02.id AS t02id, t02.codigo AS t02codigo, t02.nombre AS t02nombre, t02.existencia AS t02existencia, t03.nombre AS t03nombre, t03.inventario AS t03inventario, t03.serie AS t03serie, t04.fecha_ingreso AS t04fecha FROM ctl_inventario_defectuoso AS t04 JOIN ctl_equipo AS t03 ON t03.id = t04.id_equipo JOIN ctl_modelo_equipo AS t02 ON t02.id = t03.id_modelo JOIN ctl_marca_equipo AS t01 ON t01.id = t02.id_marca ORDER BY 11 DESC, 3, 6", resultSetMapping = "InventarioDefectuosoJasperValueMapping"),
 })
 @SqlResultSetMappings({
     @SqlResultSetMapping(
