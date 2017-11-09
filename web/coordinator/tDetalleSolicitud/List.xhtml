@@ -10,6 +10,176 @@
             <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+
+            <h:panelGroup rendered="#{coordinatorController.items.rowCount > 0}">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Filtros <small>seleccione una de las opciones de filtrado</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+
+                        <h4>Opciones de filtrado </h4>
+                        <p class="font-gray-dark">
+                            Cada opción funciona de manera individual y debe presionar <strong>Aceptar</strong> para aplicar filtro.
+                        </p>
+                        <h:form styleClass="form-inline">
+                            <div class="form-group">
+                                <h:outputLabel value="Filtro" />
+                                <h:selectOneMenu styleClass="form-control" value="#{coordinatorController.dataFilterType}" required="true">
+                                    <f:selectItems value="#{coordinatorController.dataFilterTypeValue}"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.applyDataFilterType}" />
+                            <h:messages />
+                        </h:form>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'limitTime'}">
+                            <h4>A resolver máximo el día de hoy </h4>
+                            <h:form styleClass="form-inline">
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterByLimitTime}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'findByEmployee'}">
+                            <h4>Filtrar por empleado solicitante </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Empleado solicitante" />
+                                    <h:selectOneMenu styleClass="form-control" value="#{coordinatorController.employee}" required="true">
+                                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterByEmployee}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'findByEquipment'}">
+                            <h4>Filtrar por equipo </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Equipo" />
+                                    <h:selectOneMenu styleClass="form-control" value="#{coordinatorController.equipment}" required="true">
+                                        <f:selectItems value="#{equipoController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterByEquipment}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'findByRequestType'}">
+                            <h4>Filtrar por tipo de mantenimiento </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Mantenimiento" />
+                                    <h:selectOneMenu styleClass="form-control" value="#{coordinatorController.requestType}" required="true">
+                                        <f:selectItems value="#{tipoRequerimientoController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterByRequestType}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'findByFaultType'}">
+                            <h4>Filtrar por falla </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Falla" />
+                                    <h:selectOneMenu styleClass="form-control" value="#{coordinatorController.faultType}" required="true">
+                                        <f:selectItems value="#{tipoFallaController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterByFaultType}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'findBySolutionType'}">
+                            <h4>Filtrar por solución brindada </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Solución" />
+                                    <h:selectOneMenu styleClass="form-control" value="#{coordinatorController.solutionType}" required="true">
+                                        <f:selectItems value="#{tipoSolucionController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterBySolutionType}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'solvedOverTime'}">
+                            <h4>Solventados sobre tiempo límite </h4>
+                            <h:form styleClass="form-inline">
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterSolvedOverTime}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'notSolved'}">
+                            <h4>No solventados </h4>
+                            <h:form styleClass="form-inline">
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterNotSolved}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'notSolvedByAssignedTechnician'}">
+                            <h4>No solventados por técnico asignado </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Técnico" />
+                                    <h:selectOneMenu styleClass="form-control" value="#{coordinatorController.employee}" required="true">
+                                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterNotSolvedByAssignedTechnician}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'findByAssignedTechnician'}">
+                            <h4>Filtrar por técnico asignado </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Técnico" />
+                                    <h:selectOneMenu styleClass="form-control" value="#{coordinatorController.employee}" required="true">
+                                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterByAssignedTechnician}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{coordinatorController.dataFilterType != 'NONE' and coordinatorController.dataFilterType == 'entryRange'}">
+                            <h4>Requerimientos por rango de fecha </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Fecha inicio" />
+                                    <h:inputText styleClass="form-control" value="#{coordinatorController.startDate}" required="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="Fecha fin" />
+                                    <h:inputText styleClass="form-control" value="#{coordinatorController.endDate}" required="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{coordinatorController.filterByEntryRange}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </h:panelGroup>
+
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
@@ -142,8 +312,8 @@
                                                 <h:outputText value="&nbsp;" />
                                             </f:facet>
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.prepareView}" value="#{requestBundle.ListTDetalleSolicitudViewLink}" />
-                                            <h:commandLink action="#{tDetalleSolicitudController.prepareEdit}" value="#{requestBundle.ListTDetalleSolicitudEditLink}" />
-                                            <h:commandLink action="#{tDetalleSolicitudController.destroy}" value="#{requestBundle.ListTDetalleSolicitudDestroyLink}" />
+                                            <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.prepareEdit}" value="#{requestBundle.ListTDetalleSolicitudEditLink}" />
+                                            <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.destroy}" value="#{requestBundle.ListTDetalleSolicitudDestroyLink}" />
                                         </h:column>
                                     </h:dataTable>
                                 </div>
