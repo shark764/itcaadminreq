@@ -32,9 +32,9 @@ public class TMantenimientoFacade extends AbstractFacade<TMantenimiento> {
         super(TMantenimiento.class);
     }
 
-    public List<TMantenimiento> findByIdRequestArea(Short id, int[] range)
+    public List<TMantenimiento> findByRequestArea(Short id, int[] range)
     {
-        Query q = em.createNamedQuery("TMantenimiento.findByIdRequestArea")
+        Query q = em.createNamedQuery("TMantenimiento.findByRequestArea")
         		.setParameter("id", id)
         		.setMaxResults(range[1] - range[0])
         		.setFirstResult(range[0]);

@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "t_mantenimiento", catalog = "dbrequerimientos", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TMantenimiento.findByIdRequestArea", query = "SELECT t FROM TMantenimiento t WHERE t.idAreaRequerimiento.id = :id"),
+    @NamedQuery(name = "TMantenimiento.findByRequestArea", query = "SELECT t FROM TMantenimiento t WHERE t.idAreaRequerimiento.id = :id"),
     @NamedQuery(name = "TMantenimiento.limitRange", query = "SELECT t FROM TMantenimiento t WHERE t.fechaLimite >= :start AND t.fechaLimite <= :end"),
     @NamedQuery(name = "TMantenimiento.startRange", query = "SELECT t FROM TMantenimiento t WHERE t.fechaInicio >= :start AND t.fechaInicio <= :end"),
     @NamedQuery(name = "TMantenimiento.findAll", query = "SELECT t FROM TMantenimiento t"),

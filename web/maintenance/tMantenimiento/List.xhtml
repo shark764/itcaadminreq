@@ -10,6 +10,88 @@
             <h:outputText value="#{maintenanceBundle.ListTMantenimientoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+
+            <h:panelGroup rendered="#{tMantenimientoController.items.rowCount >= 0}">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Filtros <small>seleccione una de las opciones de filtrado</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+
+                        <h4>Opciones de filtrado </h4>
+                        <p class="font-gray-dark">
+                            Cada opción funciona de manera individual y debe presionar <strong>Aceptar</strong> para aplicar filtro.
+                        </p>
+                        <h:form styleClass="form-inline">
+                            <div class="form-group">
+                                <h:outputLabel value="Filtro" />
+                                <h:selectOneMenu styleClass="form-control input-sm" value="#{tMantenimientoController.dataFilterType}" required="true">
+                                    <f:selectItems value="#{tMantenimientoController.dataFilterTypeValue}" />
+                                </h:selectOneMenu>
+                            </div>
+                            <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tMantenimientoController.applyDataFilterType}" />
+                            <h:messages />
+                        </h:form>
+
+                        <h:panelGroup rendered="#{tMantenimientoController.dataFilterType != 'NONE' and tMantenimientoController.dataFilterType == 'findByRequestArea'}">
+                            <h4>Filtrar por área de soporte </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Área de soporte" />
+                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{tMantenimientoController.requestArea}" required="true">
+                                        <f:selectItems value="#{ctlModeloEquipoController.itemsAvailableSelectOne}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tMantenimientoController.filterByRequestArea}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{tMantenimientoController.dataFilterType != 'NONE' and tMantenimientoController.dataFilterType == 'startRange'}">
+                            <h4>Filtrar por rango de fecha de inicio </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Fecha inicio" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{tMantenimientoController.startDate}" required="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="Fecha fin" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{tMantenimientoController.endDate}" required="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tMantenimientoController.filterByStartRange}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{tMantenimientoController.dataFilterType != 'NONE' and tMantenimientoController.dataFilterType == 'limitRange'}">
+                            <h4>Filtrar por rango de fecha límite de finalización </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Fecha inicio" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{tMantenimientoController.startDate}" required="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="Fecha fin" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{tMantenimientoController.endDate}" required="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tMantenimientoController.filterByLimitRange}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </h:panelGroup>
+
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
