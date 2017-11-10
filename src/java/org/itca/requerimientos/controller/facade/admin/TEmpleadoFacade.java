@@ -40,5 +40,13 @@ public class TEmpleadoFacade extends AbstractFacade<TEmpleado> {
         List<TEmpleado> list = q.getResultList();
         return list;
     }
+
+    public List<TEmpleado> findByEmployeeTypeCode(String codigo)
+    {
+        Query q = em.createNamedQuery("TEmpleado.findByEmployeeTypeCode")
+                .setParameter("codigo", codigo);
+        List<TEmpleado> list = q.getResultList();
+        return list;
+    }
     
 }

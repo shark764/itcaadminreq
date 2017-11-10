@@ -240,6 +240,10 @@ public class TEmpleadoController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
+    public SelectItem[] getItemsEmployeeByTypeCodeSelectOne(String codigo) {
+        return JsfUtil.getSelectItems(ejbFacade.findByEmployeeTypeCode(codigo), true);
+    }
+
     @FacesConverter(forClass = TEmpleado.class)
     public static class TEmpleadoControllerConverter implements Converter {
 

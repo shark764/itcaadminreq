@@ -51,19 +51,19 @@
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Código</f:facet>
-                                                <h:inputText value="#{mq.codigo}" />
+                                                <h:inputText styleClass="form-control input-sm" value="#{mq.codigo}" />
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Nombre</f:facet>
-                                                <h:inputText value="#{mq.nombre}" />
+                                                <h:inputText styleClass="form-control input-sm" value="#{mq.nombre}" />
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Existencia</f:facet>
-                                                <h:inputText value="#{mq.existencia}" />
+                                                <h:inputText styleClass="form-control input-sm" value="#{mq.existencia}" />
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header"><h:outputText value="&nbsp;"/></f:facet>
-                                                <h:commandButton styleClass="btn btn-sm btn-default" value="#{not empty mq.codigo ? 'Actualizar' : 'Agregar'}" action="#{ctlMarcaEquipoController.updateEquipmentModel(mq)}" />
+                                                <h:commandButton styleClass="btn btn-sm btn-default" value="#{not empty mq.codigo ? 'Actualizar' : 'Finalizar'}" action="#{ctlMarcaEquipoController.updateEquipmentModel(mq)}" />
                                                 <h:outputText value=" "/>
                                                 <h:commandButton styleClass="btn btn-sm btn-default" value="Borrar" action="#{ctlMarcaEquipoController.removeEquipmentModel(mq)}" />
                                             </h:column>

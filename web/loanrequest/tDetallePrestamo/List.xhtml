@@ -10,6 +10,120 @@
             <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+
+            <h:panelGroup rendered="#{tDetallePrestamoController.items.rowCount > 0}">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Filtros <small>seleccione una de las opciones de filtrado</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+
+                        <h4>Opciones de filtrado </h4>
+                        <p class="font-gray-dark">
+                            Cada opción funciona de manera individual y debe presionar <strong>Aceptar</strong> para aplicar filtro.
+                        </p>
+                        <h:form styleClass="form-inline">
+                            <div class="form-group">
+                                <h:outputLabel value="Filtro" />
+                                <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetallePrestamoController.dataFilterType}" required="true">
+                                    <f:selectItems value="#{tDetallePrestamoController.dataFilterTypeValue}"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetallePrestamoController.applyDataFilterType}" />
+                            <h:messages />
+                        </h:form>
+
+                        <h:panelGroup rendered="#{tDetallePrestamoController.dataFilterType != 'NONE' and tDetallePrestamoController.dataFilterType == 'limitTime'}">
+                            <h4>A entregar hoy </h4>
+                            <h:form styleClass="form-inline">
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetallePrestamoController.filterByLimitTime}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{tDetallePrestamoController.dataFilterType != 'NONE' and tDetallePrestamoController.dataFilterType == 'findByEmployee'}">
+                            <h4>Filtrar por empleado </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Empleado" />
+                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetallePrestamoController.employee}" required="true">
+                                        <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetallePrestamoController.filterByEmployee}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{tDetallePrestamoController.dataFilterType != 'NONE' and tDetallePrestamoController.dataFilterType == 'findByEquipment'}">
+                            <h4>Filtrar por equipo </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Equipo" />
+                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetallePrestamoController.equipment}" required="true">
+                                        <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetallePrestamoController.filterByEquipment}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{tDetallePrestamoController.dataFilterType != 'NONE' and tDetallePrestamoController.dataFilterType == 'returnedOverTime'}">
+                            <h4>Retornados sobre límite de tiempo </h4>
+                            <h:form styleClass="form-inline">
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetallePrestamoController.filterReturnedOverTime}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{tDetallePrestamoController.dataFilterType != 'NONE' and tDetallePrestamoController.dataFilterType == 'notReturned'}">
+                            <h4>No retornados </h4>
+                            <h:form styleClass="form-inline">
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetallePrestamoController.filterNotReturned}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{tDetallePrestamoController.dataFilterType != 'NONE' and tDetallePrestamoController.dataFilterType == 'notReturnedByEmployee'}">
+                            <h4>No retornados por empleado </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Empleado" />
+                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetallePrestamoController.employee}" required="true">
+                                        <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetallePrestamoController.filterNotReturnedByEmployee}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{tDetallePrestamoController.dataFilterType != 'NONE' and tDetallePrestamoController.dataFilterType == 'entryRange'}">
+                            <h4>Préstamos por rango de fecha </h4>
+                            <h:form styleClass="form-inline">
+                                <div class="form-group">
+                                    <h:outputLabel value="Fecha inicio" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{tDetallePrestamoController.startDate}" required="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="Fecha fin" />
+                                    <h:inputText styleClass="form-control input-sm" value="#{tDetallePrestamoController.endDate}" required="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                </div>
+                                <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetallePrestamoController.filterByEntryRange}" />
+                                <h:messages />
+                            </h:form>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </h:panelGroup>
+
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
