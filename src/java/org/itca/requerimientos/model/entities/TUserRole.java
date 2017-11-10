@@ -54,6 +54,11 @@ public class TUserRole implements Serializable {
         this.tUserRolePK = new TUserRolePK(username, role);
     }
 
+    public TUserRole(String username, String role, Short state) {
+        this.tUserRolePK = new TUserRolePK(username, role);
+        this.state = state;
+    }
+
     public TUserRolePK getTUserRolePK() {
         return tUserRolePK;
     }
@@ -108,7 +113,8 @@ public class TUserRole implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.TUserRole[ tUserRolePK=" + tUserRolePK + " ]";
+        return "[" + this.tUserRolePK.getRole() + "] " + this.tUser;
+        // return "org.itca.requerimientos.model.entities.TUserRole[ tUserRolePK=" + tUserRolePK + " ]";
     }
     
 }

@@ -27,23 +27,28 @@
                             <h:form styleClass="form-horizontal form-label-left">
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateTEmpleadoLabel_nombre}" for="nombre" />
-                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="nombre" value="#{tEmpleadoController.selected.nombre}" title="#{adminBundle.CreateTEmpleadoTitle_nombre}" required="true" requiredMessage="#{adminBundle.CreateTEmpleadoRequiredMessage_nombre}" />
+                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="nombre" value="#{tEmpleadoController.selected.nombre}" title="#{adminBundle.CreateTEmpleadoTitle_nombre}" required="true" requiredMessage="#{adminBundle.CreateTEmpleadoRequiredMessage_nombre}">
+                                            <f:ajax listener="#{tEmpleadoController.generateEmailAddress}" render="EMail username" />
+                                        </h:inputText>
                                         <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
-                                </div>
-                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                <!--</div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">-->
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateTEmpleadoLabel_apellido}" for="apellido" />
-                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="apellido" value="#{tEmpleadoController.selected.apellido}" title="#{adminBundle.CreateTEmpleadoTitle_apellido}" required="true" requiredMessage="#{adminBundle.CreateTEmpleadoRequiredMessage_apellido}" />
+                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="apellido" value="#{tEmpleadoController.selected.apellido}" title="#{adminBundle.CreateTEmpleadoTitle_apellido}" required="true" requiredMessage="#{adminBundle.CreateTEmpleadoRequiredMessage_apellido}">
+                                            <f:ajax listener="#{tEmpleadoController.generateEmailAddress}" render="EMail username" />
+                                        </h:inputText>
                                         <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateTEmpleadoLabel_genero}" for="genero" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="genero" value="#{tEmpleadoController.selected.genero}" title="#{adminBundle.CreateTEmpleadoTitle_genero}" required="true" requiredMessage="#{adminBundle.CreateTEmpleadoRequiredMessage_genero}" />
-                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                        <h:selectOneRadio styleClass="form-control has-feedback-left input-sm" id="genero" value="#{tEmpleadoController.selected.genero}" title="#{adminBundle.CreateTEmpleadoTitle_genero}" required="true" requiredMessage="#{adminBundle.CreateTEmpleadoRequiredMessage_genero}">
+                                            <f:selectItems value="#{tEmpleadoController.employeeSex}" />
+                                        </h:selectOneRadio>
                                     </div>
                                 </div>
                                 <div class="form-group has-feedback form-group-collapsed-fields">
@@ -63,7 +68,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateTEmpleadoLabel_direccion}" for="direccion" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="direccion" value="#{tEmpleadoController.selected.direccion}" title="#{adminBundle.CreateTEmpleadoTitle_direccion}" />
+                                        <h:inputTextarea styleClass="form-control has-feedback-left input-sm" id="direccion" value="#{tEmpleadoController.selected.direccion}" title="#{adminBundle.CreateTEmpleadoTitle_direccion}" rows="2" />
                                         <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
@@ -131,6 +136,34 @@
 
                                 <div class="ln_solid"></div>
 
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{securityBundle.CreateTUserLabel_username}" for="username" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="username" value="#{tEmpleadoController.username}" title="#{securityBundle.CreateTUserTitle_username}" required="true" requiredMessage="#{securityBundle.CreateTUserRequiredMessage_username}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{securityBundle.CreateTUserLabel_password}" for="password" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:inputSecret styleClass="form-control has-feedback-left input-sm" id="password" value="#{tEmpleadoController.password}" title="#{securityBundle.CreateTUserTitle_password}" required="true" requiredMessage="#{securityBundle.CreateTUserRequiredMessage_password}" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="Roles" for="userRoles" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectManyCheckbox styleClass="form-control input-sm" id="userRoles" value="#{tEmpleadoController.userRoles}" required="true">
+                                            <f:selectItems value="#{tRoleController.itemsAvailableSelectMany}"/>
+                                        </h:selectManyCheckbox>
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+
                                 <div class="form-group">
                                     <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                         <h:commandLink styleClass="btn btn-sm btn-primary" action="#{tEmpleadoController.create}" value="#{adminBundle.CreateTEmpleadoSaveLink}" />
@@ -139,6 +172,10 @@
                                     </div>
                                 </div>
                             </h:form>
+
+                            <script type="text/javascript">
+                            </script>
+
                         </ui:define>
                     </div>  <!-- x_content -->
                 </div>  <!-- x_panel -->

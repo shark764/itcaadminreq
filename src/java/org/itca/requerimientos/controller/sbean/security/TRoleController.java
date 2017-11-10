@@ -250,6 +250,7 @@ public class TRoleController implements Serializable {
             }
             TRoleController controller = (TRoleController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "tRoleController");
+            System.out.println("TRoleControllerConverter getAsObject: " + value);
             return controller.ejbFacade.find(getKey(value));
         }
 
@@ -270,6 +271,7 @@ public class TRoleController implements Serializable {
             if (object == null) {
                 return null;
             }
+            System.out.println("TRoleControllerConverter getAsString: " + object);
             if (object instanceof TRole) {
                 TRole o = (TRole) object;
                 return getStringKey(o.getRole());

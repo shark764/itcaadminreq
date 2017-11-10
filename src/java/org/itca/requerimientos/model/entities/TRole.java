@@ -100,7 +100,8 @@ public class TRole implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itca.requerimientos.model.entities.TRole[ role=" + role + " ]";
+        return this.role;
+        // return "org.itca.requerimientos.model.entities.TRole[ role=" + role + " ]";
     }
     
 }
