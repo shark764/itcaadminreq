@@ -20,11 +20,13 @@ public class GeneralUtils {
                 .replace("Í", "I")
                 .replace("Ó", "O")
                 .replace("Ú", "U")
+                .replace("Ñ", "N")
                 .replace("á", "a")
                 .replace("é", "e")
                 .replace("í", "i")
                 .replace("ó", "o")
-                .replace("ú", "u");
+                .replace("ú", "u")
+                .replace("ñ", "n");
     }
     
 }
