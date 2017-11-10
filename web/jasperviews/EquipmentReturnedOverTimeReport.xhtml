@@ -26,7 +26,7 @@
                         <h:form>
                             <ul>
                                 <c:forEach items="#{jasperBean.jasperReportOptions}" var="jrOption">
-                                    <li><h:link styleClass="btn btn-sm btn-default" outcome="#{jrOption.key}" value="#{jrOption.value}"/></li>
+                                    <li><h:link styleClass="btn btn-sm btn-default" outcome="#{jrOption.key}" value="#{jrOption.value}" /></li>
                                 </c:forEach>
                             </ul>
                         </h:form>

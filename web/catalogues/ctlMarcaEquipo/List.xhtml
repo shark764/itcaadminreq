@@ -25,19 +25,14 @@
                             <h:panelGroup id="messagePanel" layout="block">
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
-                            <h:outputText escape="false" value="#{cataloguesBundle.ListCtlMarcaEquipoEmpty}" rendered="#{ctlMarcaEquipoController.items.rowCount == 0}"/>
+                            <h:outputText escape="false" value="#{cataloguesBundle.ListCtlMarcaEquipoEmpty}" rendered="#{ctlMarcaEquipoController.items.rowCount == 0}" />
                             <h:panelGroup rendered="#{ctlMarcaEquipoController.items.rowCount > 0}">
                                 <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlMarcaEquipoController.pageSizeDataModel}" required="true">
-                                    <f:selectItems value="#{ctlMarcaEquipoController.paginationSizes}"/>
+                                    <f:selectItems value="#{ctlMarcaEquipoController.paginationSizes}" />
                                     <f:ajax listener="#{ctlMarcaEquipoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                 </h:selectOneMenu>
                                 <h:outputText value=" registros" />
-                                <h:outputText value="#{ctlMarcaEquipoController.pagination.pageFirstItem + 1}..#{ctlMarcaEquipoController.pagination.pageLastItem + 1}/#{ctlMarcaEquipoController.pagination.itemsCount}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlMarcaEquipoController.goToFirstPage}" value="#{cataloguesBundle.FirstPage}" rendered="#{ctlMarcaEquipoController.pagination.hasPreviousPage}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlMarcaEquipoController.previous}" value="#{cataloguesBundle.Previous} #{ctlMarcaEquipoController.pagination.pageSize}" rendered="#{ctlMarcaEquipoController.pagination.hasPreviousPage}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlMarcaEquipoController.next}" value="#{cataloguesBundle.Next} #{ctlMarcaEquipoController.pagination.pageSize}" rendered="#{ctlMarcaEquipoController.pagination.hasNextPage}" />&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlMarcaEquipoController.goToLastPage}" value="#{cataloguesBundle.LastPage}" rendered="#{ctlMarcaEquipoController.pagination.hasNextPage}" />&nbsp;
 
                                 <div class="table-responsive">
                                     <h:dataTable value="#{ctlMarcaEquipoController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
@@ -69,6 +64,12 @@
                                         </h:column>
                                     </h:dataTable>
                                 </div>
+                                <h:outputText value="Mostrando registros de #{ctlMarcaEquipoController.pagination.pageFirstItem + 1} a #{ctlMarcaEquipoController.pagination.pageLastItem + 1} de #{ctlMarcaEquipoController.pagination.itemsCount} registros en total" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlMarcaEquipoController.goToFirstPage}" value="#{cataloguesBundle.FirstPage}" rendered="#{ctlMarcaEquipoController.pagination.hasPreviousPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlMarcaEquipoController.previous}" value="#{cataloguesBundle.Previous} #{ctlMarcaEquipoController.pagination.pageSize}" rendered="#{ctlMarcaEquipoController.pagination.hasPreviousPage}" />&nbsp;
+                                <span class="text-primary">#{ctlMarcaEquipoController.pagination.currentPage + 1}</span>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlMarcaEquipoController.next}" value="#{cataloguesBundle.Next} #{ctlMarcaEquipoController.pagination.pageSize}" rendered="#{ctlMarcaEquipoController.pagination.hasNextPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlMarcaEquipoController.goToLastPage}" value="#{cataloguesBundle.LastPage}" rendered="#{ctlMarcaEquipoController.pagination.hasNextPage}" />&nbsp;
                             </h:panelGroup>
 
                             <div class="ln_solid"></div>

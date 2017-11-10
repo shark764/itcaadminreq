@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <h:outputLabel value="Filtro" />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlInsumoController.dataFilterType}" required="true">
-                                    <f:selectItems value="#{ctlInsumoController.dataFilterTypeValue}"/>
+                                    <f:selectItems value="#{ctlInsumoController.dataFilterTypeValue}" />
                                 </h:selectOneMenu>
                             </div>
                             <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{ctlInsumoController.applyDataFilterType}" />
@@ -81,19 +81,14 @@
                             <h:panelGroup id="messagePanel" layout="block">
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
-                            <h:outputText escape="false" value="#{inventoryBundle.ListCtlInsumoEmpty}" rendered="#{ctlInsumoController.items.rowCount == 0}"/>
+                            <h:outputText escape="false" value="#{inventoryBundle.ListCtlInsumoEmpty}" rendered="#{ctlInsumoController.items.rowCount == 0}" />
                             <h:panelGroup rendered="#{ctlInsumoController.items.rowCount > 0}">
                                 <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlInsumoController.pageSizeDataModel}" required="true">
-                                    <f:selectItems value="#{ctlInsumoController.paginationSizes}"/>
+                                    <f:selectItems value="#{ctlInsumoController.paginationSizes}" />
                                     <f:ajax listener="#{ctlInsumoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                 </h:selectOneMenu>
                                 <h:outputText value=" registros" />
-                                <h:outputText value="#{ctlInsumoController.pagination.pageFirstItem + 1}..#{ctlInsumoController.pagination.pageLastItem + 1}/#{ctlInsumoController.pagination.itemsCount}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInsumoController.goToFirstPage}" value="#{inventoryBundle.FirstPage}" rendered="#{ctlInsumoController.pagination.hasPreviousPage}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInsumoController.previous}" value="#{inventoryBundle.Previous} #{ctlInsumoController.pagination.pageSize}" rendered="#{ctlInsumoController.pagination.hasPreviousPage}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInsumoController.next}" value="#{inventoryBundle.Next} #{ctlInsumoController.pagination.pageSize}" rendered="#{ctlInsumoController.pagination.hasNextPage}" />&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInsumoController.goToLastPage}" value="#{inventoryBundle.LastPage}" rendered="#{ctlInsumoController.pagination.hasNextPage}" />&nbsp;
 
                                 <div class="table-responsive">
                                     <h:dataTable value="#{ctlInsumoController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
@@ -131,6 +126,12 @@
                                         </h:column>
                                     </h:dataTable>
                                 </div>
+                                <h:outputText value="Mostrando registros de #{ctlInsumoController.pagination.pageFirstItem + 1} a #{ctlInsumoController.pagination.pageLastItem + 1} de #{ctlInsumoController.pagination.itemsCount} registros en total" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInsumoController.goToFirstPage}" value="#{inventoryBundle.FirstPage}" rendered="#{ctlInsumoController.pagination.hasPreviousPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInsumoController.previous}" value="#{inventoryBundle.Previous} #{ctlInsumoController.pagination.pageSize}" rendered="#{ctlInsumoController.pagination.hasPreviousPage}" />&nbsp;
+                                <span class="text-primary">#{ctlInsumoController.pagination.currentPage + 1}</span>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInsumoController.next}" value="#{inventoryBundle.Next} #{ctlInsumoController.pagination.pageSize}" rendered="#{ctlInsumoController.pagination.hasNextPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlInsumoController.goToLastPage}" value="#{inventoryBundle.LastPage}" rendered="#{ctlInsumoController.pagination.hasNextPage}" />&nbsp;
                             </h:panelGroup>
 
                             <div class="ln_solid"></div>

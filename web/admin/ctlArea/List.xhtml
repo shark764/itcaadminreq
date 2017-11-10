@@ -25,19 +25,14 @@
                             <h:panelGroup id="messagePanel" layout="block">
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
-                            <h:outputText escape="false" value="#{adminBundle.ListCtlAreaEmpty}" rendered="#{ctlAreaController.items.rowCount == 0}"/>
+                            <h:outputText escape="false" value="#{adminBundle.ListCtlAreaEmpty}" rendered="#{ctlAreaController.items.rowCount == 0}" />
                             <h:panelGroup rendered="#{ctlAreaController.items.rowCount > 0}">
                                 <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlAreaController.pageSizeDataModel}" required="true">
-                                    <f:selectItems value="#{ctlAreaController.paginationSizes}"/>
+                                    <f:selectItems value="#{ctlAreaController.paginationSizes}" />
                                     <f:ajax listener="#{ctlAreaController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                 </h:selectOneMenu>
                                 <h:outputText value=" registros" />
-                                <h:outputText value="#{ctlAreaController.pagination.pageFirstItem + 1}..#{ctlAreaController.pagination.pageLastItem + 1}/#{ctlAreaController.pagination.itemsCount}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.goToFirstPage}" value="#{adminBundle.FirstPage}" rendered="#{ctlAreaController.pagination.hasPreviousPage}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.previous}" value="#{adminBundle.Previous} #{ctlAreaController.pagination.pageSize}" rendered="#{ctlAreaController.pagination.hasPreviousPage}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.next}" value="#{adminBundle.Next} #{ctlAreaController.pagination.pageSize}" rendered="#{ctlAreaController.pagination.hasNextPage}" />&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.goToLastPage}" value="#{adminBundle.LastPage}" rendered="#{ctlAreaController.pagination.hasNextPage}" />&nbsp;
 
                                 <div class="table-responsive">
                                     <h:dataTable value="#{ctlAreaController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
@@ -65,10 +60,16 @@
                                             </f:facet>
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.prepareView}" value="#{adminBundle.ListCtlAreaViewLink}" />
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.prepareEdit}" value="#{adminBundle.ListCtlAreaEditLink}" />
-                                            <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.destroy}" value="#{adminBundle.ListCtlAreaDestroyLink}"/>
+                                            <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.destroy}" value="#{adminBundle.ListCtlAreaDestroyLink}" />
                                         </h:column>
                                     </h:dataTable>
                                 </div>
+                                <h:outputText value="Mostrando registros de #{ctlAreaController.pagination.pageFirstItem + 1} a #{ctlAreaController.pagination.pageLastItem + 1} de #{ctlAreaController.pagination.itemsCount} registros en total" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.goToFirstPage}" value="#{adminBundle.FirstPage}" rendered="#{ctlAreaController.pagination.hasPreviousPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.previous}" value="#{adminBundle.Previous} #{ctlAreaController.pagination.pageSize}" rendered="#{ctlAreaController.pagination.hasPreviousPage}" />&nbsp;
+                                <span class="text-primary">#{ctlAreaController.pagination.currentPage + 1}</span>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.next}" value="#{adminBundle.Next} #{ctlAreaController.pagination.pageSize}" rendered="#{ctlAreaController.pagination.hasNextPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlAreaController.goToLastPage}" value="#{adminBundle.LastPage}" rendered="#{ctlAreaController.pagination.hasNextPage}" />&nbsp;
                             </h:panelGroup>
 
                             <div class="ln_solid"></div>

@@ -47,25 +47,25 @@
                                         <h:dataTable value="#{ctlMarcaEquipoController.equipmentModelList}" var="mq" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
                                             <h:column>
                                                 <f:facet name="header">ID</f:facet>
-                                                <h:outputText value="#{mq.id}"/>
+                                                <h:outputText value="#{mq.id}" />
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Código</f:facet>
-                                                <h:inputText value="#{mq.codigo}"/>
+                                                <h:inputText value="#{mq.codigo}" />
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Nombre</f:facet>
-                                                <h:inputText value="#{mq.nombre}"/>
+                                                <h:inputText value="#{mq.nombre}" />
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Existencia</f:facet>
-                                                <h:inputText value="#{mq.existencia}"/>
+                                                <h:inputText value="#{mq.existencia}" />
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header"><h:outputText value="&nbsp;"/></f:facet>
-                                                <h:commandButton styleClass="btn btn-sm btn-default" value="#{not empty mq.codigo ? 'Actualizar' : 'Agregar'}" action="#{ctlMarcaEquipoController.updateEquipmentModel(mq)}"/>
+                                                <h:commandButton styleClass="btn btn-sm btn-default" value="#{not empty mq.codigo ? 'Actualizar' : 'Agregar'}" action="#{ctlMarcaEquipoController.updateEquipmentModel(mq)}" />
                                                 <h:outputText value=" "/>
-                                                <h:commandButton styleClass="btn btn-sm btn-default" value="Borrar" action="#{ctlMarcaEquipoController.removeEquipmentModel(mq)}"/>
+                                                <h:commandButton styleClass="btn btn-sm btn-default" value="Borrar" action="#{ctlMarcaEquipoController.removeEquipmentModel(mq)}" />
                                             </h:column>
                                         </h:dataTable>
                                     </div>

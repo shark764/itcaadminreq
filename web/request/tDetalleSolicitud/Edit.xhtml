@@ -127,33 +127,33 @@
                                         <h:dataTable value="#{tDetalleSolicitudController.resourcesUsedList}" var="iu" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
                                             <h:column>
                                                 <f:facet name="header">ID</f:facet>
-                                                <h:outputText value="#{iu.id}"/>
+                                                <h:outputText value="#{iu.id}" />
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Insumo</f:facet>
                                                 <h:selectOneMenu value="#{iu.idInsumo}">
-                                                    <f:selectItems value="#{ctlInsumoController.itemsAvailableSelectOne}"/>
+                                                    <f:selectItems value="#{ctlInsumoController.itemsAvailableSelectOne}" />
                                                 </h:selectOneMenu>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Equipo / Componente</f:facet>
                                                 <h:selectOneMenu value="#{iu.idEquipoIntercambio}">
-                                                    <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
+                                                    <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
                                                 </h:selectOneMenu>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Utilizado</f:facet>
-                                                <h:inputText value="#{iu.utlilizado}"/>
+                                                <h:inputText value="#{iu.utlilizado}" />
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Desperdicio</f:facet>
-                                                <h:inputText value="#{iu.desperdicio}"/>
+                                                <h:inputText value="#{iu.desperdicio}" />
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header"><h:outputText value="&nbsp;"/></f:facet>
-                                                <h:commandButton styleClass="btn btn-sm btn-default" value="#{not empty iu.utlilizado ? 'Actualizar' : 'Agregar'}" action="#{tDetalleSolicitudController.updateResourcesUsed(iu)}"/>
+                                                <h:commandButton styleClass="btn btn-sm btn-default" value="#{not empty iu.utlilizado ? 'Actualizar' : 'Agregar'}" action="#{tDetalleSolicitudController.updateResourcesUsed(iu)}" />
                                                 <h:outputText value=" "/>
-                                                <h:commandButton styleClass="btn btn-sm btn-default" value="Borrar" action="#{tDetalleSolicitudController.removeResourcesUsed(iu)}"/>
+                                                <h:commandButton styleClass="btn btn-sm btn-default" value="Borrar" action="#{tDetalleSolicitudController.removeResourcesUsed(iu)}" />
                                             </h:column>
                                         </h:dataTable>
                                     </div>

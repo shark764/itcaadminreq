@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <h:outputLabel value="Filtro" />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.dataFilterType}" required="true">
-                                    <f:selectItems value="#{tDetalleSolicitudController.dataFilterTypeValue}"/>
+                                    <f:selectItems value="#{tDetalleSolicitudController.dataFilterTypeValue}" />
                                 </h:selectOneMenu>
                             </div>
                             <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetalleSolicitudController.applyDataFilterType}" />
@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <h:outputLabel value="Empleado solicitante" />
                                     <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.employee}" required="true">
-                                        <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetalleSolicitudController.filterByEmployee}" />
@@ -63,7 +63,7 @@
                                 <div class="form-group">
                                     <h:outputLabel value="Equipo" />
                                     <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.equipment}" required="true">
-                                        <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetalleSolicitudController.filterByEquipment}" />
@@ -77,7 +77,7 @@
                                 <div class="form-group">
                                     <h:outputLabel value="Área de soporte" />
                                     <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.requestArea}" required="true">
-                                        <f:selectItems value="#{ctlAreaRequerimientoController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{ctlAreaRequerimientoController.itemsAvailableSelectOne}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetalleSolicitudController.filterByRequestArea}" />
@@ -91,7 +91,7 @@
                                 <div class="form-group">
                                     <h:outputLabel value="Mantenimiento" />
                                     <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.requestType}" required="true">
-                                        <f:selectItems value="#{ctlTipoRequerimientoController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{ctlTipoRequerimientoController.itemsAvailableSelectOne}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetalleSolicitudController.filterByRequestType}" />
@@ -105,7 +105,7 @@
                                 <div class="form-group">
                                     <h:outputLabel value="Falla" />
                                     <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.faultType}" required="true">
-                                        <f:selectItems value="#{ctlTipoFallaController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{ctlTipoFallaController.itemsAvailableSelectOne}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetalleSolicitudController.filterByFaultType}" />
@@ -119,7 +119,7 @@
                                 <div class="form-group">
                                     <h:outputLabel value="Solución" />
                                     <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.solutionType}" required="true">
-                                        <f:selectItems value="#{ctlTipoSolucionController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{ctlTipoSolucionController.itemsAvailableSelectOne}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetalleSolicitudController.filterBySolutionType}" />
@@ -149,7 +149,7 @@
                                 <div class="form-group">
                                     <h:outputLabel value="Técnico" />
                                     <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.employee}" required="true">
-                                        <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetalleSolicitudController.filterNotSolvedByAssignedTechnician}" />
@@ -163,7 +163,7 @@
                                 <div class="form-group">
                                     <h:outputLabel value="Técnico" />
                                     <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.employee}" required="true">
-                                        <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <h:commandButton styleClass="btn btn-sm btn-default" value="Aceptar" action="#{tDetalleSolicitudController.filterByAssignedTechnician}" />
@@ -209,19 +209,14 @@
                             <h:panelGroup id="messagePanel" layout="block">
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
-                            <h:outputText escape="false" value="#{requestBundle.ListTDetalleSolicitudEmpty}" rendered="#{tDetalleSolicitudController.items.rowCount == 0}"/>
+                            <h:outputText escape="false" value="#{requestBundle.ListTDetalleSolicitudEmpty}" rendered="#{tDetalleSolicitudController.items.rowCount == 0}" />
                             <h:panelGroup rendered="#{tDetalleSolicitudController.items.rowCount > 0}">
                                 <h:outputText value="Mostrar " />
                                 <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetalleSolicitudController.pageSizeDataModel}" required="true">
-                                    <f:selectItems value="#{tDetalleSolicitudController.paginationSizes}"/>
+                                    <f:selectItems value="#{tDetalleSolicitudController.paginationSizes}" />
                                     <f:ajax listener="#{tDetalleSolicitudController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                 </h:selectOneMenu>
                                 <h:outputText value=" registros" />
-                                <h:outputText value="#{tDetalleSolicitudController.pagination.pageFirstItem + 1}..#{tDetalleSolicitudController.pagination.pageLastItem + 1}/#{tDetalleSolicitudController.pagination.itemsCount}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.goToFirstPage}" value="#{requestBundle.FirstPage}" rendered="#{tDetalleSolicitudController.pagination.hasPreviousPage}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.previous}" value="#{requestBundle.Previous} #{tDetalleSolicitudController.pagination.pageSize}" rendered="#{tDetalleSolicitudController.pagination.hasPreviousPage}"/>&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.next}" value="#{requestBundle.Next} #{tDetalleSolicitudController.pagination.pageSize}" rendered="#{tDetalleSolicitudController.pagination.hasNextPage}" />&nbsp;
-                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.goToLastPage}" value="#{requestBundle.LastPage}" rendered="#{tDetalleSolicitudController.pagination.hasNextPage}" />&nbsp;
 
                                 <div class="table-responsive">
                                     <h:dataTable value="#{tDetalleSolicitudController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
@@ -290,7 +285,7 @@
                                             </f:facet>
                                             <h:outputText value="#{item.idAreaRequerimiento}" />
                                             <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idAreaRequerimiento}">
-                                                <f:selectItems value="#{ctlAreaRequerimientoController.itemsAvailableSelectOne}"/>
+                                                <f:selectItems value="#{ctlAreaRequerimientoController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
@@ -299,7 +294,7 @@
                                             </f:facet>
                                             <h:outputText value="#{item.idEquipo}" />
                                             <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idEquipo}">
-                                                <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
+                                                <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
@@ -308,7 +303,7 @@
                                             </f:facet>
                                             <h:outputText value="#{item.idEstadoSolicitud}" />
                                             <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idEstadoSolicitud}">
-                                                <f:selectItems value="#{ctlEstadoSolicitudController.itemsAvailableSelectOne}"/>
+                                                <f:selectItems value="#{ctlEstadoSolicitudController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
@@ -317,7 +312,7 @@
                                             </f:facet>
                                             <h:outputText value="#{item.idSolicitudRequerimiento}" />
                                             <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idSolicitudRequerimiento}">
-                                                <f:selectItems value="#{tSolicitudRequerimientoController.itemsAvailableSelectOne}"/>
+                                                <f:selectItems value="#{tSolicitudRequerimientoController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
@@ -326,7 +321,7 @@
                                             </f:facet>
                                             <h:outputText value="#{item.idTecnicoAsignado}" />
                                             <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTecnicoAsignado}">
-                                                <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}"/>
+                                                <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
@@ -335,7 +330,7 @@
                                             </f:facet>
                                             <h:outputText value="#{item.idTipoFalla}" />
                                             <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTipoFalla}">
-                                                <f:selectItems value="#{ctlTipoFallaController.itemsAvailableSelectOne}"/>
+                                                <f:selectItems value="#{ctlTipoFallaController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
@@ -344,7 +339,7 @@
                                             </f:facet>
                                             <h:outputText value="#{item.idTipoRequerimiento}" />
                                             <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTipoRequerimiento}">
-                                                <f:selectItems value="#{ctlTipoRequerimientoController.itemsAvailableSelectOne}"/>
+                                                <f:selectItems value="#{ctlTipoRequerimientoController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
@@ -353,7 +348,7 @@
                                             </f:facet>
                                             <h:outputText value="#{item.idTipoSolucion}" />
                                             <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTipoSolucion}">
-                                                <f:selectItems value="#{ctlTipoSolucionController.itemsAvailableSelectOne}"/>
+                                                <f:selectItems value="#{ctlTipoSolucionController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
@@ -363,10 +358,16 @@
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.prepareView}" value="#{requestBundle.ListTDetalleSolicitudViewLink}" />
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.prepareEdit}" value="#{requestBundle.ListTDetalleSolicitudEditLink}" />
                                             <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.destroy}" value="#{requestBundle.ListTDetalleSolicitudDestroyLink}" />
-                                            <h:commandButton styleClass="btn btn-sm btn-default" value="Actualizar" action="#{tDetalleSolicitudController.updateSelectedRow(item)}"/>
+                                            <h:commandButton styleClass="btn btn-sm btn-default" value="Actualizar" action="#{tDetalleSolicitudController.updateSelectedRow(item)}" />
                                         </h:column>
                                     </h:dataTable>
                                 </div>
+                                <h:outputText value="Mostrando registros de #{tDetalleSolicitudController.pagination.pageFirstItem + 1} a #{tDetalleSolicitudController.pagination.pageLastItem + 1} de #{tDetalleSolicitudController.pagination.itemsCount} registros en total" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.goToFirstPage}" value="#{requestBundle.FirstPage}" rendered="#{tDetalleSolicitudController.pagination.hasPreviousPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.previous}" value="#{requestBundle.Previous} #{tDetalleSolicitudController.pagination.pageSize}" rendered="#{tDetalleSolicitudController.pagination.hasPreviousPage}" />&nbsp;
+                                <span class="text-primary">#{tDetalleSolicitudController.pagination.currentPage + 1}</span>&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.next}" value="#{requestBundle.Next} #{tDetalleSolicitudController.pagination.pageSize}" rendered="#{tDetalleSolicitudController.pagination.hasNextPage}" />&nbsp;
+                                <h:commandLink styleClass="btn btn-sm btn-default" action="#{tDetalleSolicitudController.goToLastPage}" value="#{requestBundle.LastPage}" rendered="#{tDetalleSolicitudController.pagination.hasNextPage}" />&nbsp;
                             </h:panelGroup>
 
                             <div class="ln_solid"></div>
