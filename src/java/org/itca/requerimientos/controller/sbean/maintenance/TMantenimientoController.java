@@ -226,7 +226,6 @@ public class TMantenimientoController implements Serializable {
 
     public String update() {
         try {
-            
             FacesContext context = FacesContext.getCurrentInstance();
             current.setIdUserMod(ejbTUserFacade.findByUsername(context.getExternalContext().getUserPrincipal().getName()));
             

@@ -261,7 +261,7 @@ public class TUser implements Serializable {
 
     @Override
     public String toString() {
-        return "[" + this.idEmpleado + "] [" + this.username + "]" + this.firstname + ", " + this.lastname;
+        return "[" + this.idEmpleado + "] [" + this.username + "] " + this.firstname + ", " + this.lastname;
         // return "org.itca.requerimientos.model.entities.TUser[ username=" + username + " ]";
     }
     

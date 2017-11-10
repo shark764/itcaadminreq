@@ -36,16 +36,7 @@
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{maintenanceBundle.CreateTMantenimientoLabel_fechaInicio}" for="fechaInicio" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
                                         <h:inputText styleClass="form-control has-feedback-left input-sm" id="fechaInicio" value="#{tMantenimientoController.selected.fechaInicio}" title="#{maintenanceBundle.CreateTMantenimientoTitle_fechaInicio}" required="true" requiredMessage="#{maintenanceBundle.CreateTMantenimientoRequiredMessage_fechaInicio}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                                        </h:inputText>
-                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group has-feedback form-group-collapsed-fields">
-                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{maintenanceBundle.CreateTMantenimientoLabel_fechaLimite}" for="fechaLimite" />
-                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="fechaLimite" value="#{tMantenimientoController.selected.fechaLimite}" title="#{maintenanceBundle.CreateTMantenimientoTitle_fechaLimite}" required="true" requiredMessage="#{maintenanceBundle.CreateTMantenimientoRequiredMessage_fechaLimite}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:inputText>
                                         <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
@@ -54,15 +45,17 @@
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{maintenanceBundle.CreateTMantenimientoLabel_fechaFin}" for="fechaFin" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
                                         <h:inputText styleClass="form-control has-feedback-left input-sm" id="fechaFin" value="#{tMantenimientoController.selected.fechaFin}" title="#{maintenanceBundle.CreateTMantenimientoTitle_fechaFin}" required="true" requiredMessage="#{maintenanceBundle.CreateTMantenimientoRequiredMessage_fechaFin}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:inputText>
                                         <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
                                 <div class="form-group has-feedback form-group-collapsed-fields">
-                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{maintenanceBundle.CreateTMantenimientoLabel_descripcion}" for="descripcion" />
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{maintenanceBundle.CreateTMantenimientoLabel_fechaLimite}" for="fechaLimite" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="descripcion" value="#{tMantenimientoController.selected.descripcion}" title="#{maintenanceBundle.CreateTMantenimientoTitle_descripcion}" />
+                                        <h:inputText styleClass="form-control has-feedback-left input-sm" id="fechaLimite" value="#{tMantenimientoController.selected.fechaLimite}" title="#{maintenanceBundle.CreateTMantenimientoTitle_fechaLimite}" required="true" requiredMessage="#{maintenanceBundle.CreateTMantenimientoRequiredMessage_fechaLimite}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:inputText>
                                         <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
@@ -71,6 +64,14 @@
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
                                         <h:selectOneMenu styleClass="form-control input-sm" id="idAreaRequerimiento" value="#{tMantenimientoController.selected.idAreaRequerimiento}" title="#{maintenanceBundle.CreateTMantenimientoTitle_idAreaRequerimiento}" required="true" requiredMessage="#{maintenanceBundle.CreateTMantenimientoRequiredMessage_idAreaRequerimiento}">
                                             <f:selectItems value="#{ctlAreaRequerimientoController.itemsAvailableSelectOne}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback form-group-collapsed-fields">
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{maintenanceBundle.CreateTMantenimientoLabel_idTipoMantenimiento}" for="idTipoMantenimiento" />
+                                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                                        <h:selectOneMenu styleClass="form-control input-sm" id="idTipoMantenimiento" value="#{tMantenimientoController.selected.idTipoMantenimiento}" title="#{maintenanceBundle.CreateTMantenimientoTitle_idTipoMantenimiento}" required="true" requiredMessage="#{maintenanceBundle.CreateTMantenimientoRequiredMessage_idTipoMantenimiento}">
+                                            <f:selectItems value="#{ctlTipoMantenimientoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
                                 </div>
@@ -91,11 +92,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group has-feedback form-group-collapsed-fields">
-                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{maintenanceBundle.CreateTMantenimientoLabel_idTipoMantenimiento}" for="idTipoMantenimiento" />
+                                    <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{maintenanceBundle.CreateTMantenimientoLabel_descripcion}" for="descripcion" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idTipoMantenimiento" value="#{tMantenimientoController.selected.idTipoMantenimiento}" title="#{maintenanceBundle.CreateTMantenimientoTitle_idTipoMantenimiento}" required="true" requiredMessage="#{maintenanceBundle.CreateTMantenimientoRequiredMessage_idTipoMantenimiento}">
-                                            <f:selectItems value="#{ctlTipoMantenimientoController.itemsAvailableSelectOne}" />
-                                        </h:selectOneMenu>
+                                        <h:inputTextarea styleClass="form-control has-feedback-left input-sm" id="descripcion" value="#{tMantenimientoController.selected.descripcion}" title="#{maintenanceBundle.CreateTMantenimientoTitle_descripcion}" rows="2" />
+                                        <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
 

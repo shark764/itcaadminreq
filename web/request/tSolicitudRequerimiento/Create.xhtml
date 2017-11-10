@@ -36,7 +36,7 @@
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.CreateTSolicitudRequerimientoLabel_fecha}" for="fecha" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
                                         <h:inputText styleClass="form-control has-feedback-left input-sm" id="fecha" value="#{tSolicitudRequerimientoController.selected.fecha}" title="#{requestBundle.CreateTSolicitudRequerimientoTitle_fecha}" required="true" requiredMessage="#{requestBundle.CreateTSolicitudRequerimientoRequiredMessage_fecha}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                                         </h:inputText>
                                         <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>

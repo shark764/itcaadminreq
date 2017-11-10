@@ -197,7 +197,6 @@ public class TEmpleadoController implements Serializable {
 
     public String create() {
         try {
-            System.out.println("UTF-8 before: " + current);
             getFacade().create(current);
             if (username != null && !username.isEmpty()) {
                 TUser userAssociated = new TUser(username, (new SecurityUtil()).cifrar(this.password));
@@ -211,7 +210,6 @@ public class TEmpleadoController implements Serializable {
                     this.ejbTUserRoleFacade.create(new TUserRole(userAssociated.getUsername(), (String) rol, (short) 1));
                 }
             }
-            System.out.println("UTF-8 after: " + current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/AdminBundle").getString("TEmpleadoCreated"));
             // return prepareCreate();
             return createAndView();
