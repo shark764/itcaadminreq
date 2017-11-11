@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -12,6 +13,10 @@
         <!-- Meta, title, CSS, favicons, etc. -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <f:metadata>
+            <f:viewAction action="#{userSessionBean.logout}" />
+        </f:metadata>
         
         <title><ui:insert name="page_title">JAVA ITCA 2017 | Sistema de Requerimientos Informáticos</ui:insert></title>
 
@@ -30,9 +35,9 @@
                 <div class="col-md-12">
                     <div class="col-middle">
                         <div class="text-center text-center">
-                            <h1 class="error-number">ERROR</h1>
-                            <h2>Sin acceso</h2>
-                            <p>Falló la autenticación. <h:link outcome="/login" value="Entrar"/>
+                            <h1 class="error-number">JAVA!</h1>
+                            <h2>Cerrando sesión</h2>
+                            <p>La autenticación es requerida para acceder al sistema. <h:link outcome="/login" value="Entrar"/>
                             </p>
                             <div class="mid_center">
                                 <h3><a href="https://www.itca.edu.sv/">Itca Java 2017</a></h3>

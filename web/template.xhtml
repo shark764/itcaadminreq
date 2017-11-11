@@ -29,21 +29,23 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><i class="fa fa-database"></i> <span>SIGEREQ - ITCA!</span></a>
+                            <h:link outcome="/index" styleClass="site_title"><i class="fa fa-database"></i> <span>SIGEREQ - ITCA!</span></h:link>
                         </div>
 
                         <div class="clearfix"></div>
 
                         <!-- menu profile quick info -->
-                        <div class="profile clearfix">
-                            <div class="profile_pic">
-                                <img src="images/if_user_male2_172626.png" alt="..." class="img-circle profile_img" />
+                        <h:panelGroup rendered="#{not empty facesContext.externalContext.userPrincipal}">
+                            <div class="profile clearfix">
+                                <div class="profile_pic">
+                                    <h:graphicImage name="images/if_user_male2_172626.png" styleClass="img-circle profile_img" alt="..." />
+                                </div>
+                                <div class="profile_info">
+                                    <span>Bienvenido,</span>
+                                    <h2>#{userSessionBean.userLogged.lastname}, #{userSessionBean.userLogged.firstname}</h2>
+                                </div>
                             </div>
-                            <div class="profile_info">
-                                <span>Bienvenido,</span>
-                                <h2>Farid Hernández</h2>
-                            </div>
-                        </div>
+                        </h:panelGroup>
                         <!-- /menu profile quick info -->
 
                         <br />
@@ -51,36 +53,39 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>General</h3>
+                                <h3>Requerimientos</h3>
                                 <ul class="nav side-menu">
-                                    <li><a><i class="fa fa-home"></i> Inicio <span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-home"></i> Requerimientos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="index.html">Dashboard</a></li>
-                                            <li><a href="index2.html">Dashboard2</a></li>
-                                            <li><a href="index3.html">Dashboard3</a></li>
+                                            <li><h:link outcome="/request/tSolicitudRequerimiento/List" value="Solicitudes" /></li>
+                                            <li><h:link outcome="/request/tDetalleSolicitud/List" value="Detalle de requerimientos" /></li>
+                                            <li><h:link outcome="/request/tSolicitudRequerimiento/Create" value="Crear solicitud" /></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-table"></i> Asignación <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="tables.html">Tables</a></li>
-                                            <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                                            <li><h:link outcome="/coordinator/tDetalleSolicitud/List" value="Asignar técnico"/></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-table"></i> Asignados <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/technician/tDetalleSolicitud/List" value="Requerimientos asignados"/></li>
+                                            <li><h:link outcome="/request/tInsumoUtilizado/List" value="Insumo utilizado"/></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                             <div class="menu_section">
-                                <h3>Live On</h3>
+                                <h3>Préstamos</h3>
                                 <ul class="nav side-menu">
-                                    <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-bug"></i> Préstamos realizados <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="e_commerce.html">E-commerce</a></li>
-                                            <li><a href="projects.html">Projects</a></li>
-                                            <li><a href="project_detail.html">Project Detail</a></li>
-                                            <li><a href="contacts.html">Contacts</a></li>
-                                            <li><a href="profile.html">Profile</a></li>
+                                            <li><h:link outcome="/loanrequest/tPrestamo/List" value="Préstamos"/></li>
+                                            <li><h:link outcome="/loanrequest/tDetallePrestamo/List" value="Detalle de equipos prestados"/></li>
+                                            <li><h:link outcome="/loanrequest/tPrestamo/Create" value="Prestar equipo"/></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                                    <!-- <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="page_403.html">403 Error</a></li>
                                             <li><a href="page_404.html">404 Error</a></li>
@@ -88,6 +93,91 @@
                                             <li><a href="plain_page.html">Plain Page</a></li>
                                             <li><a href="login.html">Login Page</a></li>
                                             <li><a href="pricing_tables.html">Pricing Tables</a></li>
+                                        </ul>
+                                    </li> -->
+                                </ul>
+                            </div>
+                            <div class="menu_section">
+                                <h3>Inventarios</h3>
+                                <ul class="nav side-menu">
+                                    <li><a><i class="fa fa-bug"></i> Equipos <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/catalogues/ctlMarcaEquipo/List" value="Marcas"/></li>
+                                            <li><h:link outcome="/catalogues/ctlModeloEquipo/List" value="Modelos"/></li>
+                                            <li><h:link outcome="/inventory/ctlCategoriaEquipo/List" value="Categorías de equipos"/></li>
+                                            <li><h:link outcome="/inventory/ctlEquipo/List" value="Equipos"/></li>
+                                            <li><h:link outcome="/inventory/ctlEquipo/Create" value="Registrar equipoo"/></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-table"></i> Insumos informáticos <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/inventory/ctlInsumo/List" value="Insumos"/></li>
+                                            <li><h:link outcome="/inventory/ctlInsumo/Create" value="Registrar insumo"/></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-table"></i> Inventario defectuoso <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/inventory/ctlInventarioDefectuoso/List" value="Equipos en mal estado"/></li>
+                                            <li><h:link outcome="/inventory/ctlEquipo/List" value="Registrar equipo defectuoso"/></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="menu_section">
+                                <h3>Catálogos</h3>
+                                <ul class="nav side-menu">
+                                    <li><a><i class="fa fa-bug"></i> Equipo de cómputo <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/catalogues/ctlMarcaEquipo/List" value="Marcas"/></li>
+                                            <li><h:link outcome="/catalogues/ctlModeloEquipo/List" value="Modelos"/></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-bug"></i> Áreas de soporte <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/catalogues/ctlAreaRequerimiento/List" value="Áreas técnicas"/></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-bug"></i> Fallas <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/catalogues/ctlTipoFalla/List" value="Fallas posibles"/></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-bug"></i> Soluciones <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/catalogues/ctlTipoSolucion/List" value="Posibles soluciones"/></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="menu_section">
+                                <h3>Administración</h3>
+                                <ul class="nav side-menu">
+                                    <li><a><i class="fa fa-bug"></i> Administración del sistema <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/admin/ctlArea/List" value="Departamentos de la institución"/></li>
+                                            <li><h:link outcome="/admin/ctlProveedor/List" value="Proveedores"/></li>
+                                            <li><h:link outcome="/admin/tEmpleado/List" value="Empleados"/></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="menu_section">
+                                <h3>Reportería</h3>
+                                <ul class="nav side-menu">
+                                    <li><a><i class="fa fa-bug"></i> Reportes de producción <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/jasperviews/generate" value="Generar reportes"/></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="menu_section">
+                                <h3>Seguridad</h3>
+                                <ul class="nav side-menu">
+                                    <li><a><i class="fa fa-bug"></i> Seguridad del sistema <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><h:link outcome="/security/tUser/List" value="Usuarios"/></li>
+                                            <li><h:link outcome="/security/tUserRole/List" value="Privilegios"/></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -106,19 +196,20 @@
                                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                             </div>
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="">
-                                    <a href="javascript:void(0);" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/if_user_male2_172626.png" alt="" />Farid Hernández
-                                        <span class=" fa fa-angle-down"></span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="javascript:void(0);"> Perfil</a></li>
-                                        <li><a href="javascript:void(0);"> Inicio</a></li>
-                                        <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Cerrar sesión</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <h:panelGroup rendered="#{not empty facesContext.externalContext.userPrincipal}">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="">
+                                        <a href="javascript:void(0);" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <h:graphicImage name="images/if_user_male2_172626.png" alt="..." />#{userSessionBean.userLogged.lastname}, #{userSessionBean.userLogged.firstname}
+                                            <span class=" fa fa-angle-down"></span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                            <li><h:link outcome="/index" value="Inicio" /></li>
+                                            <li><h:link outcome="/logout"><i class="fa fa-sign-out pull-right"></i> Cerrar sesión</h:link></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </h:panelGroup>
                         </nav>
                     </div>
                 </div>
