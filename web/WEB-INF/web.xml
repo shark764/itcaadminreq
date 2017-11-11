@@ -64,8 +64,9 @@
             <description>Acceso para administrador</description>
             <url-pattern>/admin/*</url-pattern>
             <url-pattern>/security/*</url-pattern>
-            <url-pattern>/index.xhtml</url-pattern>
-            <url-pattern>/*</url-pattern>
+            <url-pattern>/resources/*</url-pattern>
+            <!--<url-pattern>/index.xhtml</url-pattern>-->
+            <!--<url-pattern>/*</url-pattern>-->
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -83,8 +84,9 @@
             <url-pattern>/coordinator/*</url-pattern>
             <url-pattern>/inventory/*</url-pattern>
             <url-pattern>/catalogues/*</url-pattern>
-            <url-pattern>/index.xhtml</url-pattern>
-            <url-pattern>/*</url-pattern>
+            <url-pattern>/resources/*</url-pattern>
+            <!--<url-pattern>/index.xhtml</url-pattern>-->
+            <!--<url-pattern>/*</url-pattern>-->
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -101,8 +103,9 @@
             <url-pattern>/technician/*</url-pattern>
             <url-pattern>/inventory/*</url-pattern>
             <url-pattern>/catalogues/*</url-pattern>
-            <url-pattern>/index.xhtml</url-pattern>
-            <url-pattern>/*</url-pattern>
+            <url-pattern>/resources/*</url-pattern>
+            <!--<url-pattern>/index.xhtml</url-pattern>-->
+            <!--<url-pattern>/*</url-pattern>-->
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -118,8 +121,9 @@
             <description>Vista de empleado solicitante</description>
             <url-pattern>/request/*</url-pattern>
             <url-pattern>/loanrequest/*</url-pattern>
-            <url-pattern>/index.xhtml</url-pattern>
-            <url-pattern>/*</url-pattern>
+            <url-pattern>/resources/*</url-pattern>
+            <!--<url-pattern>/index.xhtml</url-pattern>-->
+            <!--<url-pattern>/*</url-pattern>-->
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -136,8 +140,9 @@
             <web-resource-name>InventoryViews</web-resource-name>
             <description>Vista de personal encargada de stock</description>
             <url-pattern>/inventory/*</url-pattern>
-            <url-pattern>/index.xhtml</url-pattern>
-            <url-pattern>/*</url-pattern>
+            <url-pattern>/resources/*</url-pattern>
+            <!--<url-pattern>/index.xhtml</url-pattern>-->
+            <!--<url-pattern>/*</url-pattern>-->
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -154,8 +159,9 @@
             <web-resource-name>ManagementViews</web-resource-name>
             <description>Vista de gerente</description>
             <url-pattern>/jasperviews/*</url-pattern>
-            <url-pattern>/index.xhtml</url-pattern>
-            <url-pattern>/*</url-pattern>
+            <url-pattern>/resources/*</url-pattern>
+            <!--<url-pattern>/index.xhtml</url-pattern>-->
+            <!--<url-pattern>/*</url-pattern>-->
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>

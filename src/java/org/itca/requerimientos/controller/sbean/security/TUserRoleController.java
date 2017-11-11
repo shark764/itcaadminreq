@@ -116,6 +116,7 @@ public class TUserRoleController implements Serializable {
 
     public String create() {
         try {
+            current.setState((short) 1);
             current.getTUserRolePK().setRole(current.getTRole().getRole());
             current.getTUserRolePK().setUsername(current.getTUser().getUsername());
             getFacade().create(current);

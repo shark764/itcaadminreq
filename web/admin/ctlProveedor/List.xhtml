@@ -6,9 +6,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
+        <ui:remove><ui:define name="title">
             <h:outputText value="#{adminBundle.ListCtlProveedorTitle}"></h:outputText>
-        </ui:define>
+        </ui:define></ui:remove>
         <ui:define name="body">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -21,18 +21,34 @@
 
                         <p>Registros ingresados al sistema</p>
 
-                        <h:form styleClass="" id="jsf_list_ajaxForm_dataTable">
+                        <h:form styleClass="form-inline" id="jsf_list_ajaxForm_dataTable">
                             <h:panelGroup id="messagePanel" layout="block">
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
                             <h:outputText escape="false" value="#{adminBundle.ListCtlProveedorEmpty}" rendered="#{ctlProveedorController.items.rowCount == 0}" />
                             <h:panelGroup rendered="#{ctlProveedorController.items.rowCount > 0}">
-                                <h:outputText value="Mostrar " />
-                                <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlProveedorController.pageSizeDataModel}" required="true">
-                                    <f:selectItems value="#{ctlProveedorController.paginationSizes}" />
-                                    <f:ajax listener="#{ctlProveedorController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
-                                </h:selectOneMenu>
-                                <h:outputText value=" registros" />
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="dataTables_length">
+                                            <label>
+                                                <h:outputText value="Mostrar " />
+                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlProveedorController.pageSizeDataModel}" required="true">
+                                                    <f:selectItems value="#{ctlProveedorController.paginationSizes}" />
+                                                    <f:ajax listener="#{ctlProveedorController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
+                                                </h:selectOneMenu>
+                                                <h:outputText value=" registros" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div id="datatable_filter" class="dataTables_filter">
+                                            <label>
+                                                Buscar:
+                                                <input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="table-responsive">
                                     <h:dataTable value="#{ctlProveedorController.items}" var="item" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
@@ -104,12 +120,12 @@
 
                             <div class="ln_solid"></div>
 
-                            <div class="form-group">
-                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                            <!-- <div class="form-group"> -->
+                                <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
                                     <h:commandLink styleClass="btn btn-sm btn-default" action="#{ctlProveedorController.prepareCreate}" value="#{adminBundle.ListCtlProveedorCreateLink}" />
                                     <h:link styleClass="btn btn-sm btn-success" outcome="/index" value="#{adminBundle.ListCtlProveedorIndexLink}" />
-                                </div>
-                            </div>
+                                <!-- </div> -->
+                            <!-- </div> -->
                         </h:form>
 
                     </div>  <!-- x_content -->

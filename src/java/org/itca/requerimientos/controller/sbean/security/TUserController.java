@@ -139,6 +139,7 @@ public class TUserController implements Serializable {
     public String create() {
         try {
             current.setPassword((new SecurityUtil()).cifrar(current.getPassword()));
+            current.setState((short) 1);
             getFacade().create(current);
             for (TRole rol : this.userRoles) {
                 this.ejbTUserRoleFacade.create(new TUserRole(current.getUsername(), rol.getRole()));
