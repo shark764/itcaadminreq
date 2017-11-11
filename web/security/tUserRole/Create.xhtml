@@ -35,7 +35,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{securityBundle.CreateTUserRoleLabel_TRole}" for="TRole" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="TRole" value="#{tUserRoleController.selected.TRole}" title="#{securityBundle.CreateTUserRoleTitle_TRole}" required="true" requiredMessage="#{securityBundle.CreateTUserRoleRequiredMessage_TRole}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="TRole" value="#{tUserRoleController.selected.TRole}" title="#{securityBundle.CreateTUserRoleTitle_TRole}" required="true" requiredMessage="#{securityBundle.CreateTUserRoleRequiredMessage_TRole}">
                                             <f:selectItems value="#{tRoleController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{securityBundle.CreateTUserRoleLabel_TUser}" for="TUser" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="TUser" value="#{tUserRoleController.selected.TUser}" title="#{securityBundle.CreateTUserRoleTitle_TUser}" required="true" requiredMessage="#{securityBundle.CreateTUserRoleRequiredMessage_TUser}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="TUser" value="#{tUserRoleController.selected.TUser}" title="#{securityBundle.CreateTUserRoleTitle_TUser}" required="true" requiredMessage="#{securityBundle.CreateTUserRoleRequiredMessage_TUser}">
                                             <f:selectItems value="#{tUserController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>

@@ -107,7 +107,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.EditTEmpleadoLabel_idArea}" for="idArea" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idArea" value="#{tEmpleadoController.selected.idArea}" title="#{adminBundle.EditTEmpleadoTitle_idArea}" required="true" requiredMessage="#{adminBundle.EditTEmpleadoRequiredMessage_idArea}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idArea" value="#{tEmpleadoController.selected.idArea}" title="#{adminBundle.EditTEmpleadoTitle_idArea}" required="true" requiredMessage="#{adminBundle.EditTEmpleadoRequiredMessage_idArea}">
                                             <f:selectItems value="#{ctlAreaController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -115,7 +115,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.EditTEmpleadoLabel_idEmpleado}" for="idEmpleado" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEmpleado" value="#{tEmpleadoController.selected.idEmpleado}" title="#{adminBundle.EditTEmpleadoTitle_idEmpleado}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEmpleado" value="#{tEmpleadoController.selected.idEmpleado}" title="#{adminBundle.EditTEmpleadoTitle_idEmpleado}">
                                             <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -123,7 +123,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.EditTEmpleadoLabel_idTipoEmpleado}" for="idTipoEmpleado" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idTipoEmpleado" value="#{tEmpleadoController.selected.idTipoEmpleado}" title="#{adminBundle.EditTEmpleadoTitle_idTipoEmpleado}" required="true" requiredMessage="#{adminBundle.EditTEmpleadoRequiredMessage_idTipoEmpleado}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idTipoEmpleado" value="#{tEmpleadoController.selected.idTipoEmpleado}" title="#{adminBundle.EditTEmpleadoTitle_idTipoEmpleado}" required="true" requiredMessage="#{adminBundle.EditTEmpleadoRequiredMessage_idTipoEmpleado}">
                                             <f:selectItems value="#{ctlTipoEmpleadoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>

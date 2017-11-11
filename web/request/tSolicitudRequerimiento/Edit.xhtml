@@ -35,7 +35,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTSolicitudRequerimientoLabel_idArea}" for="idArea" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idArea" value="#{tSolicitudRequerimientoController.selected.idArea}" title="#{requestBundle.EditTSolicitudRequerimientoTitle_idArea}" required="true" requiredMessage="#{requestBundle.EditTSolicitudRequerimientoRequiredMessage_idArea}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idArea" value="#{tSolicitudRequerimientoController.selected.idArea}" title="#{requestBundle.EditTSolicitudRequerimientoTitle_idArea}" required="true" requiredMessage="#{requestBundle.EditTSolicitudRequerimientoRequiredMessage_idArea}">
                                             <f:selectItems value="#{ctlAreaController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTSolicitudRequerimientoLabel_idEmpleado}" for="idEmpleado" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEmpleado" value="#{tSolicitudRequerimientoController.selected.idEmpleado}" title="#{requestBundle.EditTSolicitudRequerimientoTitle_idEmpleado}" required="true" requiredMessage="#{requestBundle.EditTSolicitudRequerimientoRequiredMessage_idEmpleado}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEmpleado" value="#{tSolicitudRequerimientoController.selected.idEmpleado}" title="#{requestBundle.EditTSolicitudRequerimientoTitle_idEmpleado}" required="true" requiredMessage="#{requestBundle.EditTSolicitudRequerimientoRequiredMessage_idEmpleado}">
                                             <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>

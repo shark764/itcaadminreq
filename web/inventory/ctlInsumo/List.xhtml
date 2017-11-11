@@ -23,7 +23,7 @@
                             <h:form styleClass="form-inline">
                                 <div class="form-group">
                                     <h:outputLabel value="Filtro " />&nbsp;
-                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlInsumoController.dataFilterType}" required="true">
+                                    <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{ctlInsumoController.dataFilterType}" required="true">
                                         <f:selectItems value="#{ctlInsumoController.dataFilterTypeValue}" />
                                     </h:selectOneMenu>
                                 </div>
@@ -96,7 +96,7 @@
                                         <div class="dataTables_length">
                                             <label>
                                                 <h:outputText value="Mostrar " />
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlInsumoController.pageSizeDataModel}" required="true">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{ctlInsumoController.pageSizeDataModel}" required="true">
                                                     <f:selectItems value="#{ctlInsumoController.paginationSizes}" />
                                                     <f:ajax listener="#{ctlInsumoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                                 </h:selectOneMenu>

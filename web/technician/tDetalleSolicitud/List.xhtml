@@ -23,7 +23,7 @@
                             <h:form styleClass="form-inline">
                                 <div class="form-group">
                                     <h:outputLabel value="Filtro " />&nbsp;
-                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{technicianController.dataFilterType}" required="true">
+                                    <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{technicianController.dataFilterType}" required="true">
                                         <f:selectItems value="#{technicianController.dataFilterTypeValue}" />
                                     </h:selectOneMenu>
                                 </div>
@@ -51,7 +51,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Empleado solicitante " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{technicianController.employee}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{technicianController.employee}" required="true">
                                             <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -69,7 +69,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Equipo " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{technicianController.equipment}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{technicianController.equipment}" required="true">
                                             <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -87,7 +87,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Área de soporte " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{technicianController.requestArea}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{technicianController.requestArea}" required="true">
                                             <f:selectItems value="#{ctlAreaRequerimientoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -105,7 +105,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Mantenimiento " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{technicianController.requestType}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{technicianController.requestType}" required="true">
                                             <f:selectItems value="#{ctlTipoRequerimientoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -123,7 +123,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Falla " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{technicianController.faultType}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{technicianController.faultType}" required="true">
                                             <f:selectItems value="#{ctlTipoFallaController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -141,7 +141,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Solución " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{technicianController.solutionType}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{technicianController.solutionType}" required="true">
                                             <f:selectItems value="#{ctlTipoSolucionController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -181,7 +181,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Técnico " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{technicianController.employee}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{technicianController.employee}" required="true">
                                             <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -199,7 +199,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Técnico " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{technicianController.employee}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{technicianController.employee}" required="true">
                                             <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -261,7 +261,7 @@
                                         <div class="dataTables_length">
                                             <label>
                                                 <h:outputText value="Mostrar " />
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{technicianController.pageSizeDataModel}" required="true">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{technicianController.pageSizeDataModel}" required="true">
                                                     <f:selectItems value="#{technicianController.paginationSizes}" />
                                                     <f:ajax listener="#{technicianController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                                 </h:selectOneMenu>
@@ -303,7 +303,7 @@
                                             <f:facet name="header">
                                                 <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idTipoFalla}" />
                                             </f:facet>
-                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTipoFalla}">
+                                            <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{item.idTipoFalla}">
                                                 <f:selectItems value="#{ctlTipoFallaController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
@@ -335,7 +335,7 @@
                                             <f:facet name="header">
                                                 <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idTipoSolucion}" />
                                             </f:facet>
-                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTipoSolucion}">
+                                            <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{item.idTipoSolucion}">
                                                 <f:selectItems value="#{ctlTipoSolucionController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
@@ -350,7 +350,7 @@
                                             <f:facet name="header">
                                                 <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idEstadoSolicitud}" />
                                             </f:facet>
-                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idEstadoSolicitud}">
+                                            <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{item.idEstadoSolicitud}">
                                                 <f:selectItems value="#{ctlEstadoSolicitudController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>

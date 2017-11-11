@@ -32,7 +32,7 @@
                                         <div class="dataTables_length">
                                             <label>
                                                 <h:outputText value="Mostrar " />
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{tSolicitudRequerimientoController.pageSizeDataModel}" required="true">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{tSolicitudRequerimientoController.pageSizeDataModel}" required="true">
                                                     <f:selectItems value="#{tSolicitudRequerimientoController.paginationSizes}" />
                                                     <f:ajax listener="#{tSolicitudRequerimientoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                                 </h:selectOneMenu>

@@ -51,7 +51,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTDetallePrestamoLabel_idEquipo}" for="idEquipo" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEquipo" value="#{tDetallePrestamoController.selected.idEquipo}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEquipo}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_idEquipo}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEquipo" value="#{tDetallePrestamoController.selected.idEquipo}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEquipo}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_idEquipo}">
                                             <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -59,7 +59,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTDetallePrestamoLabel_idEstadoEntrega}" for="idEstadoEntrega" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEstadoEntrega" value="#{tDetallePrestamoController.selected.idEstadoEntrega}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEstadoEntrega}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEstadoEntrega" value="#{tDetallePrestamoController.selected.idEstadoEntrega}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEstadoEntrega}">
                                             <f:selectItems value="#{ctlEstadoEntregaController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -67,7 +67,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTDetallePrestamoLabel_idEstadoPrestamo}" for="idEstadoPrestamo" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEstadoPrestamo" value="#{tDetallePrestamoController.selected.idEstadoPrestamo}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEstadoPrestamo}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_idEstadoPrestamo}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEstadoPrestamo" value="#{tDetallePrestamoController.selected.idEstadoPrestamo}" title="#{loanRequestBundle.EditTDetallePrestamoTitle_idEstadoPrestamo}" required="true" requiredMessage="#{loanRequestBundle.EditTDetallePrestamoRequiredMessage_idEstadoPrestamo}">
                                             <f:selectItems value="#{ctlEstadoPrestamoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>

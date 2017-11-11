@@ -23,7 +23,7 @@
                             <h:form styleClass="form-inline">
                                 <div class="form-group">
                                     <h:outputLabel value="Filtro " />&nbsp;
-                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{tMantenimientoController.dataFilterType}" required="true">
+                                    <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{tMantenimientoController.dataFilterType}" required="true">
                                         <f:selectItems value="#{tMantenimientoController.dataFilterTypeValue}" />
                                     </h:selectOneMenu>
                                 </div>
@@ -40,7 +40,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Área de soporte" />
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{tMantenimientoController.requestArea}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{tMantenimientoController.requestArea}" required="true">
                                             <f:selectItems value="#{ctlModeloEquipoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -117,7 +117,7 @@
                                         <div class="dataTables_length">
                                             <label>
                                                 <h:outputText value="Mostrar " />
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{tMantenimientoController.pageSizeDataModel}" required="true">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{tMantenimientoController.pageSizeDataModel}" required="true">
                                                     <f:selectItems value="#{tMantenimientoController.paginationSizes}" />
                                                     <f:ajax listener="#{tMantenimientoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                                 </h:selectOneMenu>

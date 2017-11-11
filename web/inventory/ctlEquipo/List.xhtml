@@ -23,7 +23,7 @@
                             <h:form styleClass="form-inline">
                                 <div class="form-group">
                                     <h:outputLabel value="Filtro " />&nbsp;
-                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlEquipoController.dataFilterType}" required="true">
+                                    <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{ctlEquipoController.dataFilterType}" required="true">
                                         <f:selectItems value="#{ctlEquipoController.dataFilterTypeValue}" />
                                     </h:selectOneMenu>
                                 </div>
@@ -76,7 +76,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Proveedor " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlEquipoController.equipmentProvider}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{ctlEquipoController.equipmentProvider}" required="true">
                                             <f:selectItems value="#{ctlProveedorController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -94,7 +94,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Modelo " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlEquipoController.equipmentModel}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{ctlEquipoController.equipmentModel}" required="true">
                                             <f:selectItems value="#{ctlModeloEquipoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -156,7 +156,7 @@
                                         <div class="dataTables_length">
                                             <label>
                                                 <h:outputText value="Mostrar " />
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{ctlEquipoController.pageSizeDataModel}" required="true">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{ctlEquipoController.pageSizeDataModel}" required="true">
                                                     <f:selectItems value="#{ctlEquipoController.paginationSizes}" />
                                                     <f:ajax listener="#{ctlEquipoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                                 </h:selectOneMenu>

@@ -28,7 +28,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTDetalleSolicitudLabel_idEquipo}" for="idEquipo" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEquipo" value="#{technicianController.selected.idEquipo}" title="#{requestBundle.EditTDetalleSolicitudTitle_idEquipo}" required="true" requiredMessage="#{requestBundle.EditTDetalleSolicitudRequiredMessage_idEquipo}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEquipo" value="#{technicianController.selected.idEquipo}" title="#{requestBundle.EditTDetalleSolicitudTitle_idEquipo}" required="true" requiredMessage="#{requestBundle.EditTDetalleSolicitudRequiredMessage_idEquipo}">
                                             <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -36,7 +36,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTDetalleSolicitudLabel_idAreaRequerimiento}" for="idAreaRequerimiento" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idAreaRequerimiento" value="#{technicianController.selected.idAreaRequerimiento}" title="#{requestBundle.EditTDetalleSolicitudTitle_idAreaRequerimiento}" required="true" requiredMessage="#{requestBundle.EditTDetalleSolicitudRequiredMessage_idAreaRequerimiento}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idAreaRequerimiento" value="#{technicianController.selected.idAreaRequerimiento}" title="#{requestBundle.EditTDetalleSolicitudTitle_idAreaRequerimiento}" required="true" requiredMessage="#{requestBundle.EditTDetalleSolicitudRequiredMessage_idAreaRequerimiento}">
                                             <f:selectItems value="#{ctlAreaRequerimientoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -44,7 +44,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTDetalleSolicitudLabel_idTipoFalla}" for="idTipoFalla" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idTipoFalla" value="#{technicianController.selected.idTipoFalla}" title="#{requestBundle.EditTDetalleSolicitudTitle_idTipoFalla}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idTipoFalla" value="#{technicianController.selected.idTipoFalla}" title="#{requestBundle.EditTDetalleSolicitudTitle_idTipoFalla}">
                                             <f:selectItems value="#{ctlTipoFallaController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -59,7 +59,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTDetalleSolicitudLabel_idTipoSolucion}" for="idTipoSolucion" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idTipoSolucion" value="#{technicianController.selected.idTipoSolucion}" title="#{requestBundle.EditTDetalleSolicitudTitle_idTipoSolucion}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idTipoSolucion" value="#{technicianController.selected.idTipoSolucion}" title="#{requestBundle.EditTDetalleSolicitudTitle_idTipoSolucion}">
                                             <f:selectItems value="#{ctlTipoSolucionController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -81,7 +81,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.EditTDetalleSolicitudLabel_idEstadoSolicitud}" for="idEstadoSolicitud" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEstadoSolicitud" value="#{technicianController.selected.idEstadoSolicitud}" title="#{requestBundle.EditTDetalleSolicitudTitle_idEstadoSolicitud}" required="true" requiredMessage="#{requestBundle.EditTDetalleSolicitudRequiredMessage_idEstadoSolicitud}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEstadoSolicitud" value="#{technicianController.selected.idEstadoSolicitud}" title="#{requestBundle.EditTDetalleSolicitudTitle_idEstadoSolicitud}" required="true" requiredMessage="#{requestBundle.EditTDetalleSolicitudRequiredMessage_idEstadoSolicitud}">
                                             <f:selectItems value="#{ctlEstadoSolicitudController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -98,13 +98,13 @@
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Insumo</f:facet>
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{iu.idInsumo}">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{iu.idInsumo}">
                                                     <f:selectItems value="#{ctlInsumoController.itemsAvailableSelectOne}" />
                                                 </h:selectOneMenu>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Equipo / Componente</f:facet>
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{iu.idEquipoIntercambio}">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{iu.idEquipoIntercambio}">
                                                     <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
                                                 </h:selectOneMenu>
                                             </h:column>

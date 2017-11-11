@@ -35,7 +35,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{inventoryBundle.CreateCtlInventarioDefectuosoLabel_idEquipo}" for="idEquipo" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEquipo" value="#{ctlInventarioDefectuosoController.selected.idEquipo}" title="#{inventoryBundle.CreateCtlInventarioDefectuosoTitle_idEquipo}" required="true" requiredMessage="#{inventoryBundle.CreateCtlInventarioDefectuosoRequiredMessage_idEquipo}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEquipo" value="#{ctlInventarioDefectuosoController.selected.idEquipo}" title="#{inventoryBundle.CreateCtlInventarioDefectuosoTitle_idEquipo}" required="true" requiredMessage="#{inventoryBundle.CreateCtlInventarioDefectuosoRequiredMessage_idEquipo}">
                                             <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>

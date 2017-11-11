@@ -23,7 +23,7 @@
                             <h:form styleClass="form-inline">
                                 <div class="form-group">
                                     <h:outputLabel value="Filtro " />&nbsp;
-                                    <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetallePrestamoController.dataFilterType}" required="true">
+                                    <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{tDetallePrestamoController.dataFilterType}" required="true">
                                         <f:selectItems value="#{tDetallePrestamoController.dataFilterTypeValue}" />
                                     </h:selectOneMenu>
                                 </div>
@@ -51,7 +51,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Empleado " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetallePrestamoController.employee}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{tDetallePrestamoController.employee}" required="true">
                                             <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}"/>
                                         </h:selectOneMenu>
                                     </div>
@@ -67,7 +67,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Equipo " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetallePrestamoController.equipment}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{tDetallePrestamoController.equipment}" required="true">
                                             <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
                                         </h:selectOneMenu>
                                     </div>
@@ -105,7 +105,7 @@
                                 <h:form styleClass="form-inline">
                                     <div class="form-group">
                                         <h:outputLabel value="Empleado " />&nbsp;
-                                        <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetallePrestamoController.employee}" required="true">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{tDetallePrestamoController.employee}" required="true">
                                             <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}"/>
                                         </h:selectOneMenu>
                                     </div>
@@ -165,7 +165,7 @@
                                         <div class="dataTables_length">
                                             <label>
                                                 <h:outputText value="Mostrar " />
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{tDetallePrestamoController.pageSizeDataModel}" required="true">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{tDetallePrestamoController.pageSizeDataModel}" required="true">
                                                     <f:selectItems value="#{tDetallePrestamoController.paginationSizes}" />
                                                     <f:ajax listener="#{tDetallePrestamoController.recreatePageSize}" render="jsf_list_ajaxForm_dataTable"/>
                                                 </h:selectOneMenu>

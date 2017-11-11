@@ -58,7 +58,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.CreateTDetalleSolicitudLabel_idAreaRequerimiento}" for="idAreaRequerimiento" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idAreaRequerimiento" value="#{tDetalleSolicitudController.selected.idAreaRequerimiento}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idAreaRequerimiento}" required="true" requiredMessage="#{requestBundle.CreateTDetalleSolicitudRequiredMessage_idAreaRequerimiento}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idAreaRequerimiento" value="#{tDetalleSolicitudController.selected.idAreaRequerimiento}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idAreaRequerimiento}" required="true" requiredMessage="#{requestBundle.CreateTDetalleSolicitudRequiredMessage_idAreaRequerimiento}">
                                             <f:selectItems value="#{ctlAreaRequerimientoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -66,7 +66,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.CreateTDetalleSolicitudLabel_idEquipo}" for="idEquipo" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEquipo" value="#{tDetalleSolicitudController.selected.idEquipo}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idEquipo}" required="true" requiredMessage="#{requestBundle.CreateTDetalleSolicitudRequiredMessage_idEquipo}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEquipo" value="#{tDetalleSolicitudController.selected.idEquipo}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idEquipo}" required="true" requiredMessage="#{requestBundle.CreateTDetalleSolicitudRequiredMessage_idEquipo}">
                                             <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -74,7 +74,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.CreateTDetalleSolicitudLabel_idEstadoSolicitud}" for="idEstadoSolicitud" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEstadoSolicitud" value="#{tDetalleSolicitudController.selected.idEstadoSolicitud}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idEstadoSolicitud}" required="true" requiredMessage="#{requestBundle.CreateTDetalleSolicitudRequiredMessage_idEstadoSolicitud}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEstadoSolicitud" value="#{tDetalleSolicitudController.selected.idEstadoSolicitud}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idEstadoSolicitud}" required="true" requiredMessage="#{requestBundle.CreateTDetalleSolicitudRequiredMessage_idEstadoSolicitud}">
                                             <f:selectItems value="#{ctlEstadoSolicitudController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -82,7 +82,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.CreateTDetalleSolicitudLabel_idSolicitudRequerimiento}" for="idSolicitudRequerimiento" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idSolicitudRequerimiento" value="#{tDetalleSolicitudController.selected.idSolicitudRequerimiento}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idSolicitudRequerimiento}" required="true" requiredMessage="#{requestBundle.CreateTDetalleSolicitudRequiredMessage_idSolicitudRequerimiento}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idSolicitudRequerimiento" value="#{tDetalleSolicitudController.selected.idSolicitudRequerimiento}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idSolicitudRequerimiento}" required="true" requiredMessage="#{requestBundle.CreateTDetalleSolicitudRequiredMessage_idSolicitudRequerimiento}">
                                             <f:selectItems value="#{tSolicitudRequerimientoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -90,7 +90,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.CreateTDetalleSolicitudLabel_idTecnicoAsignado}" for="idTecnicoAsignado" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idTecnicoAsignado" value="#{tDetalleSolicitudController.selected.idTecnicoAsignado}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idTecnicoAsignado}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idTecnicoAsignado" value="#{tDetalleSolicitudController.selected.idTecnicoAsignado}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idTecnicoAsignado}">
                                             <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -98,7 +98,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.CreateTDetalleSolicitudLabel_idTipoFalla}" for="idTipoFalla" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idTipoFalla" value="#{tDetalleSolicitudController.selected.idTipoFalla}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idTipoFalla}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idTipoFalla" value="#{tDetalleSolicitudController.selected.idTipoFalla}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idTipoFalla}">
                                             <f:selectItems value="#{ctlTipoFallaController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -106,7 +106,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.CreateTDetalleSolicitudLabel_idTipoRequerimiento}" for="idTipoRequerimiento" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idTipoRequerimiento" value="#{tDetalleSolicitudController.selected.idTipoRequerimiento}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idTipoRequerimiento}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idTipoRequerimiento" value="#{tDetalleSolicitudController.selected.idTipoRequerimiento}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idTipoRequerimiento}">
                                             <f:selectItems value="#{ctlTipoRequerimientoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -114,7 +114,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{requestBundle.CreateTDetalleSolicitudLabel_idTipoSolucion}" for="idTipoSolucion" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idTipoSolucion" value="#{tDetalleSolicitudController.selected.idTipoSolucion}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idTipoSolucion}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idTipoSolucion" value="#{tDetalleSolicitudController.selected.idTipoSolucion}" title="#{requestBundle.CreateTDetalleSolicitudTitle_idTipoSolucion}">
                                             <f:selectItems value="#{ctlTipoSolucionController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -131,13 +131,13 @@
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Insumo</f:facet>
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{iu.idInsumo}">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{iu.idInsumo}">
                                                     <f:selectItems value="#{ctlInsumoController.itemsAvailableSelectOne}" />
                                                 </h:selectOneMenu>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Equipo / Componente</f:facet>
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{iu.idEquipoIntercambio}">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{iu.idEquipoIntercambio}">
                                                     <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
                                                 </h:selectOneMenu>
                                             </h:column>

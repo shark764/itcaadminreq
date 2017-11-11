@@ -35,7 +35,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTPrestamoLabel_idArea}" for="idArea" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idArea" value="#{tPrestamoController.selected.idArea}" title="#{loanRequestBundle.EditTPrestamoTitle_idArea}" required="true" requiredMessage="#{loanRequestBundle.EditTPrestamoRequiredMessage_idArea}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idArea" value="#{tPrestamoController.selected.idArea}" title="#{loanRequestBundle.EditTPrestamoTitle_idArea}" required="true" requiredMessage="#{loanRequestBundle.EditTPrestamoRequiredMessage_idArea}">
                                             <f:selectItems value="#{ctlAreaController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{loanRequestBundle.EditTPrestamoLabel_idEmpleado}" for="idEmpleado" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idEmpleado" value="#{tPrestamoController.selected.idEmpleado}" title="#{loanRequestBundle.EditTPrestamoTitle_idEmpleado}" required="true" requiredMessage="#{loanRequestBundle.EditTPrestamoRequiredMessage_idEmpleado}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idEmpleado" value="#{tPrestamoController.selected.idEmpleado}" title="#{loanRequestBundle.EditTPrestamoTitle_idEmpleado}" required="true" requiredMessage="#{loanRequestBundle.EditTPrestamoRequiredMessage_idEmpleado}">
                                             <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
@@ -60,7 +60,7 @@
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Equipo</f:facet>
-                                                <h:selectOneMenu styleClass="form-control input-sm" value="#{dp.idEquipo}" required="true">
+                                                <h:selectOneMenu styleClass="form-control input-sm select2_single" value="#{dp.idEquipo}" required="true">
                                                     <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}"/>
                                                 </h:selectOneMenu>
                                             </h:column>

@@ -49,7 +49,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{cataloguesBundle.EditCtlModeloEquipoLabel_idMarca}" for="idMarca" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneMenu styleClass="form-control input-sm" id="idMarca" value="#{ctlModeloEquipoController.selected.idMarca}" title="#{cataloguesBundle.EditCtlModeloEquipoTitle_idMarca}" required="true" requiredMessage="#{cataloguesBundle.EditCtlModeloEquipoRequiredMessage_idMarca}">
+                                        <h:selectOneMenu styleClass="form-control input-sm select2_single" id="idMarca" value="#{ctlModeloEquipoController.selected.idMarca}" title="#{cataloguesBundle.EditCtlModeloEquipoTitle_idMarca}" required="true" requiredMessage="#{cataloguesBundle.EditCtlModeloEquipoRequiredMessage_idMarca}">
                                             <f:selectItems value="#{ctlMarcaEquipoController.itemsAvailableSelectOne}" />
                                         </h:selectOneMenu>
                                     </div>
