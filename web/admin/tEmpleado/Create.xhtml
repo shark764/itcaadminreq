@@ -46,7 +46,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{adminBundle.CreateTEmpleadoLabel_genero}" for="genero" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectOneRadio styleClass="form-control has-feedback-left input-sm" id="genero" value="#{tEmpleadoController.selected.genero}" title="#{adminBundle.CreateTEmpleadoTitle_genero}" required="true" requiredMessage="#{adminBundle.CreateTEmpleadoRequiredMessage_genero}">
+                                        <h:selectOneRadio styleClass="flat" id="genero" value="#{tEmpleadoController.selected.genero}" title="#{adminBundle.CreateTEmpleadoTitle_genero}" required="true" requiredMessage="#{adminBundle.CreateTEmpleadoRequiredMessage_genero}">
                                             <f:selectItems value="#{tEmpleadoController.employeeSex}" />
                                         </h:selectOneRadio>
                                     </div>
@@ -156,7 +156,7 @@
                                 <div class="form-group has-feedback form-group-collapsed-fields">
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="Roles" for="userRoles" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
-                                        <h:selectManyCheckbox styleClass="form-control input-sm" id="userRoles" value="#{tEmpleadoController.userRoles}" required="true">
+                                        <h:selectManyCheckbox styleClass="flat" id="userRoles" value="#{tEmpleadoController.userRoles}" required="true">
                                             <f:selectItems value="#{tRoleController.itemsAvailableSelectMany}"/>
                                         </h:selectManyCheckbox>
                                     </div>

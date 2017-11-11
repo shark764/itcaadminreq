@@ -64,7 +64,7 @@
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{securityBundle.EditTUserLabel_creationDate}" for="creationDate" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
                                         <h:inputText styleClass="form-control has-feedback-left input-sm" id="creationDate" value="#{tUserController.selected.creationDate}" title="#{securityBundle.EditTUserTitle_creationDate}" >
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:inputText>
                                         <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
@@ -73,7 +73,7 @@
                                     <h:outputLabel styleClass="control-label col-md-3 col-sm-3 col-lg-3 col-xs-12 input-sm" value="#{securityBundle.EditTUserLabel_lastLogin}" for="lastLogin" />
                                     <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
                                         <h:inputText styleClass="form-control has-feedback-left input-sm" id="lastLogin" value="#{tUserController.selected.lastLogin}" title="#{securityBundle.EditTUserTitle_lastLogin}" >
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:inputText>
                                         <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>

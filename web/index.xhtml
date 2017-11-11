@@ -104,136 +104,171 @@
 
                             <!-- sidebar menu -->
                             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                                <div class="menu_section">
-                                    <h3>Requerimientos</h3>
-                                    <ul class="nav side-menu">
-                                        <li><a><i class="fa fa-database"></i> Requerimientos <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/request/tSolicitudRequerimiento/List" value="Solicitudes" /></li>
-                                                <li><h:link outcome="/request/tDetalleSolicitud/List" value="Detalle de requerimientos" /></li>
-                                                <li><h:link outcome="/request/tSolicitudRequerimiento/Create" value="Crear solicitud" /></li>
-                                            </ul>
-                                        </li>
-                                        <li><a><i class="fa fa-database"></i> Asignación <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/coordinator/tDetalleSolicitud/List" value="Asignar técnico"/></li>
-                                            </ul>
-                                        </li>
-                                        <li><a><i class="fa fa-database"></i> Asignados <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/technician/tDetalleSolicitud/List" value="Requerimientos asignados"/></li>
-                                                <li><h:link outcome="/request/tInsumoUtilizado/List" value="Insumo utilizado"/></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="menu_section">
-                                    <h3>Préstamos</h3>
-                                    <ul class="nav side-menu">
-                                        <li><a><i class="fa fa-database"></i> Préstamos realizados <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/loanrequest/tPrestamo/List" value="Préstamos"/></li>
-                                                <li><h:link outcome="/loanrequest/tDetallePrestamo/List" value="Detalle de equipos prestados"/></li>
-                                                <li><h:link outcome="/loanrequest/tPrestamo/Create" value="Prestar equipo"/></li>
-                                            </ul>
-                                        </li>
-                                        <!-- <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><a href="page_403.html">403 Error</a></li>
-                                                <li><a href="page_404.html">404 Error</a></li>
-                                                <li><a href="page_500.html">500 Error</a></li>
-                                                <li><a href="plain_page.html">Plain Page</a></li>
-                                                <li><a href="login.html">Login Page</a></li>
-                                                <li><a href="pricing_tables.html">Pricing Tables</a></li>
-                                            </ul>
-                                        </li> -->
-                                    </ul>
-                                </div>
-                                <div class="menu_section">
-                                    <h3>Inventarios</h3>
-                                    <ul class="nav side-menu">
-                                        <li><a><i class="fa fa-database"></i> Equipos <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/catalogues/ctlMarcaEquipo/List" value="Marcas"/></li>
-                                                <li><h:link outcome="/catalogues/ctlModeloEquipo/List" value="Modelos"/></li>
-                                                <li><h:link outcome="/inventory/ctlCategoriaEquipo/List" value="Categorías de equipos"/></li>
-                                                <li><h:link outcome="/inventory/ctlEquipo/List" value="Equipos"/></li>
-                                                <li><h:link outcome="/inventory/ctlEquipo/Create" value="Registrar equipoo"/></li>
-                                            </ul>
-                                        </li>
-                                        <li><a><i class="fa fa-database"></i> Insumos informáticos <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/inventory/ctlInsumo/List" value="Insumos"/></li>
-                                                <li><h:link outcome="/inventory/ctlInsumo/Create" value="Registrar insumo"/></li>
-                                            </ul>
-                                        </li>
-                                        <li><a><i class="fa fa-database"></i> Inventario defectuoso <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/inventory/ctlInventarioDefectuoso/List" value="Equipos en mal estado"/></li>
-                                                <li><h:link outcome="/inventory/ctlEquipo/List" value="Registrar equipo defectuoso"/></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="menu_section">
-                                    <h3>Catálogos</h3>
-                                    <ul class="nav side-menu">
-                                        <li><a><i class="fa fa-database"></i> Equipo de cómputo <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/catalogues/ctlMarcaEquipo/List" value="Marcas"/></li>
-                                                <li><h:link outcome="/catalogues/ctlModeloEquipo/List" value="Modelos"/></li>
-                                            </ul>
-                                        </li>
-                                        <li><a><i class="fa fa-database"></i> Áreas de soporte <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/catalogues/ctlAreaRequerimiento/List" value="Áreas técnicas"/></li>
-                                            </ul>
-                                        </li>
-                                        <li><a><i class="fa fa-database"></i> Fallas <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/catalogues/ctlTipoFalla/List" value="Fallas posibles"/></li>
-                                            </ul>
-                                        </li>
-                                        <li><a><i class="fa fa-database"></i> Soluciones <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/catalogues/ctlTipoSolucion/List" value="Posibles soluciones"/></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="menu_section">
-                                    <h3>Administración</h3>
-                                    <ul class="nav side-menu">
-                                        <li><a><i class="fa fa-database"></i> Administración del sistema <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/admin/ctlArea/List" value="Departamentos de la institución"/></li>
-                                                <li><h:link outcome="/admin/ctlProveedor/List" value="Proveedores"/></li>
-                                                <li><h:link outcome="/admin/tEmpleado/List" value="Empleados"/></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="menu_section">
-                                    <h3>Reportería</h3>
-                                    <ul class="nav side-menu">
-                                        <li><a><i class="fa fa-database"></i> Reportes de producción <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/jasperviews/generate" value="Generar reportes"/></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="menu_section">
-                                    <h3>Seguridad</h3>
-                                    <ul class="nav side-menu">
-                                        <li><a><i class="fa fa-database"></i> Seguridad del sistema <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><h:link outcome="/security/tUser/List" value="Usuarios"/></li>
-                                                <li><h:link outcome="/security/tUserRole/List" value="Privilegios"/></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('coordinador')
+                                        or facesContext.externalContext.isUserInRole('tecnico')
+                                        or facesContext.externalContext.isUserInRole('solicitante')}">
+                                    <div class="menu_section">
+                                        <h3>Requerimientos</h3>
+                                        <ul class="nav side-menu">
+                                            <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('coordinador')
+                                                    or facesContext.externalContext.isUserInRole('tecnico')
+                                                    or facesContext.externalContext.isUserInRole('solicitante')}">
+                                                <li><a><i class="fa fa-database"></i> Requerimientos <span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li><h:link outcome="/request/tSolicitudRequerimiento/List" value="Solicitudes" /></li>
+                                                        <li><h:link outcome="/request/tDetalleSolicitud/List" value="Detalle de requerimientos" /></li>
+                                                        <li><h:link outcome="/request/tSolicitudRequerimiento/Create" value="Crear solicitud" /></li>
+                                                    </ul>
+                                                </li>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('coordinador')}">
+                                                <li><a><i class="fa fa-database"></i> Asignación <span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li><h:link outcome="/coordinator/tDetalleSolicitud/List" value="Asignar técnico"/></li>
+                                                    </ul>
+                                                </li>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('tecnico')}">
+                                                <li><a><i class="fa fa-database"></i> Asignados <span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li><h:link outcome="/technician/tDetalleSolicitud/List" value="Requerimientos asignados"/></li>
+                                                        <li><h:link outcome="/request/tInsumoUtilizado/List" value="Insumo utilizado"/></li>
+                                                    </ul>
+                                                </li>
+                                            </h:panelGroup>
+                                        </ul>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('coordinador')
+                                        or facesContext.externalContext.isUserInRole('tecnico')
+                                        or facesContext.externalContext.isUserInRole('solicitante')}">
+                                    <div class="menu_section">
+                                        <h3>Préstamos</h3>
+                                        <ul class="nav side-menu">
+                                            <li><a><i class="fa fa-database"></i> Préstamos realizados <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><h:link outcome="/loanrequest/tPrestamo/List" value="Préstamos"/></li>
+                                                    <li><h:link outcome="/loanrequest/tDetallePrestamo/List" value="Detalle de equipos prestados"/></li>
+                                                    <li><h:link outcome="/loanrequest/tPrestamo/Create" value="Prestar equipo"/></li>
+                                                </ul>
+                                            </li>
+                                            <!-- <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><a href="page_403.html">403 Error</a></li>
+                                                    <li><a href="page_404.html">404 Error</a></li>
+                                                    <li><a href="page_500.html">500 Error</a></li>
+                                                    <li><a href="plain_page.html">Plain Page</a></li>
+                                                    <li><a href="login.html">Login Page</a></li>
+                                                    <li><a href="pricing_tables.html">Pricing Tables</a></li>
+                                                </ul>
+                                            </li> -->
+                                        </ul>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('coordinador')
+                                        or facesContext.externalContext.isUserInRole('tecnico')
+                                        or facesContext.externalContext.isUserInRole('inventario')}">
+                                    <div class="menu_section">
+                                        <h3>Inventarios</h3>
+                                        <ul class="nav side-menu">
+                                            <li><a><i class="fa fa-database"></i> Equipos <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('coordinador')
+                                                            or facesContext.externalContext.isUserInRole('tecnico')}">
+                                                        <li><h:link outcome="/catalogues/ctlMarcaEquipo/List" value="Marcas"/></li>
+                                                        <li><h:link outcome="/catalogues/ctlModeloEquipo/List" value="Modelos"/></li>
+                                                    </h:panelGroup>
+                                                    <li><h:link outcome="/inventory/ctlCategoriaEquipo/List" value="Categorías de equipos"/></li>
+                                                    <li><h:link outcome="/inventory/ctlEquipo/List" value="Equipos"/></li>
+                                                    <li><h:link outcome="/inventory/ctlEquipo/Create" value="Registrar equipoo"/></li>
+                                                </ul>
+                                            </li>
+                                            <li><a><i class="fa fa-database"></i> Insumos informáticos <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><h:link outcome="/inventory/ctlInsumo/List" value="Insumos"/></li>
+                                                    <li><h:link outcome="/inventory/ctlInsumo/Create" value="Registrar insumo"/></li>
+                                                </ul>
+                                            </li>
+                                            <li><a><i class="fa fa-database"></i> Inventario defectuoso <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><h:link outcome="/inventory/ctlInventarioDefectuoso/List" value="Equipos en mal estado"/></li>
+                                                    <li><h:link outcome="/inventory/ctlEquipo/List" value="Registrar equipo defectuoso"/></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('coordinador')
+                                        or facesContext.externalContext.isUserInRole('tecnico')}">
+                                    <div class="menu_section">
+                                        <h3>Catálogos</h3>
+                                        <ul class="nav side-menu">
+                                            <li><a><i class="fa fa-database"></i> Equipo de cómputo <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><h:link outcome="/catalogues/ctlMarcaEquipo/List" value="Marcas"/></li>
+                                                    <li><h:link outcome="/catalogues/ctlModeloEquipo/List" value="Modelos"/></li>
+                                                </ul>
+                                            </li>
+                                            <li><a><i class="fa fa-database"></i> Áreas de soporte <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><h:link outcome="/catalogues/ctlAreaRequerimiento/List" value="Áreas técnicas"/></li>
+                                                </ul>
+                                            </li>
+                                            <li><a><i class="fa fa-database"></i> Fallas <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><h:link outcome="/catalogues/ctlTipoFalla/List" value="Fallas posibles"/></li>
+                                                </ul>
+                                            </li>
+                                            <li><a><i class="fa fa-database"></i> Soluciones <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><h:link outcome="/catalogues/ctlTipoSolucion/List" value="Posibles soluciones"/></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('administrador')
+                                        or facesContext.externalContext.isUserInRole('coordinador')}">
+                                    <div class="menu_section">
+                                        <h3>Administración</h3>
+                                        <ul class="nav side-menu">
+                                            <li><a><i class="fa fa-database"></i> Administración del sistema <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><h:link outcome="/admin/ctlArea/List" value="Departamentos de la institución"/></li>
+                                                    <li><h:link outcome="/admin/ctlProveedor/List" value="Proveedores"/></li>
+                                                    <li><h:link outcome="/admin/tEmpleado/List" value="Empleados"/></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('gerente')
+                                        or facesContext.externalContext.isUserInRole('coordinador')}">
+                                    <div class="menu_section">
+                                        <h3>Reportería</h3>
+                                        <ul class="nav side-menu">
+                                            <li><a><i class="fa fa-database"></i> Reportes de producción <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><h:link outcome="/jasperviews/generate" value="Generar reportes"/></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('administrador')
+                                        or facesContext.externalContext.isUserInRole('coordinador')}">
+                                    <div class="menu_section">
+                                        <h3>Seguridad</h3>
+                                        <ul class="nav side-menu">
+                                            <li><a><i class="fa fa-database"></i> Seguridad del sistema <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><h:link outcome="/security/tUser/List" value="Usuarios"/></li>
+                                                    <li><h:link outcome="/security/tUserRole/List" value="Privilegios"/></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </h:panelGroup>
 
                             </div>
                             <!-- /sidebar menu -->
@@ -315,9 +350,6 @@
                                     <div class="x_content">
 
                                         <p>Desarrollado por ITCA Fepade - Java 2017</p>
-                                        
-                                        <h:panelGroup rendered="#{request.isUserInRole('administrador')}">request.isUserInRole('administrador')</h:panelGroup>
-                                        <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('administrador')}">facesContext.externalContext.isUserInRole('administrador')</h:panelGroup>
 
                                     </div>
                                 </div>

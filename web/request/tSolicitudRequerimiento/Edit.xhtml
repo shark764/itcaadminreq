@@ -51,6 +51,48 @@
 
                                 <div class="ln_solid"></div>
 
+                                <h:panelGroup rendered="#{not empty tSolicitudRequerimientoController.requestDetailList}">
+                                    <div class="table-responsive">
+                                        <h:dataTable value="#{tSolicitudRequerimientoController.requestDetailList}" var="ds" styleClass="table table-striped jambo_table bulk_action" headerClass="column-title" rowClasses="odd pointer,even pointer">
+                                            <h:column>
+                                                <f:facet name="header">ID</f:facet>
+                                                <h:outputText value="#{ds.id}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Equipo</f:facet>
+                                                <h:selectOneMenu value="#{ds.idEquipo}" required="true">
+                                                    <f:selectItems value="#{equipoController.itemsAvailableSelectOne}"/>
+                                                </h:selectOneMenu>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Falla</f:facet>
+                                                <h:selectOneMenu value="#{ds.idTipoFalla}" required="true">
+                                                    <f:selectItems value="#{tipoFallaController.itemsAvailableSelectOne}"/>
+                                                </h:selectOneMenu>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Descripción</f:facet>
+                                                <h:inputText value="#{ds.descripcionFalla}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header"><h:outputText value="&nbsp;"/></f:facet>
+                                                <h:commandButton styleClass="btn btn-sm btn-default" value="#{not empty ds.idEquipo ? 'Actualizar' : 'Agregar'}" action="#{tSolicitudRequerimientoController.updateRequestDetail(ds)}"/>
+                                                <h:outputText value=" "/>
+                                                <h:commandButton styleClass="btn btn-sm btn-default" value="Borrar" action="#{tSolicitudRequerimientoController.removeRequestDetail(ds)}"/>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </h:panelGroup>
+
+                                <div class="ln_solid"></div>
+
+                                <h:panelGroup rendered="#{not tSolicitudRequerimientoController.hasNew}">
+                                    <h:commandButton styleClass="btn btn-sm btn-default" value="Agregar nuevo" action="#{tSolicitudRequerimientoController.addNewRequestDetail}" id="add_new" />
+                                    <h:messages />
+                                </h:panelGroup>
+
+                                <div class="ln_solid"></div>
+
                                 <div class="form-group">
                                     <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                         <h:commandLink styleClass="btn btn-sm btn-primary" action="#{tSolicitudRequerimientoController.update}" value="#{requestBundle.EditTSolicitudRequerimientoSaveLink}" />

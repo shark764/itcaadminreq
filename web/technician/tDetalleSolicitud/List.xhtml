@@ -289,18 +289,30 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_fechaRequerimiento}" />
+                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idAreaRequerimiento}" />
                                             </f:facet>
-                                            <h:outputText value="#{item.fechaRequerimiento}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                            </h:outputText>
+                                            <h:outputText value="#{item.idAreaRequerimiento.toString()}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idEquipo}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.idEquipo.toString()}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idTipoFalla}" />
+                                            </f:facet>
+                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTipoFalla}">
+                                                <f:selectItems value="#{ctlTipoFallaController.itemsAvailableSelectOne}" />
+                                            </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_fechaInicio}" />
                                             </f:facet>
                                             <h:outputText value="#{item.fechaInicio}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
                                             </h:outputText>
                                         </h:column>
                                         <h:column>
@@ -316,15 +328,16 @@
                                                 <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_fechaFin}" />
                                             </f:facet>
                                             <h:outputText value="#{item.fechaFin}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
                                             </h:outputText>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_descripcionFalla}" />
+                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idTipoSolucion}" />
                                             </f:facet>
-                                            <h:outputText value="#{item.descripcionFalla}" />
-                                            <h:inputText styleClass="form-control input-sm" value="#{item.descripcionFalla}" />
+                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTipoSolucion}">
+                                                <f:selectItems value="#{ctlTipoSolucionController.itemsAvailableSelectOne}" />
+                                            </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
@@ -335,45 +348,10 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_comentario}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.comentario}" />
-                                            <h:inputText styleClass="form-control input-sm" value="#{item.comentario}" />
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idAreaRequerimiento}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.idAreaRequerimiento.toString()}" />
-                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idAreaRequerimiento}">
-                                                <f:selectItems value="#{ctlAreaRequerimientoController.itemsAvailableSelectOne}" />
-                                            </h:selectOneMenu>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idEquipo}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.idEquipo.toString()}" />
-                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idEquipo}">
-                                                <f:selectItems value="#{ctlEquipoController.itemsAvailableSelectOne}" />
-                                            </h:selectOneMenu>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
                                                 <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idEstadoSolicitud}" />
                                             </f:facet>
-                                            <h:outputText value="#{item.idEstadoSolicitud.toString()}" />
                                             <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idEstadoSolicitud}">
                                                 <f:selectItems value="#{ctlEstadoSolicitudController.itemsAvailableSelectOne}" />
-                                            </h:selectOneMenu>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idSolicitudRequerimiento}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.idSolicitudRequerimiento.toString()}" />
-                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idSolicitudRequerimiento}">
-                                                <f:selectItems value="#{tSolicitudRequerimientoController.itemsAvailableSelectOne}" />
                                             </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
@@ -381,36 +359,6 @@
                                                 <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idTecnicoAsignado}" />
                                             </f:facet>
                                             <h:outputText value="#{item.idTecnicoAsignado.toString()}" />
-                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTecnicoAsignado}">
-                                                <f:selectItems value="#{tEmpleadoController.itemsAvailableSelectOne}" />
-                                            </h:selectOneMenu>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idTipoFalla}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.idTipoFalla.toString()}" />
-                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTipoFalla}">
-                                                <f:selectItems value="#{ctlTipoFallaController.itemsAvailableSelectOne}" />
-                                            </h:selectOneMenu>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idTipoRequerimiento}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.idTipoRequerimiento.toString()}" />
-                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTipoRequerimiento}">
-                                                <f:selectItems value="#{ctlTipoRequerimientoController.itemsAvailableSelectOne}" />
-                                            </h:selectOneMenu>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{requestBundle.ListTDetalleSolicitudTitle_idTipoSolucion}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.idTipoSolucion.toString()}" />
-                                            <h:selectOneMenu styleClass="form-control input-sm" value="#{item.idTipoSolucion}">
-                                                <f:selectItems value="#{ctlTipoSolucionController.itemsAvailableSelectOne}" />
-                                            </h:selectOneMenu>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">

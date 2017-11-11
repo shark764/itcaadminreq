@@ -193,10 +193,16 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
+                                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_idEquipo}" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.idEquipo.toString()}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
                                                 <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_fechaPrestamo}" />
                                             </f:facet>
                                             <h:outputText value="#{item.fechaPrestamo}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
                                             </h:outputText>
                                         </h:column>
                                         <h:column>
@@ -212,26 +218,8 @@
                                                 <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_fechaEntrega}" />
                                             </f:facet>
                                             <h:outputText value="#{item.fechaEntrega}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
                                             </h:outputText>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_descripcion}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.descripcion}" />
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_comentario}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.comentario}" />
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_idEquipo}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.idEquipo.toString()}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
@@ -244,12 +232,6 @@
                                                 <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_idEstadoPrestamo}" />
                                             </f:facet>
                                             <h:outputText value="#{item.idEstadoPrestamo.toString()}" />
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{loanRequestBundle.ListTDetallePrestamoTitle_idPrestamo}" />
-                                            </f:facet>
-                                            <h:outputText value="#{item.idPrestamo.toString()}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">

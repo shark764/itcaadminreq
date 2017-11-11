@@ -7,9 +7,9 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
+        <ui:remove><ui:define name="title">
             <h:outputText value="Generación de Reporte"></h:outputText>
-        </ui:define>
+        </ui:define></ui:remove>
         <ui:define name="body">
 
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -24,9 +24,9 @@
                         <p>Registros ingresados al sistema</p>
 
                         <h:form>
-                            <ul>
+                            <ul class="to_do">
                                 <c:forEach items="#{jasperBean.jasperReportOptions}" var="jrOption">
-                                    <li><h:link styleClass="btn btn-sm btn-default" outcome="#{jrOption.key}" value="#{jrOption.value}" /></li>
+                                    <li><p><h:link styleClass="" outcome="#{jrOption.key}" value="#{jrOption.value}" /></p></li>
                                 </c:forEach>
                             </ul>
                         </h:form>
@@ -51,11 +51,13 @@
                         <p>Registros ingresados al sistema</p>
 
                         <h:form styleClass="form-inline">
-                            <h:commandButton actionListener="#{stockByEquipmentModelReport.PDF}" value="PDF" />
-                            <h:commandButton actionListener="#{stockByEquipmentModelReport.DOCX}" value="Docx" />
-                            <h:commandButton actionListener="#{stockByEquipmentModelReport.XLSX}" value="Xlsx" />
-                            <h:commandButton actionListener="#{stockByEquipmentModelReport.ODT}" value="Odt" />
-                            <h:commandButton actionListener="#{stockByEquipmentModelReport.PPT}" value="Ppt" />
+                            <div class="btn-group  btn-group-sm">
+                                <h:commandButton styleClass="btn btn-sm btn-dark" actionListener="#{stockByEquipmentModelReport.PDF}" value="PDF" />
+                                <h:commandButton styleClass="btn btn-sm btn-dark" actionListener="#{stockByEquipmentModelReport.DOCX}" value="Docx" />
+                                <h:commandButton styleClass="btn btn-sm btn-dark" actionListener="#{stockByEquipmentModelReport.XLSX}" value="Xlsx" />
+                                <h:commandButton styleClass="btn btn-sm btn-dark" actionListener="#{stockByEquipmentModelReport.ODT}" value="Odt" />
+                                <h:commandButton styleClass="btn btn-sm btn-dark" actionListener="#{stockByEquipmentModelReport.PPT}" value="Ppt" />
+                            </div>
                         </h:form>
 
                         <div class="table-responsive">
