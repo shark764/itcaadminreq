@@ -177,6 +177,19 @@
                                     </ul>
                                 </div>
                             </h:panelGroup>
+                            <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('coordinador')}">
+                                <div class="menu_section">
+                                    <h3>Mantenimientos</h3>
+                                    <ul class="nav side-menu">
+                                        <li><a><i class="fa fa-database"></i> Mantenimientos programados <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><h:link outcome="/maintenance/tMantenimiento/List" value="Mantenimientos"/></li>
+                                                <li><h:link outcome="/maintenance/tMantenimiento/Create" value="Programar nuevo"/></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </h:panelGroup>
                             <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('administrador')
                                     or facesContext.externalContext.isUserInRole('coordinador')}">
                                 <div class="menu_section">

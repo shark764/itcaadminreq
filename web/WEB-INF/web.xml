@@ -84,6 +84,7 @@
             <url-pattern>/coordinator/*</url-pattern>
             <url-pattern>/inventory/*</url-pattern>
             <url-pattern>/catalogues/*</url-pattern>
+            <url-pattern>/maintenance/*</url-pattern>
             <url-pattern>/resources/*</url-pattern>
             <!--<url-pattern>/index.xhtml</url-pattern>-->
             <!--<url-pattern>/*</url-pattern>-->
