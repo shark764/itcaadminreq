@@ -315,6 +315,9 @@
                                     <div class="x_content">
 
                                         <p>Desarrollado por ITCA Fepade - Java 2017</p>
+                                        
+                                        <h:panelGroup rendered="#{request.isUserInRole('administrador')}">request.isUserInRole('administrador')</h:panelGroup>
+                                        <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('administrador')}">facesContext.externalContext.isUserInRole('administrador')</h:panelGroup>
 
                                     </div>
                                 </div>
