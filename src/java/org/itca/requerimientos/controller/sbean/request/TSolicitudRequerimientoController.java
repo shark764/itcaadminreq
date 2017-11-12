@@ -208,6 +208,7 @@ public class TSolicitudRequerimientoController implements Serializable {
                     ds.setFechaLimite(dt);
 
                     ds.setIdEstadoSolicitud(ejbCtlEstadoSolicitudFacade.findByCodigo("001"));
+                    ds.setFechaRequerimiento(new Date());
                 }
                 current.setTDetalleSolicitudList(this.requestDetailList);
             }

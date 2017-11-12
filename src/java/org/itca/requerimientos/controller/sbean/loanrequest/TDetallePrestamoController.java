@@ -64,7 +64,7 @@ public class TDetallePrestamoController implements Serializable {
         current = (TDetallePrestamo) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         current.setFechaEntrega(new Date());
-        current.setIdEstadoPrestamo(ejbCtlEstadoPrestamoFacade.findByCodigo("005"));
+        current.setIdEstadoPrestamo(ejbCtlEstadoPrestamoFacade.findByCodigo("006"));
         System.out.println("equipment returned: " + this.current);
         getFacade().edit(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/LoanRequestBundle").getString("DetallePrestamoUpdated"));
@@ -270,7 +270,7 @@ public class TDetallePrestamoController implements Serializable {
             dt = cl.getTime();
             current.setFechaLimite(dt);
 
-            if ("010".equals(current.getIdEstadoPrestamo().getCodigo())) {
+            if ("006".equals(current.getIdEstadoPrestamo().getCodigo())) {
                 current.setFechaEntrega(new Date());
             }
             getFacade().create(current);
@@ -299,7 +299,7 @@ public class TDetallePrestamoController implements Serializable {
                 dt = cl.getTime();
                 current.setFechaLimite(dt);
             }
-            if ("010".equals(current.getIdEstadoPrestamo().getCodigo()) && current.getFechaEntrega() == null) {
+            if ("006".equals(current.getIdEstadoPrestamo().getCodigo()) && current.getFechaEntrega() == null) {
                 current.setFechaEntrega(new Date());
             }
             getFacade().edit(current);

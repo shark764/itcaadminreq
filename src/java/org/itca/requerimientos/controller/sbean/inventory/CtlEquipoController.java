@@ -60,6 +60,8 @@ public class CtlEquipoController implements Serializable {
     
     @EJB private org.itca.requerimientos.controller.facade.inventory.CtlInventarioDefectuosoFacade ejbCtlInventarioDefectuosoFacade;
 
+    @EJB private org.itca.requerimientos.controller.facade.security.TUserFacade ejbTUserFacade;
+
     private CtlInventarioDefectuoso defectiveEquipment;
 
     public CtlInventarioDefectuoso getDefectiveEquipment() {
@@ -284,6 +286,9 @@ public class CtlEquipoController implements Serializable {
 
     public String create() {
         try {
+            
+            FacesContext context = FacesContext.getCurrentInstance();
+            current.setIdUserReg(ejbTUserFacade.findByUsername(context.getExternalContext().getUserPrincipal().getName()));
             current.setFechaAdquisicion(new Date());
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/org/itca/requerimientos/bundles/InventoryBundle").getString("CtlEquipoCreated"));

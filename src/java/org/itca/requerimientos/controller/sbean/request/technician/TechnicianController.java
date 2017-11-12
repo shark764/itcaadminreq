@@ -420,7 +420,7 @@ public class TechnicianController implements Serializable {
             dt = cl.getTime();
             current.setFechaLimite(dt);
 
-            if ("010".equals(current.getIdEstadoSolicitud().getCodigo())) {
+            if ("009".equals(current.getIdEstadoSolicitud().getCodigo())) {
                 current.setFechaFin(new Date());
             }
             
